@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import NextJsLink, { LinkProps } from 'next/link'
 
-const assetPrefix = process.env.ASSET_PREFIX as string
+const assetPrefix = process.env.PATH_PREFIX as string
 
 /**
  * In order to support a site-wide path prefix (e.g. GitHub Pages), all usages of

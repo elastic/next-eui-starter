@@ -1,30 +1,44 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 
-const assetPrefix = process.env.ASSET_PREFIX
+const assetPrefix = process.env.PATH_PREFIX
+
+interface ThemeConfig {
+  publicPaths: Array<{
+    id: string
+    name: string
+    publicPath: string
+  }>
+}
+
+const themeConfig: ThemeConfig = JSON.parse(process.env.THEME_CONFIG!)
 
 export default class MyDocument extends Document {
   render() {
     return (
       <html>
         <Head>
-          <link
-            rel='stylesheet'
-            href={`${assetPrefix}/themes/eui_theme_light.min.css`}
-            data-name='eui-theme'
-            data-theme='light'
-            key='light'
-          />
-          <link
-            rel='stylesheet'
-            href={`${assetPrefix}/themes/eui_theme_dark.min.css`}
-            data-name='eui-theme'
-            data-theme='dark'
-            key='dark'
-            // @ts-ignore this is valid but TS disagrees
-            disabled
-            aria-disabled
-          />
+          {themeConfig.publicPaths.map(each => {
+            const disabledProps =
+              each.id === 'light'
+                ? {}
+                : {
+                    disabled: true,
+                    'aria-disabled': true,
+                  }
+
+            return (
+              <link
+                rel='stylesheet'
+                href={`${assetPrefix}/${each.publicPath}`}
+                data-name='eui-theme'
+                data-theme-name={each.name}
+                data-theme={each.id}
+                key={each.id}
+                {...disabledProps}
+              />
+            )
+          })}
         </Head>
         <body>
           <Main />
