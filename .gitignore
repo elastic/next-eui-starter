@@ -1,0 +1,18 @@
+# Junk and IDE stuff
+*.bak
+*.iml
+*.orig
+*.rej
+*.swp
+*~
+.DS_Store
+.idea
+.vim/.netrwhist
+yarn-error.log
+.eslintcache
+
+# Files in here are copied by the build
+public/themes
+
+node_modules
+.next

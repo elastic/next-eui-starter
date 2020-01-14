@@ -1,0 +1,12 @@
+.chrWrap {
+  width: calc(100% - 3rem);
+  margin-left: 3rem;
+  padding-top: $euiSizeXXL + $euiSizeS;
+}
+
+.chrHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
