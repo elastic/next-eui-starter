@@ -1,12 +1,19 @@
 import { AppProps } from 'next/app'
+import Head from 'next/head'
 import React, { FunctionComponent } from 'react'
+
 import Chrome from '../components/chrome'
 
 const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   return (
-    <Chrome>
-      <Component {...pageProps} />
-    </Chrome>
+    <>
+      <Head>
+        <title>Next.js EUI Starter</title>
+      </Head>
+      <Chrome>
+        <Component {...pageProps} />
+      </Chrome>
+    </>
   )
 }
 

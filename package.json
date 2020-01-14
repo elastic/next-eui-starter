@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "next",
     "build": "yarn lint && next build",
-    "build-docs": "rm -rf docs && yarn build && next export -o docs && touch docs/.nojekyll",
+    "build-docs": "export GITHUB_PAGES=true && rm -rf docs && yarn build && next export -o docs && touch docs/.nojekyll",
     "lint": "eslint --cache 'src/**/*.{ts,tsx,js}' --max-warnings 0",
     "start": "next start"
   },

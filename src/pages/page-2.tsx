@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import Link from 'next/link'
+import Link from '../components/link'
 
 import {
   EuiPage,
@@ -18,7 +18,7 @@ const SecondPage: FunctionComponent = () => (
     <EuiPageBody>
       <EuiPageHeader>
         <EuiPageHeaderSection>
-          <EuiTitle size="l">
+          <EuiTitle size='l'>
             <h1>Second Page title</h1>
           </EuiTitle>
         </EuiPageHeaderSection>
@@ -34,7 +34,7 @@ const SecondPage: FunctionComponent = () => (
           <EuiPageContentHeaderSection>Content abilities</EuiPageContentHeaderSection>
         </EuiPageContentHeader>
         <EuiPageContentBody>
-          <Link href="/">Go to Home</Link>
+          <Link href='/'>Go to Home</Link>
         </EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>

@@ -4,8 +4,16 @@ const path = require('path')
 const withImages = require('next-images')
 const withSass = require('@zeit/next-sass')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
+
+// If you are deploying your site to GitHub pages, then you have to tell Next
+// how the files will be served. We don't need this during development.
+const isGithubPages = process.env.GITHUB_PAGES === 'true'
+const assetPrefix = isGithubPages ? '/next-eui-starter/' : ''
 
 const nextConfig = {
+  assetPrefix,
+
   poweredByHeader: false,
 
   webpack(config, { isServer }) {
@@ -29,6 +37,7 @@ const nextConfig = {
 
       // Mock HTMLElement, window and localStorage server-side
       const definePluginId = config.plugins.findIndex(p => p.constructor.name === 'DefinePlugin')
+
       config.plugins[definePluginId].definitions = {
         ...config.plugins[definePluginId].definitions,
         HTMLElement: function() {},
@@ -58,6 +67,12 @@ const nextConfig = {
           to: path.join(__dirname, 'public/themes/eui_theme_dark.min.css'),
         },
       ])
+    )
+
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env.ASSET_PREFIX': JSON.stringify(assetPrefix),
+      })
     )
 
     return config
