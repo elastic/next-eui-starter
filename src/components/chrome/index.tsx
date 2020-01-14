@@ -37,6 +37,9 @@ interface EuiNavDrawerStub {
   toggleOpen: () => void
 }
 
+/**
+ * Renders the UI that surrounds the page content.
+ */
 class Chrome extends Component<{}, State> {
   static displayName: string
 

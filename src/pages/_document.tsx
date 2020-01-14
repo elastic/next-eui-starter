@@ -11,8 +11,13 @@ interface ThemeConfig {
   }>
 }
 
+// The config is generated during the build and made available in a JSON string.
 const themeConfig: ThemeConfig = JSON.parse(process.env.THEME_CONFIG!)
 
+/**
+ * Customize the default `Document` implementation to inject the various EUI theme files.
+ * Only the `light` theme is intially enabled.
+ */
 export default class MyDocument extends Document {
   render() {
     return (

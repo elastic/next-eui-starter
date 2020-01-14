@@ -1,3 +1,9 @@
+/**
+ * The functions here are for tracking and setting the current theme.
+ * localStorage is used to store the currently preferred them, though
+ * that doesn't work on the server, where we just use a default.
+ */
+
 export type Theme = 'light' | 'dark'
 
 const selector = `link[data-name="eui-theme"]`

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// These type definitions all us to import image files in JavaScript without
+// These type definitions allow us to import image files in JavaScript without
 // causing type errors. They tell the TypeScript compiler that such imports
 // simply return a value, which they do, thanks to Webpack.
 

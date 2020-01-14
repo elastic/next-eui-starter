@@ -13,8 +13,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "dev": "next",
-    "build": "yarn lint && next build",
-    "build-docs": "rm -rf docs && GITHUB_PAGES=true yarn build && GITHUB_PAGES=true next export -o docs && touch docs/.nojekyll",
+    "build": "yarn lint && rm public/themes/*.min.css && next build",
+    "build-docs": "rm -rf docs && PATH_PREFIX=true yarn build && PATH_PREFIX=true next export -o docs && touch docs/.nojekyll",
     "lint": "eslint --cache 'src/**/*.{ts,tsx,js}' --max-warnings 0",
     "start": "next start"
   },
