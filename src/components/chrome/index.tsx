@@ -60,13 +60,13 @@ class Chrome extends Component<{}, State> {
   }
 
   renderLogo() {
-    return <EuiHeaderLogo iconType="logoElastic" href="/#/chrome/nav-drawer" aria-label="Goes to home" />
+    return <EuiHeaderLogo iconType='logoElastic' href='/#/chrome/nav-drawer' aria-label='Goes to home' />
   }
 
   renderMenuTrigger() {
     return (
-      <EuiHeaderSectionItemButton aria-label="Open nav" onClick={() => this.navDrawerRef!.toggleOpen()}>
-        <EuiIcon type="apps" href="#" size="m" />
+      <EuiHeaderSectionItemButton aria-label='Open nav' onClick={() => this.navDrawerRef!.toggleOpen()}>
+        <EuiIcon type='apps' href='#' size='m' />
       </EuiHeaderSectionItemButton>
     )
   }
@@ -95,18 +95,18 @@ class Chrome extends Component<{}, State> {
 
     return (
       <ThemeContext.Provider value={this.state.theme}>
-        <EuiHeader className="chrHeader">
+        <EuiHeader className='chrHeader'>
           <EuiHeaderSection grow={false}>
             <EuiShowFor sizes={['xs', 's']}>
-              <EuiHeaderSectionItem border="right">{this.renderMenuTrigger()}</EuiHeaderSectionItem>
+              <EuiHeaderSectionItem border='right'>{this.renderMenuTrigger()}</EuiHeaderSectionItem>
             </EuiShowFor>
-            <EuiHeaderSectionItem border="right">{this.renderLogo()}</EuiHeaderSectionItem>
-            <EuiHeaderSectionItem border="right">{/* <HeaderSpacesMenu /> */}</EuiHeaderSectionItem>
+            <EuiHeaderSectionItem border='right'>{this.renderLogo()}</EuiHeaderSectionItem>
+            <EuiHeaderSectionItem border='right'>{/* <HeaderSpacesMenu /> */}</EuiHeaderSectionItem>
           </EuiHeaderSection>
 
           {this.renderBreadcrumbs()}
 
-          <EuiHeaderSection side="right">
+          <EuiHeaderSection side='right'>
             <EuiHeaderSectionItem
               // @ts-ignore
               style={{
@@ -117,7 +117,7 @@ class Chrome extends Component<{}, State> {
                 paddingLeft: '.5rem',
                 paddingRight: '.5rem',
               }}>
-              <EuiButton size="s" iconType={themeIcon} onClick={() => this.handleChangeTheme()}>
+              <EuiButton size='s' iconType={themeIcon} onClick={() => this.handleChangeTheme()}>
                 Switch Theme
               </EuiButton>
             </EuiHeaderSectionItem>
@@ -125,14 +125,14 @@ class Chrome extends Component<{}, State> {
         </EuiHeader>
         <EuiNavDrawer ref={this.setNavDrawerRef}>
           <EuiNavDrawerGroup listItems={TopLinks} />
-          <EuiHorizontalRule margin="none" />
+          <EuiHorizontalRule margin='none' />
           <EuiNavDrawerGroup listItems={ExploreLinks} />
-          <EuiHorizontalRule margin="none" />
+          <EuiHorizontalRule margin='none' />
           <EuiNavDrawerGroup listItems={SolutionLinks} />
-          <EuiHorizontalRule margin="none" />
+          <EuiHorizontalRule margin='none' />
           <EuiNavDrawerGroup listItems={AdminLinks} />
         </EuiNavDrawer>
-        <div className="chrWrap">{this.props.children}</div>
+        <div className='chrWrap'>{this.props.children}</div>
       </ThemeContext.Provider>
     )
   }
