@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// …Some others imports before
 const path = require('path')
 const withImages = require('next-images')
 const withSass = require('@zeit/next-sass')
@@ -9,7 +8,7 @@ const webpack = require('webpack')
 // If you are deploying your site to GitHub pages, then you have to tell Next
 // how the files will be served. We don't need this during development.
 const isGithubPages = process.env.GITHUB_PAGES === 'true'
-const assetPrefix = isGithubPages ? '/next-eui-starter/' : ''
+const assetPrefix = isGithubPages ? '/next-eui-starter' : ''
 
 const nextConfig = {
   assetPrefix,
