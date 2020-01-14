@@ -69,14 +69,21 @@ const Index: FunctionComponent = () => (
               <EuiCode>yarn dev</EuiCode>
             </p>
 
+            <h3>Running in production mode:</h3>
+            <p>
+              <EuiCode>yarn build</EuiCode>
+            </p>
+            <p>Then:</p>
+            <p>
+              <EuiCode>yarn start</EuiCode>
+            </p>
+
             <h3>Deploying to GitHub Pages</h3>
             <p>
               Make sure that your repo has Github Pages enabled in settings. Then run <EuiCode>yarn build-docs</EuiCode>
               , commit the results and push to GitHub.
             </p>
-            <p>
-              <EuiCode>yarn deploy</EuiCode>
-            </p>
+
             <MyComponent />
           </EuiText>
         </EuiPageContentBody>
