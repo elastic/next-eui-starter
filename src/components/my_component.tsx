@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react'
 import Link from './link'
-import { EuiButton } from '@elastic/eui'
+import NextEuiButton from './next_eui/button'
 
 const MyComponent: FunctionComponent = () => (
   <Link href='page-2'>
-    <EuiButton>Go to page 2</EuiButton>
+    <NextEuiButton>Go to page 2</NextEuiButton>
   </Link>
 )
 

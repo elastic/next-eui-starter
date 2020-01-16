@@ -34,7 +34,9 @@ const SecondPage: FunctionComponent = () => (
           <EuiPageContentHeaderSection>Content abilities</EuiPageContentHeaderSection>
         </EuiPageContentHeader>
         <EuiPageContentBody>
-          <Link href='/'>Go to Home</Link>
+          <Link href='/'>
+            <a>Go to Home</a>
+          </Link>
         </EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
