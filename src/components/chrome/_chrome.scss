@@ -1,12 +1,14 @@
-.chrWrap {
-  width: calc(100% - 3rem);
-  margin-left: 3rem;
-  padding-top: $euiSizeXXL + $euiSizeS;
+.chrHeader {
+  .euiHeaderSectionItem::after {
+    top: 0;
+  }
 }
 
-.chrHeader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+.chrHeaderSectionItem {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  width: 11rem;
 }

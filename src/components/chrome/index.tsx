@@ -27,6 +27,8 @@ import { setInitialTheme, setTheme, Theme } from '../../lib/theme'
 import moon from './assets/moon.svg'
 import sun from './assets/sun.svg'
 
+import './_index.scss';
+
 interface EuiNavDrawerStub {
   toggleOpen: () => void
 }
@@ -98,16 +100,7 @@ const Chrome: FunctionComponent = ({ children }) => {
         <Breadcrumbs />
 
         <EuiHeaderSection side='right'>
-          <EuiHeaderSectionItem
-            // @ts-ignore
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '11rem',
-              justifyContent: 'center',
-              paddingLeft: '.5rem',
-              paddingRight: '.5rem',
-            }}>
+          <EuiHeaderSectionItem className='chrHeaderSectionItem'>
             <EuiButton size='s' iconType={themeIcon} onClick={handleChangeTheme}>
               Switch Theme
             </EuiButton>
