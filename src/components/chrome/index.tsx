@@ -27,7 +27,7 @@ import { setInitialTheme, setTheme, Theme } from '../../lib/theme'
 import moon from './assets/moon.svg'
 import sun from './assets/sun.svg'
 
-import './_index.scss';
+import './_index.scss'
 
 interface EuiNavDrawerStub {
   toggleOpen: () => void
