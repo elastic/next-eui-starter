@@ -32,9 +32,7 @@ interface EuiNavDrawerStub {
   toggleOpen: () => void
 }
 
-const Logo: FunctionComponent = () => (
-  <EuiHeaderLogo iconType='logoElastic' href='/#/chrome/nav-drawer' aria-label='Goes to home' />
-)
+const Logo: FunctionComponent = () => <EuiHeaderLogo iconType='logoElastic' href='/' aria-label='Goes to home' />
 
 const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
   <EuiHeaderSectionItemButton aria-label='Open nav' onClick={onClick}>

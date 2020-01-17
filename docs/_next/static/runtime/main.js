@@ -44,17 +44,6 @@ module.exports = __webpack_require__(/*! core-js/library/fn/json/stringify */ ".
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime-corejs2/core-js/map.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/core-js/map.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! core-js/library/fn/map */ "./node_modules/core-js/library/fn/map.js");
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js ***!
@@ -772,25 +761,6 @@ module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/fn/map.js":
-/*!************************************************!*\
-  !*** ./node_modules/core-js/library/fn/map.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! ../modules/es6.object.to-string */ "./node_modules/core-js/library/modules/es6.object.to-string.js");
-__webpack_require__(/*! ../modules/es6.string.iterator */ "./node_modules/core-js/library/modules/es6.string.iterator.js");
-__webpack_require__(/*! ../modules/web.dom.iterable */ "./node_modules/core-js/library/modules/web.dom.iterable.js");
-__webpack_require__(/*! ../modules/es6.map */ "./node_modules/core-js/library/modules/es6.map.js");
-__webpack_require__(/*! ../modules/es7.map.to-json */ "./node_modules/core-js/library/modules/es7.map.to-json.js");
-__webpack_require__(/*! ../modules/es7.map.of */ "./node_modules/core-js/library/modules/es7.map.of.js");
-__webpack_require__(/*! ../modules/es7.map.from */ "./node_modules/core-js/library/modules/es7.map.from.js");
-module.exports = __webpack_require__(/*! ../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Map;
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/fn/object/assign.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/library/fn/object/assign.js ***!
@@ -1041,24 +1011,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_array-from-iterable.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_array-from-iterable.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var forOf = __webpack_require__(/*! ./_for-of */ "./node_modules/core-js/library/modules/_for-of.js");
-
-module.exports = function (iter, ITERATOR) {
-  var result = [];
-  forOf(iter, false, result.push, result, ITERATOR);
-  return result;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_array-includes.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/library/modules/_array-includes.js ***!
@@ -1274,182 +1226,6 @@ var toString = {}.toString;
 
 module.exports = function (it) {
   return toString.call(it).slice(8, -1);
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_collection-strong.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_collection-strong.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var dP = __webpack_require__(/*! ./_object-dp */ "./node_modules/core-js/library/modules/_object-dp.js").f;
-var create = __webpack_require__(/*! ./_object-create */ "./node_modules/core-js/library/modules/_object-create.js");
-var redefineAll = __webpack_require__(/*! ./_redefine-all */ "./node_modules/core-js/library/modules/_redefine-all.js");
-var ctx = __webpack_require__(/*! ./_ctx */ "./node_modules/core-js/library/modules/_ctx.js");
-var anInstance = __webpack_require__(/*! ./_an-instance */ "./node_modules/core-js/library/modules/_an-instance.js");
-var forOf = __webpack_require__(/*! ./_for-of */ "./node_modules/core-js/library/modules/_for-of.js");
-var $iterDefine = __webpack_require__(/*! ./_iter-define */ "./node_modules/core-js/library/modules/_iter-define.js");
-var step = __webpack_require__(/*! ./_iter-step */ "./node_modules/core-js/library/modules/_iter-step.js");
-var setSpecies = __webpack_require__(/*! ./_set-species */ "./node_modules/core-js/library/modules/_set-species.js");
-var DESCRIPTORS = __webpack_require__(/*! ./_descriptors */ "./node_modules/core-js/library/modules/_descriptors.js");
-var fastKey = __webpack_require__(/*! ./_meta */ "./node_modules/core-js/library/modules/_meta.js").fastKey;
-var validate = __webpack_require__(/*! ./_validate-collection */ "./node_modules/core-js/library/modules/_validate-collection.js");
-var SIZE = DESCRIPTORS ? '_s' : 'size';
-
-var getEntry = function (that, key) {
-  // fast case
-  var index = fastKey(key);
-  var entry;
-  if (index !== 'F') return that._i[index];
-  // frozen object case
-  for (entry = that._f; entry; entry = entry.n) {
-    if (entry.k == key) return entry;
-  }
-};
-
-module.exports = {
-  getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
-    var C = wrapper(function (that, iterable) {
-      anInstance(that, C, NAME, '_i');
-      that._t = NAME;         // collection type
-      that._i = create(null); // index
-      that._f = undefined;    // first entry
-      that._l = undefined;    // last entry
-      that[SIZE] = 0;         // size
-      if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that);
-    });
-    redefineAll(C.prototype, {
-      // 23.1.3.1 Map.prototype.clear()
-      // 23.2.3.2 Set.prototype.clear()
-      clear: function clear() {
-        for (var that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
-          entry.r = true;
-          if (entry.p) entry.p = entry.p.n = undefined;
-          delete data[entry.i];
-        }
-        that._f = that._l = undefined;
-        that[SIZE] = 0;
-      },
-      // 23.1.3.3 Map.prototype.delete(key)
-      // 23.2.3.4 Set.prototype.delete(value)
-      'delete': function (key) {
-        var that = validate(this, NAME);
-        var entry = getEntry(that, key);
-        if (entry) {
-          var next = entry.n;
-          var prev = entry.p;
-          delete that._i[entry.i];
-          entry.r = true;
-          if (prev) prev.n = next;
-          if (next) next.p = prev;
-          if (that._f == entry) that._f = next;
-          if (that._l == entry) that._l = prev;
-          that[SIZE]--;
-        } return !!entry;
-      },
-      // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
-      // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
-      forEach: function forEach(callbackfn /* , that = undefined */) {
-        validate(this, NAME);
-        var f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-        var entry;
-        while (entry = entry ? entry.n : this._f) {
-          f(entry.v, entry.k, this);
-          // revert to the last existing entry
-          while (entry && entry.r) entry = entry.p;
-        }
-      },
-      // 23.1.3.7 Map.prototype.has(key)
-      // 23.2.3.7 Set.prototype.has(value)
-      has: function has(key) {
-        return !!getEntry(validate(this, NAME), key);
-      }
-    });
-    if (DESCRIPTORS) dP(C.prototype, 'size', {
-      get: function () {
-        return validate(this, NAME)[SIZE];
-      }
-    });
-    return C;
-  },
-  def: function (that, key, value) {
-    var entry = getEntry(that, key);
-    var prev, index;
-    // change existing entry
-    if (entry) {
-      entry.v = value;
-    // create new entry
-    } else {
-      that._l = entry = {
-        i: index = fastKey(key, true), // <- index
-        k: key,                        // <- key
-        v: value,                      // <- value
-        p: prev = that._l,             // <- previous entry
-        n: undefined,                  // <- next entry
-        r: false                       // <- removed
-      };
-      if (!that._f) that._f = entry;
-      if (prev) prev.n = entry;
-      that[SIZE]++;
-      // add to index
-      if (index !== 'F') that._i[index] = entry;
-    } return that;
-  },
-  getEntry: getEntry,
-  setStrong: function (C, NAME, IS_MAP) {
-    // add .keys, .values, .entries, [@@iterator]
-    // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
-    $iterDefine(C, NAME, function (iterated, kind) {
-      this._t = validate(iterated, NAME); // target
-      this._k = kind;                     // kind
-      this._l = undefined;                // previous
-    }, function () {
-      var that = this;
-      var kind = that._k;
-      var entry = that._l;
-      // revert to the last existing entry
-      while (entry && entry.r) entry = entry.p;
-      // get next entry
-      if (!that._t || !(that._l = entry = entry ? entry.n : that._t._f)) {
-        // or finish the iteration
-        that._t = undefined;
-        return step(1);
-      }
-      // return step by kind
-      if (kind == 'keys') return step(0, entry.k);
-      if (kind == 'values') return step(0, entry.v);
-      return step(0, [entry.k, entry.v]);
-    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true);
-
-    // add [@@species], 23.1.2.2, 23.2.2.2
-    setSpecies(NAME);
-  }
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_collection-to-json.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_collection-to-json.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(/*! ./_classof */ "./node_modules/core-js/library/modules/_classof.js");
-var from = __webpack_require__(/*! ./_array-from-iterable */ "./node_modules/core-js/library/modules/_array-from-iterable.js");
-module.exports = function (NAME) {
-  return function toJSON() {
-    if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
-    return from(this);
-  };
 };
 
 
@@ -3590,37 +3366,6 @@ addToUnscopables('entries');
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/es6.map.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es6.map.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var strong = __webpack_require__(/*! ./_collection-strong */ "./node_modules/core-js/library/modules/_collection-strong.js");
-var validate = __webpack_require__(/*! ./_validate-collection */ "./node_modules/core-js/library/modules/_validate-collection.js");
-var MAP = 'Map';
-
-// 23.1 Map Objects
-module.exports = __webpack_require__(/*! ./_collection */ "./node_modules/core-js/library/modules/_collection.js")(MAP, function (get) {
-  return function Map() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
-}, {
-  // 23.1.3.6 Map.prototype.get(key)
-  get: function get(key) {
-    var entry = strong.getEntry(validate(this, MAP), key);
-    return entry && entry.v;
-  },
-  // 23.1.3.9 Map.prototype.set(key, value)
-  set: function set(key, value) {
-    return strong.def(validate(this, MAP), key === 0 ? 0 : key, value);
-  }
-}, strong, true);
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/es6.object.assign.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/core-js/library/modules/es6.object.assign.js ***!
@@ -4475,47 +4220,6 @@ if (NATIVE_WEAK_MAP && IS_IE11) {
     });
   });
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es7.map.from.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es7.map.from.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
-__webpack_require__(/*! ./_set-collection-from */ "./node_modules/core-js/library/modules/_set-collection-from.js")('Map');
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es7.map.of.js":
-/*!************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es7.map.of.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
-__webpack_require__(/*! ./_set-collection-of */ "./node_modules/core-js/library/modules/_set-collection-of.js")('Map');
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es7.map.to-json.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es7.map.to-json.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var $export = __webpack_require__(/*! ./_export */ "./node_modules/core-js/library/modules/_export.js");
-
-$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(/*! ./_collection-to-json */ "./node_modules/core-js/library/modules/_collection-to-json.js")('Map') });
 
 
 /***/ }),
@@ -6430,6 +6134,33 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "./node_modules/next/dist/client/dev/fouc.js":
+/*!***************************************************!*\
+  !*** ./node_modules/next/dist/client/dev/fouc.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.displayContent = displayContent;
+
+function displayContent() {
+  // This is the fallback helper that removes Next.js' no-FOUC styles when
+  // CSS mode is enabled. This only really activates if you haven't created
+  // _any_ styles in your application yet.
+  ;
+  (window.requestAnimationFrame || setTimeout)(function () {
+    for (var x = document.querySelectorAll('[data-next-hide-fouc]'), i = x.length; i--;) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./node_modules/next/dist/client/dev/on-demand-entries-client.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/next/dist/client/dev/on-demand-entries-client.js ***!
@@ -6956,7 +6687,7 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/help
 exports.__esModule = true;
 exports.render = render;
 exports.renderError = renderError;
-exports["default"] = exports.emitter = exports.ErrorComponent = exports.router = exports.dataManager = exports.version = void 0;
+exports["default"] = exports.emitter = exports.router = exports.version = void 0;
 
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js"));
 
@@ -6984,11 +6715,7 @@ var envConfig = _interopRequireWildcard3(__webpack_require__(/*! ../next-server/
 
 var _headManagerContext = __webpack_require__(/*! ../next-server/lib/head-manager-context */ "./node_modules/next/dist/next-server/lib/head-manager-context.js");
 
-var _dataManagerContext = __webpack_require__(/*! ../next-server/lib/data-manager-context */ "./node_modules/next/dist/next-server/lib/data-manager-context.js");
-
 var _routerContext = __webpack_require__(/*! ../next-server/lib/router-context */ "./node_modules/next/dist/next-server/lib/router-context.js");
-
-var _dataManager = __webpack_require__(/*! ../next-server/lib/data-manager */ "./node_modules/next/dist/next-server/lib/data-manager.js");
 
 var _querystring = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
 
@@ -7002,7 +6729,7 @@ if (!window.Promise) {
 
 var data = JSON.parse(document.getElementById('__NEXT_DATA__').textContent);
 window.__NEXT_DATA__ = data;
-var version = "9.1.7";
+var version = "9.2.0";
 exports.version = version;
 var props = data.props,
     err = data.err,
@@ -7012,9 +6739,6 @@ var props = data.props,
     assetPrefix = data.assetPrefix,
     runtimeConfig = data.runtimeConfig,
     dynamicIds = data.dynamicIds;
-var d = JSON.parse(window.__NEXT_DATA__.dataManager);
-var dataManager = new _dataManager.DataManager(d);
-exports.dataManager = dataManager;
 var prefix = assetPrefix || ''; // With dynamic assetPrefix it's no longer possible to set assetPrefix at the build time
 // So, this is how we do it in the client side at runtime
 
@@ -7049,7 +6773,6 @@ var webpackHMR;
 var router;
 exports.router = router;
 var ErrorComponent;
-exports.ErrorComponent = ErrorComponent;
 var Component;
 var App, onPerfEntry;
 
@@ -7078,13 +6801,14 @@ function (_react$default$Compon) {
       // If it's a dynamic route or has a querystring
 
 
-      if (data.nextExport && ((0, _isDynamic.isDynamicRoute)(router.pathname) || location.search) || Component.__NEXT_SPR && location.search) {
+      if (data.nextExport && ((0, _isDynamic.isDynamicRoute)(router.pathname) || location.search) || Component && Component.__N_SSG && location.search) {
         // update query on mount for exported pages
         router.replace(router.pathname + '?' + (0, _querystring.stringify)((0, _extends2["default"])({}, router.query, {}, (0, _querystring.parse)(location.search.substr(1)))), asPath, {
           // WARNING: `_h` is an internal option for handing Next.js
           // client-side hydration. Your app should _never_ use this property.
           // It may change at any time without notice.
-          _h: 1
+          _h: 1,
+          shallow: true
         });
       }
     }
@@ -7217,8 +6941,7 @@ function () {
                   App: App,
                   Component: Component,
                   props: props,
-                  err: err,
-                  emitter: emitter
+                  err: err
                 });
               }
             }); // call init-client middleware
@@ -7229,8 +6952,7 @@ function () {
               App: App,
               Component: Component,
               props: props,
-              err: initialErr,
-              emitter: emitter
+              err: initialErr
             };
             render(renderCtx);
             return _context.abrupt("return", emitter);
@@ -7333,7 +7055,7 @@ function _renderError() {
             return pageLoader.loadPage('/_error');
 
           case 7:
-            exports.ErrorComponent = ErrorComponent = _context3.sent;
+            ErrorComponent = _context3.sent;
             // In production we do a normal render with the `ErrorComponent` as component.
             // If we've gotten here upon initial render, we can use the props from the server.
             // Otherwise, we need to call `getInitialProps` on `App` before mounting.
@@ -7390,13 +7112,13 @@ var isInitialRender = typeof _reactDom["default"].hydrate === 'function';
 var reactRoot = null;
 
 function renderReactElement(reactEl, domEl) {
-  // mark start of hydrate/render
-  if (_utils.SUPPORTS_PERFORMANCE_USER_TIMING) {
-    performance.mark('beforeRender');
-  }
+  if (false) { var opts; } else {
+    // mark start of hydrate/render
+    if (_utils.ST) {
+      performance.mark('beforeRender');
+    } // The check for `.hydrate` is there to support React alternatives like preact
 
-  if (false) { var opts, callback; } else {
-    // The check for `.hydrate` is there to support React alternatives like preact
+
     if (isInitialRender) {
       _reactDom["default"].hydrate(reactEl, domEl, markHydrateComplete);
 
@@ -7406,24 +7128,26 @@ function renderReactElement(reactEl, domEl) {
     }
   }
 
-  if (onPerfEntry && _utils.SUPPORTS_PERFORMANCE_USER_TIMING) {
-    if (!(PerformanceObserver in window)) {
-      window.addEventListener('load', function () {
-        performance.getEntriesByType('paint').forEach(onPerfEntry);
-      });
-    } else {
+  if (onPerfEntry && _utils.ST) {
+    try {
       var observer = new PerformanceObserver(function (list) {
         list.getEntries().forEach(onPerfEntry);
-      });
+      }); // Start observing paint entry types.
+
       observer.observe({
-        entryTypes: ['paint']
+        type: 'paint',
+        buffered: true
+      });
+    } catch (e) {
+      window.addEventListener('load', function () {
+        performance.getEntriesByType('paint').forEach(onPerfEntry);
       });
     }
   }
 }
 
 function markHydrateComplete() {
-  if (!_utils.SUPPORTS_PERFORMANCE_USER_TIMING) return;
+  if (!_utils.ST) return;
   performance.mark('afterHydrate'); // mark end of hydration
 
   performance.measure('Next.js-before-hydration', 'navigationStart', 'beforeRender');
@@ -7438,7 +7162,7 @@ function markHydrateComplete() {
 }
 
 function markRenderComplete() {
-  if (!_utils.SUPPORTS_PERFORMANCE_USER_TIMING) return;
+  if (!_utils.ST) return;
   performance.mark('afterRender'); // mark end of render
 
   var navStartEntries = performance.getEntriesByName('routeChange', 'mark');
@@ -7481,11 +7205,9 @@ function AppContainer(_ref5) {
     }
   }, _react["default"].createElement(_routerContext.RouterContext.Provider, {
     value: (0, _router.makePublicRouterInstance)(router)
-  }, _react["default"].createElement(_dataManagerContext.DataManagerContext.Provider, {
-    value: dataManager
   }, _react["default"].createElement(_headManagerContext.HeadManagerContext.Provider, {
     value: headManager.updateHead
-  }, children))));
+  }, children)));
 }
 
 var wrapApp = function wrapApp(App) {
@@ -7601,13 +7323,14 @@ var _webpackHotMiddlewareClient = _interopRequireDefault(__webpack_require__(/*!
 
 var _devBuildWatcher = _interopRequireDefault(__webpack_require__(/*! ./dev/dev-build-watcher */ "./node_modules/next/dist/client/dev/dev-build-watcher.js"));
 
-var _prerenderIndicator = _interopRequireDefault(__webpack_require__(/*! ./dev/prerender-indicator */ "./node_modules/next/dist/client/dev/prerender-indicator.js")); // Temporary workaround for the issue described here:
-// https://github.com/zeit/next.js/issues/3775#issuecomment-407438123
-// The runtimeChunk doesn't have dynamic import handling code when there hasn't been a dynamic import
-// The runtimeChunk can't hot reload itself currently to correct it when adding pages using on-demand-entries
+var _prerenderIndicator = _interopRequireDefault(__webpack_require__(/*! ./dev/prerender-indicator */ "./node_modules/next/dist/client/dev/prerender-indicator.js"));
+
+var _fouc = __webpack_require__(/*! ./dev/fouc */ "./node_modules/next/dist/client/dev/fouc.js");
+/* globals import('./dev/noop'); */
 
 
-__webpack_require__.e(/*! import() */ 0).then(__webpack_require__.t.bind(null, /*! ./dev/noop */ "./node_modules/next/dist/client/dev/noop.js", 7)); // Support EventSource on Internet Explorer 11
+__webpack_require__.e(/*! import() */ 0).then(__webpack_require__.t.bind(null, /*! ./dev/noop */ "./node_modules/next/dist/client/dev/noop.js", 7));
+; // Support EventSource on Internet Explorer 11
 
 if (!window.EventSource) {
   window.EventSource = _eventSourcePolyfill["default"];
@@ -7631,17 +7354,9 @@ window.next = next;
   if ( true && // disable by default in electron
   !(typeof process !== 'undefined' && 'electron' in process.versions)) {
     (0, _prerenderIndicator["default"])();
-  } // This is the fallback helper that removes Next.js' no-FOUC styles when
-  // CSS mode is enabled. This only really activates if you haven't created
-  // _any_ styles in your application yet.
+  }
 
-
-  ;
-  (window.requestAnimationFrame || setTimeout)(function () {
-    for (var x = document.querySelectorAll('[data-next-hide-fouc]'), i = x.length; i--;) {
-      x[i].parentNode.removeChild(x[i]);
-    }
-  });
+  (0, _fouc.displayContent)();
   var lastScroll;
   emitter.on('before-reactdom-render', function (_ref) {
     var Component = _ref.Component,
@@ -7687,8 +7402,6 @@ window.next = next;
 "use strict";
 
 
-var _regeneratorRuntime = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
-
 var _classCallCheck = __webpack_require__(/*! @babel/runtime-corejs2/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js");
 
 var _createClass = __webpack_require__(/*! @babel/runtime-corejs2/helpers/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/createClass.js");
@@ -7697,8 +7410,6 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/help
 
 exports.__esModule = true;
 exports["default"] = void 0;
-
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js"));
 
 var _promise = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js"));
 
@@ -7717,6 +7428,16 @@ var relPrefetch = hasRel('preload') && !hasRel('prefetch') ? // https://caniuse.
 // IE 11, Edge 12+, nearly all evergreen
 'prefetch';
 var hasNoModule = 'noModule' in document.createElement('script');
+
+function normalizeRoute(route) {
+  if (route[0] !== '/') {
+    throw new Error("Route name should start with a \"/\", got \"" + route + "\"");
+  }
+
+  route = route.replace(/\/index$/, '/');
+  if (route === '/') return route;
+  return route.replace(/\/$/, '');
+}
 
 function appendLink(href, rel, as) {
   return new _promise["default"](function (res, rej, link) {
@@ -7740,7 +7461,6 @@ function () {
     this.buildId = buildId;
     this.assetPrefix = assetPrefix;
     this.pageCache = {};
-    this.prefetched = {};
     this.pageRegisterEvents = (0, _mitt["default"])();
     this.loadingRoutes = {};
 
@@ -7751,22 +7471,13 @@ function () {
   _createClass(PageLoader, [{
     key: "getDependencies",
     value: function getDependencies(route) {
+      var _this = this;
+
       return this.promisedBuildManifest.then(function (man) {
         return man[route] && man[route].map(function (url) {
-          return "/_next/" + encodeURI(url);
+          return _this.assetPrefix + "/_next/" + encodeURI(url);
         }) || [];
       });
-    }
-  }, {
-    key: "normalizeRoute",
-    value: function normalizeRoute(route) {
-      if (route[0] !== '/') {
-        throw new Error("Route name should start with a \"/\", got \"" + route + "\"");
-      }
-
-      route = route.replace(/\/index$/, '/');
-      if (route === '/') return route;
-      return route.replace(/\/$/, '');
     }
   }, {
     key: "loadPage",
@@ -7778,18 +7489,18 @@ function () {
   }, {
     key: "loadPageScript",
     value: function loadPageScript(route) {
-      var _this3 = this;
+      var _this2 = this;
 
-      route = this.normalizeRoute(route);
+      route = normalizeRoute(route);
       return new _promise["default"](function (resolve, reject) {
         var fire = function fire(_ref) {
           var error = _ref.error,
               page = _ref.page,
               mod = _ref.mod;
 
-          _this3.pageRegisterEvents.off(route, fire);
+          _this2.pageRegisterEvents.off(route, fire);
 
-          delete _this3.loadingRoutes[route];
+          delete _this2.loadingRoutes[route];
 
           if (error) {
             reject(error);
@@ -7802,7 +7513,7 @@ function () {
         }; // If there's a cached version of the page, let's use it.
 
 
-        var cachedPage = _this3.pageCache[route];
+        var cachedPage = _this2.pageCache[route];
 
         if (cachedPage) {
           var error = cachedPage.error,
@@ -7816,7 +7527,7 @@ function () {
         } // Register a listener to get the page
 
 
-        _this3.pageRegisterEvents.on(route, fire); // If the page is loading via SSR, we need to wait for it
+        _this2.pageRegisterEvents.on(route, fire); // If the page is loading via SSR, we need to wait for it
         // rather downloading it again.
 
 
@@ -7824,11 +7535,11 @@ function () {
           return;
         }
 
-        if (!_this3.loadingRoutes[route]) {
-          _this3.loadingRoutes[route] = true;
+        if (!_this2.loadingRoutes[route]) {
+          _this2.loadingRoutes[route] = true;
 
           if (false) {} else {
-            _this3.loadRoute(route);
+            _this2.loadRoute(route);
           }
         }
       });
@@ -7836,34 +7547,15 @@ function () {
   }, {
     key: "loadRoute",
     value: function loadRoute(route) {
-      var _this = this;
-
-      return (0, _asyncToGenerator2["default"])(
-      /*#__PURE__*/
-      _regeneratorRuntime.mark(function _callee() {
-        var scriptRoute, url;
-        return _regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                route = _this.normalizeRoute(route);
-                scriptRoute = route === '/' ? '/index.js' : route + ".js";
-                url = _this.assetPrefix + "/_next/static/" + encodeURIComponent(_this.buildId) + "/pages" + encodeURI(scriptRoute);
-
-                _this.loadScript(url, route, true);
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
+      route = normalizeRoute(route);
+      var scriptRoute = route === '/' ? '/index.js' : route + ".js";
+      var url = this.assetPrefix + "/_next/static/" + encodeURIComponent(this.buildId) + "/pages" + encodeURI(scriptRoute);
+      this.loadScript(url, route, true);
     }
   }, {
     key: "loadScript",
     value: function loadScript(url, route, isPage) {
-      var _this4 = this;
+      var _this3 = this;
 
       var script = document.createElement('script');
 
@@ -7876,7 +7568,7 @@ function () {
         var error = new Error("Error loading script " + url);
         error.code = 'PAGE_LOAD_ERROR';
 
-        _this4.pageRegisterEvents.emit(route, {
+        _this3.pageRegisterEvents.emit(route, {
           error: error
         });
       };
@@ -7887,7 +7579,7 @@ function () {
   }, {
     key: "registerPage",
     value: function registerPage(route, regFn) {
-      var _this5 = this;
+      var _this4 = this;
 
       var register = function register() {
         try {
@@ -7896,15 +7588,15 @@ function () {
             page: mod["default"] || mod,
             mod: mod
           };
-          _this5.pageCache[route] = pageData;
+          _this4.pageCache[route] = pageData;
 
-          _this5.pageRegisterEvents.emit(route, pageData);
+          _this4.pageRegisterEvents.emit(route, pageData);
         } catch (error) {
-          _this5.pageCache[route] = {
+          _this4.pageCache[route] = {
             error: error
           };
 
-          _this5.pageRegisterEvents.emit(route, {
+          _this4.pageRegisterEvents.emit(route, {
             error: error
           });
         }
@@ -7933,62 +7625,33 @@ function () {
   }, {
     key: "prefetch",
     value: function prefetch(route, isDependency) {
-      var _this2 = this;
+      var _this5 = this;
 
-      return (0, _asyncToGenerator2["default"])(
-      /*#__PURE__*/
-      _regeneratorRuntime.mark(function _callee2() {
-        var cn, url, scriptRoute;
-        return _regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                if (!(cn = navigator.connection)) {
-                  _context2.next = 3;
-                  break;
-                }
+      // https://github.com/GoogleChromeLabs/quicklink/blob/453a661fa1fa940e2d2e044452398e38c67a98fb/src/index.mjs#L115-L118
+      // License: Apache 2.0
+      var cn;
 
-                if (!(cn.saveData || /2g/.test(cn.effectiveType))) {
-                  _context2.next = 3;
-                  break;
-                }
+      if (cn = navigator.connection) {
+        // Don't prefetch if using 2G or if Save-Data is enabled.
+        if (cn.saveData || /2g/.test(cn.effectiveType)) return _promise["default"].resolve();
+      }
 
-                return _context2.abrupt("return");
+      var url;
 
-              case 3:
-                url = _this2.assetPrefix;
+      if (isDependency) {
+        url = route;
+      } else {
+        route = normalizeRoute(route);
+        var scriptRoute = (route === '/' ? '/index' : route) + ".js";
 
-                if (isDependency) {
-                  url += route;
-                } else {
-                  route = _this2.normalizeRoute(route);
-                  _this2.prefetched[route] = true;
-                  scriptRoute = (route === '/' ? '/index' : route) + ".js";
+        if (false) {}
 
-                  if (false) {}
+        url = this.assetPrefix + "/_next/static/" + encodeURIComponent(this.buildId) + "/pages" + encodeURI(scriptRoute);
+      }
 
-                  url += "/_next/static/" + encodeURIComponent(_this2.buildId) + "/pages" + encodeURI(scriptRoute);
-                }
-
-                if (!document.querySelector("link[rel=\"" + relPrefetch + "\"][href^=\"" + url + "\"], script[data-next-page=\"" + route + "\"]")) {
-                  _context2.next = 7;
-                  break;
-                }
-
-                return _context2.abrupt("return");
-
-              case 7:
-                return _context2.abrupt("return", _promise["default"].all([appendLink(url, relPrefetch, url.match(/\.css$/) ? 'style' : 'script'),  false && false]).then( // do not return any data
-                function () {}, // swallow prefetch errors
-                function () {}));
-
-              case 8:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
+      return _promise["default"].all(document.querySelector("link[rel=\"" + relPrefetch + "\"][href^=\"" + url + "\"], script[data-next-page=\"" + route + "\"]") ? [] : [appendLink(url, relPrefetch, url.match(/\.css$/) ? 'style' : 'script'),  false && false]).then( // do not return any data
+      function () {}, // swallow prefetch errors
+      function () {});
     }
   }]);
 
@@ -8231,98 +7894,6 @@ function withRouter(ComposedComponent) {
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/next-server/lib/data-manager-context.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/next/dist/next-server/lib/data-manager-context.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _Object$defineProperty = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-  }
-  result["default"] = mod;
-  return result;
-};
-
-_Object$defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var React = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-exports.DataManagerContext = React.createContext(null);
-
-/***/ }),
-
-/***/ "./node_modules/next/dist/next-server/lib/data-manager.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/next/dist/next-server/lib/data-manager.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _Map = __webpack_require__(/*! @babel/runtime-corejs2/core-js/map */ "./node_modules/@babel/runtime-corejs2/core-js/map.js");
-
-var _classCallCheck = __webpack_require__(/*! @babel/runtime-corejs2/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js");
-
-var _createClass = __webpack_require__(/*! @babel/runtime-corejs2/helpers/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/createClass.js");
-
-var _Object$defineProperty = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
-
-_Object$defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var DataManager =
-/*#__PURE__*/
-function () {
-  function DataManager(data) {
-    _classCallCheck(this, DataManager);
-
-    this.data = new _Map(data);
-  }
-
-  _createClass(DataManager, [{
-    key: "getData",
-    value: function getData() {
-      return this.data;
-    }
-  }, {
-    key: "get",
-    value: function get(key) {
-      return this.data.get(key);
-    }
-  }, {
-    key: "set",
-    value: function set(key, value) {
-      this.data.set(key, value);
-    }
-  }, {
-    key: "overwrite",
-    value: function overwrite(data) {
-      this.data = new _Map(data);
-    }
-  }]);
-
-  return DataManager;
-}();
-
-exports.DataManager = DataManager;
-
-/***/ }),
-
 /***/ "./node_modules/next/dist/next-server/lib/head-manager-context.js":
 /*!************************************************************************!*\
   !*** ./node_modules/next/dist/next-server/lib/head-manager-context.js ***!
@@ -8448,48 +8019,6 @@ exports.RouterContext = React.createContext(null);
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/next-server/lib/router/rewrite-url-for-export.js":
-/*!*********************************************************************************!*\
-  !*** ./node_modules/next/dist/next-server/lib/router/rewrite-url-for-export.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _slicedToArray = __webpack_require__(/*! @babel/runtime-corejs2/helpers/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/slicedToArray.js");
-
-var _Object$defineProperty = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
-
-_Object$defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function rewriteUrlForNextExport(url) {
-  var _url$split = url.split('#'),
-      _url$split2 = _slicedToArray(_url$split, 2),
-      pathname = _url$split2[0],
-      hash = _url$split2[1]; // tslint:disable-next-line
-
-
-  var _pathname$split = pathname.split('?'),
-      _pathname$split2 = _slicedToArray(_pathname$split, 2),
-      path = _pathname$split2[0],
-      qs = _pathname$split2[1];
-
-  path = path.replace(/\/$/, ''); // Append a trailing slash if this path does not have an extension
-
-  if (!/\.[^/]+\/?$/.test(path)) path += "/";
-  if (qs) path += '?' + qs;
-  if (hash) path += '#' + hash;
-  return path;
-}
-
-exports.rewriteUrlForNextExport = rewriteUrlForNextExport;
-
-/***/ }),
-
 /***/ "./node_modules/next/dist/next-server/lib/router/router.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/next/dist/next-server/lib/router/router.js ***!
@@ -8529,8 +8058,6 @@ var url_1 = __webpack_require__(/*! url */ "./node_modules/native-url/dist/index
 var mitt_1 = __importDefault(__webpack_require__(/*! ../mitt */ "./node_modules/next/dist/next-server/lib/mitt.js"));
 
 var utils_1 = __webpack_require__(/*! ../utils */ "./node_modules/next/dist/next-server/lib/utils.js");
-
-var rewrite_url_for_export_1 = __webpack_require__(/*! ./rewrite-url-for-export */ "./node_modules/next/dist/next-server/lib/router/rewrite-url-for-export.js");
 
 var is_dynamic_1 = __webpack_require__(/*! ./utils/is-dynamic */ "./node_modules/next/dist/next-server/lib/router/utils/is-dynamic.js");
 
@@ -8761,7 +8288,7 @@ function () {
         } // marking route changes as a navigation start entry
 
 
-        if (utils_1.SUPPORTS_PERFORMANCE_USER_TIMING) {
+        if (utils_1.ST) {
           performance.mark('routeChange');
         } // If url and as provided as an object representation,
         // we'll format them into the string version here.
@@ -8771,7 +8298,7 @@ function () {
         var as = typeof _as === 'object' ? utils_1.formatWithValidation(_as) : _as; // Add the ending slash to the paths. So, we can serve the
         // "<page>/index.html" directly for the SSR page.
 
-        if (false) {}
+        if (false) { var rewriteUrlForNextExport; }
 
         _this2.abortComponentLoad(as); // If the url change is only related to a hash change
         // We should not proceed. We should only change the state.
@@ -8938,7 +8465,7 @@ function () {
         }
 
         return _this3._getData(function () {
-          return Component.__NEXT_SPR ? _this3._getStaticData(as) : _this3.getInitialProps(Component, // we provide AppTree later so this needs to be `any`
+          return Component.__N_SSG ? _this3._getStaticData(as) : _this3.getInitialProps(Component, // we provide AppTree later so this needs to be `any`
           {
             pathname: pathname,
             query: query,
@@ -9105,16 +8632,15 @@ function () {
           }
 
           return;
+        } // Prefetch is not supported in development mode because it would trigger on-demand-entries
+
+
+        if (true) {
+          return;
         } // @ts-ignore pathname is always defined
 
 
-        var route = toRoute(pathname); // Prefetch is not supported in development mode because it would trigger on-demand-entries
-
-        if (true) {
-          // mark it as prefetched for debugging in dev
-          _this4.pageLoader.prefetched[route] = true;
-          return;
-        }
+        var route = toRoute(pathname);
 
         _this4.pageLoader.prefetch(route).then(resolve, reject);
       });
@@ -9222,7 +8748,9 @@ function () {
   }], [{
     key: "_rewriteUrlForNextExport",
     value: function _rewriteUrlForNextExport(url) {
-      return rewrite_url_for_export_1.rewriteUrlForNextExport(url);
+      if (false) { var rewriteUrlForNextExport; } else {
+        return url;
+      }
     }
   }]);
 
@@ -9461,7 +8989,7 @@ function isResSent(res) {
 exports.isResSent = isResSent;
 
 function loadGetInitialProps(App, ctx) {
-  var message, res, props, _message;
+  var _a, message, res, props, _message;
 
   return _regeneratorRuntime.async(function loadGetInitialProps$(_context) {
     while (1) {
@@ -9469,7 +8997,7 @@ function loadGetInitialProps(App, ctx) {
         case 0:
           if (false) {}
 
-          if (!(App.prototype && App.prototype.getInitialProps)) {
+          if (!((_a = App.prototype) === null || _a === void 0 ? void 0 : _a.getInitialProps)) {
             _context.next = 4;
             break;
           }
@@ -9561,8 +9089,8 @@ function formatWithValidation(url, options) {
 }
 
 exports.formatWithValidation = formatWithValidation;
-exports.SUPPORTS_PERFORMANCE = typeof performance !== 'undefined';
-exports.SUPPORTS_PERFORMANCE_USER_TIMING = exports.SUPPORTS_PERFORMANCE && typeof performance.mark === 'function' && typeof performance.measure === 'function';
+exports.SP = typeof performance !== 'undefined';
+exports.ST = exports.SP && typeof performance.mark === 'function' && typeof performance.measure === 'function';
 
 /***/ }),
 

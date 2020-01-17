@@ -14,15 +14,13 @@ export const Breadcrumbs: FunctionComponent = () => {
     '/page-2': 'Page 2',
   }
 
-  const pathname = router.pathname
-
-  if (!pathToBreadcrumb.hasOwnProperty(pathname)) {
-    return null
-  }
+  // router.pathname gives the path on disk, which could be e.g. `/[...slug]`
+  // We also don't want URL fragments to confuse the path -> title lookup.
+  const pathname = router.asPath.replace(/#.*/, '')
 
   const breadcrumbs: Breadcrumb[] = [
     {
-      text: pathToBreadcrumb[pathname],
+      text: pathToBreadcrumb[pathname] || pathname.replace(/^\//, ''),
       href: pathname,
       onClick: (e: React.MouseEvent) => {
         e.preventDefault()

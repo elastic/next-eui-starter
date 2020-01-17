@@ -7,7 +7,7 @@ export const AdminLinks = [
       listItems: [
         {
           label: 'Dev tools',
-          href: '/#/chrome/nav-drawer',
+          href: '/dev-tools',
           iconType: 'devToolsApp',
           extraAction: {
             color: 'subdued',
@@ -18,7 +18,7 @@ export const AdminLinks = [
         },
         {
           label: 'Stack Monitoring',
-          href: '/#/chrome/nav-drawer',
+          href: '/stack-monitoring',
           iconType: 'monitoringApp',
           extraAction: {
             color: 'subdued',
@@ -29,7 +29,7 @@ export const AdminLinks = [
         },
         {
           label: 'Stack Management',
-          href: '/#/chrome/nav-drawer',
+          href: '/stack-management',
           iconType: 'managementApp',
           extraAction: {
             color: 'subdued',

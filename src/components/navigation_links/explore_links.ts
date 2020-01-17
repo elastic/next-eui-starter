@@ -3,7 +3,7 @@ import { pinExtraAction } from './pin_extra_action'
 export const ExploreLinks = [
   {
     label: 'Canvas',
-    href: '/#/chrome/nav-drawer',
+    href: '/canvas',
     iconType: 'canvasApp',
     isActive: true,
     extraAction: {
@@ -13,31 +13,31 @@ export const ExploreLinks = [
   },
   {
     label: 'Discover',
-    href: '/#/chrome/nav-drawer',
+    href: '/discover',
     iconType: 'discoverApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Visualize',
-    href: '/#/chrome/nav-drawer',
+    href: '/visualize',
     iconType: 'visualizeApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Dashboard',
-    href: '/#/chrome/nav-drawer',
+    href: '/dashboard',
     iconType: 'dashboardApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Machine learning',
-    href: '/#/chrome/nav-drawer',
+    href: '/ml',
     iconType: 'machineLearningApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Custom Plugin (no icon)',
-    href: '/#/chrome/nav-drawer',
+    href: '/custom-plugin',
     extraAction: pinExtraAction,
   },
 ]
