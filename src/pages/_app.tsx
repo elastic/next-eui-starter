@@ -4,18 +4,16 @@ import React, { FunctionComponent } from 'react'
 
 import Chrome from '../components/chrome'
 
-const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
-  return (
-    <>
-      <Head>
-        <title>Next.js EUI Starter</title>
-      </Head>
-      <Chrome>
-        <Component {...pageProps} />
-      </Chrome>
-    </>
-  )
-}
+const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
+  <>
+    <Head>
+      <title>Next.js EUI Starter</title>
+    </Head>
+    <Chrome>
+      <Component {...pageProps} />
+    </Chrome>
+  </>
+)
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to

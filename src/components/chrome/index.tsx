@@ -3,19 +3,17 @@ import React, { FunctionComponent, useRef, useState } from 'react'
 import {
   EuiButton,
   EuiHeader,
+  EuiHeaderLogo,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
-  EuiHeaderBreadcrumbs,
-  EuiHeaderLogo,
+  EuiHorizontalRule,
   EuiIcon,
   // @ts-ignore
-  EuiNavDrawerGroup,
-  // @ts-ignore
   EuiNavDrawer,
-  EuiHorizontalRule,
+  // @ts-ignore
+  EuiNavDrawerGroup,
   EuiShowFor,
-  Breadcrumb,
 } from '@elastic/eui'
 
 import { TopLinks } from '../navigation_links/top_links'
@@ -28,6 +26,7 @@ import moon from './assets/moon.svg'
 import sun from './assets/sun.svg'
 
 import './_index.scss'
+import { Breadcrumbs } from './breadcrumbs'
 
 interface EuiNavDrawerStub {
   toggleOpen: () => void
@@ -42,23 +41,6 @@ const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({ onClick }) =>
     <EuiIcon type='apps' href='#' size='m' />
   </EuiHeaderSectionItemButton>
 )
-
-const Breadcrumbs: FunctionComponent = () => {
-  const breadcrumbs: Breadcrumb[] = [
-    {
-      text: 'Home',
-      href: '#',
-      onClick: (e: { preventDefault: () => void }) => {
-        e.preventDefault()
-        console.log('You clicked home')
-      },
-      'data-test-subj': 'breadcrumbsAnimals',
-      className: 'customClass',
-    },
-  ]
-
-  return <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />
-}
 
 /**
  * Renders the UI that surrounds the page content.
