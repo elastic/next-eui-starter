@@ -1,18 +1,21 @@
-import React, { ComponentType, forwardRef } from 'react'
-import { EuiButtonProps } from '@elastic/eui/src/components/button/button'
+import React, { forwardRef } from 'react'
 import { EuiButton } from '@elastic/eui'
 
 /**
  * Next's `<Link/>` component passes a ref to its children, which triggers a warning
  * on EUI buttons. Wrap the button component to pass on the ref, and silence the warning.
  */
-const NextEuiButton: ComponentType<EuiButtonProps> = forwardRef<typeof EuiButton, EuiButtonProps>((props, ref) => (
-  // @ts-ignore forwardRef's `ref` and the `buttonRef` definitions disagree
-  <EuiButton {...props} buttonRef={ref}>
-    {props.children}
-  </EuiButton>
-))
 
-NextEuiButton.displayName = `NextEuiButton(forwardRef(EuiButton))`
+type EuiButtonProps = React.ComponentProps<typeof EuiButton>
+const NextEuiButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiButtonProps>((props, ref) => {
+  return (
+    // @ts-ignore EuiButton's ref is an HTMLButtonElement or an HTMLAnchorElement, depending on if `href` prop is passed
+    <EuiButton {...props} buttonRef={ref}>
+      {props.children}
+    </EuiButton>
+  )
+})
+
+NextEuiButton.displayName = `NextEuiButton(EuiButton)`
 
 export default NextEuiButton
