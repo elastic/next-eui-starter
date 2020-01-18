@@ -1,31 +1,21 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
+import { defaultTheme, themeConfig } from '../lib/theme'
 
 const assetPrefix = process.env.PATH_PREFIX
 
-interface ThemeConfig {
-  publicPaths: Array<{
-    id: string
-    name: string
-    publicPath: string
-  }>
-}
-
-// The config is generated during the build and made available in a JSON string.
-const themeConfig: ThemeConfig = JSON.parse(process.env.THEME_CONFIG!)
-
 /**
- * Customize the default `Document` implementation to inject the various EUI theme files.
- * Only the `light` theme is intially enabled.
+ * Customize the default `Document` implementation to inject the available EUI theme files.
+ * Only the `light` theme is initially enabled.
  */
 export default class MyDocument extends Document {
   render() {
     return (
       <html>
         <Head>
-          {themeConfig.publicPaths.map(each => {
+          {themeConfig.availableThemes.map(each => {
             const disabledProps =
-              each.id === 'light'
+              each.id === defaultTheme
                 ? {}
                 : {
                     disabled: true,

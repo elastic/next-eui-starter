@@ -86,12 +86,14 @@ module.exports = withImages(withSass(nextConfig))
  * Find all EUI themes and construct a CopyWebpackPlugin config for each.
  * When copying the files, inject a hash into the filename so that when
  * themes are updated, any caches will be refreshed.
+ *
+ * @return {ThemeConfig}
  */
 function buildThemeConfig() {
   const themeFiles = glob.sync(path.join(__dirname, 'node_modules', '@elastic', 'eui', 'dist', 'eui_theme_*.min.css'))
 
   const themeConfig = {
-    publicPaths: [],
+    availableThemes: [],
     copyConfig: [],
   }
 
@@ -105,7 +107,7 @@ function buildThemeConfig() {
     const publicPath = `themes/${basename}.${hashFile(each)}.min.css`
     const toPath = path.join(__dirname, `public/themes/${basename}.${hashFile(each)}.min.css`)
 
-    themeConfig.publicPaths.push({
+    themeConfig.availableThemes.push({
       id: themeId,
       name: themeName,
       publicPath,

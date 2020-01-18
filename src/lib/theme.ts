@@ -5,7 +5,7 @@
  */
 
 const selector = `link[data-name="eui-theme"]`
-const defaultTheme = `light`
+export const defaultTheme = `light`
 
 function getThemes(): HTMLLinkElement[] {
   // @ts-ignore: We need to target the compiler to es6 or higher for NodeListOf<Element> to be iterable
@@ -35,3 +35,19 @@ export function setInitialTheme(): string {
   setTheme(theme)
   return theme
 }
+
+// This is supplied to the app as JSON by Webpack - see next.config.js
+export interface ThemeConfig {
+  availableThemes: Array<{
+    id: string
+    name: string
+    publicPath: string
+  }>
+  copyConfig: Array<{
+    from: string
+    to: string
+  }>
+}
+
+// The config is generated during the build and made available in a JSON string.
+export const themeConfig: ThemeConfig = JSON.parse(process.env.THEME_CONFIG!)
