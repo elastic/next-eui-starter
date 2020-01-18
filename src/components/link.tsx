@@ -7,7 +7,7 @@ const assetPrefix = process.env.PATH_PREFIX as string
  * Builds the correct value to be used for the 'as' argument to the Next router.
  * @param href the route to potentially be prepended.
  */
-export function buildAsTarget(href: string): string {
+export function buildBrowserPath(href: string): string {
   return href.startsWith('/') ? assetPrefix + href : assetPrefix + '/' + href
 }
 
@@ -19,7 +19,7 @@ export function buildAsTarget(href: string): string {
 const NextJsLink: FunctionComponent<LinkProps> = ({ href, ...rest }) => {
   const path = typeof href === 'object' ? href.pathname! : href
 
-  return <Link href={href} as={buildAsTarget(path)} {...rest} />
+  return <Link href={href} as={buildBrowserPath(path)} {...rest} />
 }
 
 export default NextJsLink

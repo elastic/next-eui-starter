@@ -24,7 +24,7 @@ import './_index.scss'
 import { Breadcrumbs } from './breadcrumbs'
 import SwitchTheme from './SwitchTheme'
 import { useRouter } from 'next/router'
-import { buildAsTarget } from '../link'
+import { buildBrowserPath } from '../link'
 
 interface EuiNavDrawerStub {
   toggleOpen: () => void
@@ -47,7 +47,7 @@ const Chrome: FunctionComponent = ({ children }) => {
 
   const router = useRouter()
 
-  const buildOnClick = (path: string) => () => router.push(path, buildAsTarget(path))
+  const buildOnClick = (path: string) => () => router.push(buildBrowserPath(path))
 
   return (
     <>

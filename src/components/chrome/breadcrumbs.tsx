@@ -2,6 +2,8 @@ import React, { FunctionComponent } from 'react'
 import { useRouter } from 'next/router'
 import { Breadcrumb, EuiHeaderBreadcrumbs } from '@elastic/eui'
 
+const assetPrefix = process.env.PATH_PREFIX as string
+
 /**
  * This component demonstrates a very simple use of the Next router to
  * render a breadcrumb. It's not particularly useful, but gives an idea.
@@ -21,14 +23,11 @@ export const Breadcrumbs: FunctionComponent = () => {
   const breadcrumbs: Breadcrumb[] = [
     {
       text: pathToBreadcrumb[pathname] || pathname.replace(/^\//, ''),
-      href: pathname,
+      href: pathname.replace(new RegExp('^' + assetPrefix + '/?'), ''),
       onClick: (e: React.MouseEvent) => {
         e.preventDefault()
 
-        const assetPrefix = process.env.PATH_PREFIX as string
-        const asTarget = pathname.startsWith('/') ? assetPrefix + pathname : assetPrefix + '/' + pathname
-
-        router.push(router.pathname, asTarget)
+        router.push(router.pathname)
       },
       'data-test-subj': 'breadcrumbsAnimals',
       className: 'customClass',
