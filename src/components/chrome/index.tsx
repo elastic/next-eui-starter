@@ -15,14 +15,16 @@ import {
   EuiShowFor,
 } from '@elastic/eui'
 
-import { TopLinks } from '../navigation_links/top_links'
-import { SolutionLinks } from '../navigation_links/solution_links'
-import { ExploreLinks } from '../navigation_links/explore_links'
-import { AdminLinks } from '../navigation_links/admin_links'
+import { buildTopLinks } from '../navigation_links/top_links'
+import { buildSolutionLinks } from '../navigation_links/solution_links'
+import { buildExploreLinks } from '../navigation_links/explore_links'
+import { buildAdminLinks } from '../navigation_links/admin_links'
 
 import './_index.scss'
 import { Breadcrumbs } from './breadcrumbs'
 import SwitchTheme from './SwitchTheme'
+import { useRouter } from 'next/router'
+import { buildAsTarget } from '../link'
 
 interface EuiNavDrawerStub {
   toggleOpen: () => void
@@ -42,6 +44,10 @@ const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({ onClick }) =>
 const Chrome: FunctionComponent = ({ children }) => {
   // This is an EuiNavDrawer, which isn't a TypeScript module yet
   const navDrawerRef = useRef<EuiNavDrawerStub>(null)
+
+  const router = useRouter()
+
+  const buildOnClick = (path: string) => () => router.push(path, buildAsTarget(path))
 
   return (
     <>
@@ -69,16 +75,16 @@ const Chrome: FunctionComponent = ({ children }) => {
         </EuiHeaderSection>
       </EuiHeader>
       <EuiNavDrawer ref={navDrawerRef}>
-        <EuiNavDrawerGroup listItems={TopLinks} />
+        <EuiNavDrawerGroup listItems={buildTopLinks(buildOnClick)} />
         <EuiHorizontalRule margin='none' />
 
-        <EuiNavDrawerGroup listItems={ExploreLinks} />
+        <EuiNavDrawerGroup listItems={buildExploreLinks(buildOnClick)} />
         <EuiHorizontalRule margin='none' />
 
-        <EuiNavDrawerGroup listItems={SolutionLinks} />
+        <EuiNavDrawerGroup listItems={buildSolutionLinks(buildOnClick)} />
         <EuiHorizontalRule margin='none' />
 
-        <EuiNavDrawerGroup listItems={AdminLinks} />
+        <EuiNavDrawerGroup listItems={buildAdminLinks(buildOnClick)} />
       </EuiNavDrawer>
       <div className='chrWrap'>{children}</div>
     </>

@@ -1,39 +1,39 @@
 import { pinExtraAction } from './pin_extra_action'
 
-export const SolutionLinks = [
+export const buildSolutionLinks = (makeAction: (path: string) => () => void) => [
   {
     label: 'APM',
-    href: '/apm',
+    onClick: makeAction('/apm'),
     iconType: 'apmApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Metrics',
-    href: '/metrics',
+    onClick: makeAction('/metrics'),
     iconType: 'metricsApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Logs',
-    href: '/logs',
+    onClick: makeAction('/logs'),
     iconType: 'logsApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Uptime',
-    href: '/uptime',
+    onClick: makeAction('/uptime'),
     iconType: 'upgradeAssistantApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Maps',
-    href: '/maps',
+    onClick: makeAction('/maps'),
     iconType: 'gisApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'SIEM',
-    href: '/siem',
+    onClick: makeAction('/siem'),
     iconType: 'securityAnalyticsApp',
     extraAction: pinExtraAction,
   },

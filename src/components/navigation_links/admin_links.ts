@@ -1,4 +1,4 @@
-export const AdminLinks = [
+export const buildAdminLinks = (makeAction: (path: string) => () => void) => [
   {
     label: 'Admin',
     iconType: 'managementApp',
@@ -7,7 +7,7 @@ export const AdminLinks = [
       listItems: [
         {
           label: 'Dev tools',
-          href: '/dev-tools',
+          onClick: makeAction('/dev-tools'),
           iconType: 'devToolsApp',
           extraAction: {
             color: 'subdued',
@@ -18,7 +18,7 @@ export const AdminLinks = [
         },
         {
           label: 'Stack Monitoring',
-          href: '/stack-monitoring',
+          onClick: makeAction('/stack-monitoring'),
           iconType: 'monitoringApp',
           extraAction: {
             color: 'subdued',
@@ -29,7 +29,7 @@ export const AdminLinks = [
         },
         {
           label: 'Stack Management',
-          href: '/stack-management',
+          onClick: makeAction('/stack-management'),
           iconType: 'managementApp',
           extraAction: {
             color: 'subdued',

@@ -5,7 +5,7 @@ const faveExtraAction = {
   'aria-label': 'Add to favorites',
 }
 
-export const TopLinks = [
+export const buildTopLinks = (makeAction: (path: string) => () => void) => [
   {
     label: 'Recently viewed',
     iconType: 'clock',
@@ -14,19 +14,19 @@ export const TopLinks = [
       listItems: [
         {
           label: 'My dashboard',
-          href: '/my-dashboard',
+          onClick: makeAction('/my-dashboard'),
           iconType: 'dashboardApp',
           extraAction: faveExtraAction,
         },
         {
           label: 'Workpad with title that wraps',
-          href: '/workpad',
+          onClick: makeAction('/workpad'),
           iconType: 'canvasApp',
           extraAction: faveExtraAction,
         },
         {
           label: 'My logs',
-          href: '/my-logs',
+          onClick: makeAction('/my-logs'),
           iconType: 'logsApp',
           'aria-label': 'This is an alternate aria-label',
           extraAction: faveExtraAction,
@@ -42,7 +42,7 @@ export const TopLinks = [
       listItems: [
         {
           label: 'My workpad',
-          href: '/my-workpad',
+          onClick: makeAction('/my-workpad'),
           iconType: 'canvasApp',
           extraAction: {
             color: 'subdued',
@@ -54,7 +54,7 @@ export const TopLinks = [
         },
         {
           label: 'My logs',
-          href: '/my-logs',
+          onClick: makeAction('/my-logs'),
           iconType: 'logsApp',
           extraAction: {
             color: 'subdued',

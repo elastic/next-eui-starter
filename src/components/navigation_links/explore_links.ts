@@ -1,9 +1,9 @@
 import { pinExtraAction } from './pin_extra_action'
 
-export const ExploreLinks = [
+export const buildExploreLinks = (makeAction: (path: string) => () => void) => [
   {
     label: 'Canvas',
-    href: '/canvas',
+    onClick: makeAction('/canvas'),
     iconType: 'canvasApp',
     isActive: true,
     extraAction: {
@@ -13,31 +13,31 @@ export const ExploreLinks = [
   },
   {
     label: 'Discover',
-    href: '/discover',
+    onClick: makeAction('/discover'),
     iconType: 'discoverApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Visualize',
-    href: '/visualize',
+    onClick: makeAction('/visualize'),
     iconType: 'visualizeApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Dashboard',
-    href: '/dashboard',
+    onClick: makeAction('/dashboard'),
     iconType: 'dashboardApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Machine learning',
-    href: '/ml',
+    onClick: makeAction('/machine-learning'),
     iconType: 'machineLearningApp',
     extraAction: pinExtraAction,
   },
   {
     label: 'Custom Plugin (no icon)',
-    href: '/custom-plugin',
+    onClick: makeAction('/custom-plugin'),
     extraAction: pinExtraAction,
   },
 ]
