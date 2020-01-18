@@ -3,15 +3,20 @@ import Head from 'next/head'
 import React, { FunctionComponent } from 'react'
 
 import Chrome from '../components/chrome'
+import { EuiErrorBoundary } from '@elastic/eui'
 
 const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
-    <Head>
-      <title>Next.js EUI Starter</title>
-    </Head>
-    <Chrome>
-      <Component {...pageProps} />
-    </Chrome>
+    <EuiErrorBoundary>
+      <Head>
+        <title>Next.js EUI Starter</title>
+      </Head>
+      <Chrome>
+        <EuiErrorBoundary>
+          <Component {...pageProps} />
+        </EuiErrorBoundary>
+      </Chrome>
+    </EuiErrorBoundary>
   </>
 )
 
