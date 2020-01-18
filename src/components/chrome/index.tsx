@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useRef, useState } from 'react'
+import React, { FunctionComponent, useRef } from 'react'
 
 import {
-  EuiButton,
   EuiHeader,
   EuiHeaderLogo,
   EuiHeaderSection,
@@ -20,13 +19,10 @@ import { TopLinks } from '../navigation_links/top_links'
 import { SolutionLinks } from '../navigation_links/solution_links'
 import { ExploreLinks } from '../navigation_links/explore_links'
 import { AdminLinks } from '../navigation_links/admin_links'
-import { setInitialTheme, setTheme, Theme } from '../../lib/theme'
-
-import moon from './assets/moon.svg'
-import sun from './assets/sun.svg'
 
 import './_index.scss'
 import { Breadcrumbs } from './breadcrumbs'
+import SwitchTheme from './SwitchTheme'
 
 interface EuiNavDrawerStub {
   toggleOpen: () => void
@@ -43,22 +39,9 @@ const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({ onClick }) =>
 /**
  * Renders the UI that surrounds the page content.
  */
-const initialTheme = setInitialTheme()
-
 const Chrome: FunctionComponent = ({ children }) => {
   // This is an EuiNavDrawer, which isn't a TypeScript module yet
   const navDrawerRef = useRef<EuiNavDrawerStub>(null)
-
-  const [theme, setThemeInState] = useState<Theme>(initialTheme)
-
-  const handleChangeTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark'
-
-    setTheme(newTheme)
-    setThemeInState(newTheme)
-  }
-
-  const themeIcon = theme === 'light' ? sun : moon
 
   return (
     <>
@@ -81,9 +64,7 @@ const Chrome: FunctionComponent = ({ children }) => {
 
         <EuiHeaderSection side='right'>
           <EuiHeaderSectionItem className='chrHeaderSectionItem'>
-            <EuiButton size='s' iconType={themeIcon} onClick={handleChangeTheme}>
-              Switch Theme
-            </EuiButton>
+            <SwitchTheme />
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
       </EuiHeader>
