@@ -16,13 +16,9 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 /**
- * A simple page that is rendered for any route that isn't recognised. This works
- * great when used with a Node server, but less well with a static export. The problem
- * is that without defining an `exportPathMap`, Next can't generate pages for the
- * wildcard routes. It all works fine if you first load an explicit route on the client.
- * See `exportPathMap` in `next.config.js`
- *
- * @see https://nextjs.org/docs/api-reference/next.config.js/exportPathMap
+ * A simple page that is rendered for all "app" pages. The filename is
+ * interpreted by Next and the "slug" part of the route name made available
+ * through `router` (although we don't actually use it here).
  */
 const CatchAll: FunctionComponent = () => {
   const router = useRouter()

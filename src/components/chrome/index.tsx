@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useRef } from 'react'
+import { useRouter } from 'next/router'
 
 import {
   EuiHeader,
@@ -15,16 +16,16 @@ import {
   EuiShowFor,
 } from '@elastic/eui'
 
+import { buildBrowserPath } from '../link'
 import { buildTopLinks } from '../navigation_links/top_links'
 import { buildSolutionLinks } from '../navigation_links/solution_links'
 import { buildExploreLinks } from '../navigation_links/explore_links'
 import { buildAdminLinks } from '../navigation_links/admin_links'
 
-import './_index.scss'
 import { Breadcrumbs } from './breadcrumbs'
-import SwitchTheme from './SwitchTheme'
-import { useRouter } from 'next/router'
-import { buildBrowserPath } from '../link'
+import SwitchTheme from './switch_theme'
+
+import './_index.scss'
 
 interface EuiNavDrawerStub {
   toggleOpen: () => void

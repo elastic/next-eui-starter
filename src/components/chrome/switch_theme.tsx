@@ -5,6 +5,10 @@ import { setInitialTheme, setTheme, themeConfig } from '../../lib/theme'
 
 const initialTheme = setInitialTheme()
 
+/**
+ * Renders a dropdown menu for selecting the current theme. The selection
+ * is set in localStorage, so that it persists between visits.
+ */
 const SwitchTheme: FunctionComponent = () => {
   const [isPopoverOpen, setPopoverOpen] = useState(false)
   const [theme, setThemeInState] = useState(initialTheme)

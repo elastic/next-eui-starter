@@ -9,7 +9,8 @@ import { EuiButton } from '@elastic/eui'
 type EuiButtonProps = React.ComponentProps<typeof EuiButton>
 const NextEuiButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiButtonProps>((props, ref) => {
   return (
-    // @ts-ignore EuiButton's ref is an HTMLButtonElement or an HTMLAnchorElement, depending on if `href` prop is passed
+    // @ts-ignore EuiButton's ref is an HTMLButtonElement or an
+    // HTMLAnchorElement, depending on whether `href` prop is passed
     <EuiButton {...props} buttonRef={ref}>
       {props.children}
     </EuiButton>

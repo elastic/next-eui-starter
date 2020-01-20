@@ -8,31 +8,24 @@ import { patchRouter } from '../lib/routing'
 
 patchRouter()
 
+/**
+ * Next.js uses the App component to initialize pages. You can override it
+ * and control the page initialization. Here use use it to render the
+ * `Chrome` component on each page, and apply an error boundary.
+ *
+ * @see https://nextjs.org/docs/advanced-features/custom-app
+ */
 const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
-    <EuiErrorBoundary>
-      <Head>
-        <title>Next.js EUI Starter</title>
-      </Head>
-      <Chrome>
-        <EuiErrorBoundary>
-          <Component {...pageProps} />
-        </EuiErrorBoundary>
-      </Chrome>
-    </EuiErrorBoundary>
+    <Head>
+      <title>Next.js EUI Starter</title>
+    </Head>
+    <Chrome>
+      <EuiErrorBoundary>
+        <Component {...pageProps} />
+      </EuiErrorBoundary>
+    </Chrome>
   </>
 )
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// EuiApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps }
-// }
 
 export default EuiApp

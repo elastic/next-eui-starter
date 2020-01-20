@@ -8,7 +8,7 @@ const selector = `link[data-name="eui-theme"]`
 export const defaultTheme = `light`
 
 function getThemes(): HTMLLinkElement[] {
-  // @ts-ignore: We need to target the compiler to es6 or higher for NodeListOf<Element> to be iterable
+  // @ts-ignore
   return [...document.querySelectorAll(selector)]
 }
 

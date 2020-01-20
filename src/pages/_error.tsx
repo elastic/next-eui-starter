@@ -23,6 +23,9 @@ const NotFoundPage: FunctionComponent = () => (
   />
 )
 
+/**
+ * An example of how to render a custom error page.
+ */
 const ErrorWrapper: FunctionComponent<ErrorProps> = ({ statusCode }) => {
   if (statusCode === 404) {
     return <NotFoundPage />

@@ -30,7 +30,7 @@ module.exports = {
     // Tell the linter that it's OK to use apostrophes in our code.
     "react/no-unescaped-entities": "off",
 
-    // We're using TypeScript, so prop-tpes aren't so interesting
+    // We're using TypeScript, so prop-types aren't so interesting
     "react/prop-types": "off",
 
     // In an ideal world, we'd never have to use @ts-ignore, but that's not

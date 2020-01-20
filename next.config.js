@@ -54,9 +54,9 @@ const nextConfig = {
    * leverage this behavior and prefer something else instead, like your
    * editor's integration, you may want to disable it.
    */
-  typescript: {
-    ignoreDevErrors: false,
-  },
+  // typescript: {
+  //   ignoreDevErrors: true,
+  // },
 
   /** Customises the build */
   webpack(config, { isServer }) {
@@ -109,19 +109,19 @@ const nextConfig = {
       new CopyWebpackPlugin(themeConfig.copyConfig),
 
       // We don't want to load all highlight.js language - provide a mechanism to register just some
-      new NormalModuleReplacementPlugin(/^highlight\.js$/, path.join(__dirname, `src/lib/highlight.ts`)),
+      new NormalModuleReplacementPlugin(/^highlight\.js$/, path.join(__dirname, `src/lib/highlight.ts`))
     )
 
     return config
   },
 
   /**
-   * If you want to use wildcard routes with Static HTML Export, then you
+   * If you want to use dynamic routes with Static HTML Export, then you
    * have to manually define (or in this case, extend) the path map.
    * Otherwise, Next can't generate static pages for each path - everything
    * would work on the client so long as an explicit path was loaded first,
-   * but a direct fetch on a wildcard route wouldn't work. If you don't use
-   * wildcard routes, then you don't need this function at all.
+   * but a direct fetch on a dynamic route wouldn't work. If you don't use
+   * dynamic routes, then you don't need this function at all.
    *
    * If you can't generate all the possible paths at build time, for
    * example by hard-coding or querying an API, you'll need some kind of
@@ -131,7 +131,7 @@ const nextConfig = {
    * @see https://nextjs.org/docs/advanced-features/static-html-export
    */
   exportPathMap: async function(defaultPathMap) {
-    const wildcardPaths = [
+    const dynamicPaths = [
       '/my-dashboard',
       '/workpad',
       '/my-logs',
@@ -158,7 +158,7 @@ const nextConfig = {
       ...defaultPathMap,
     }
 
-    for (const path of wildcardPaths) {
+    for (const path of dynamicPaths) {
       pathMap['/my-app' + path] = { page: '/my-app/[slug]' }
     }
 
