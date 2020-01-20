@@ -30,7 +30,9 @@ interface EuiNavDrawerStub {
   toggleOpen: () => void
 }
 
-const Logo: FunctionComponent = () => <EuiHeaderLogo iconType='logoElastic' href='/' aria-label='Goes to home' />
+const Logo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
+  <EuiHeaderLogo iconType='logoElastic' onClick={onClick} aria-label='Goes to home' />
+)
 
 const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
   <EuiHeaderSectionItemButton aria-label='Open nav' onClick={onClick}>
@@ -47,7 +49,11 @@ const Chrome: FunctionComponent = ({ children }) => {
 
   const router = useRouter()
 
-  const buildOnClick = (path: string) => () => router.push(buildBrowserPath(path))
+  // In this example app, all the side navigation links go to a placeholder
+  // page. That's why the `push` call here points at the catch-all route - the
+  // Next.js router doesn't infer the catch-all, we have to link to it
+  // explicitly.
+  const buildOnClick = (path: string) => () => router.push('/my-app/[slug]', buildBrowserPath(path))
 
   return (
     <>
@@ -60,7 +66,7 @@ const Chrome: FunctionComponent = ({ children }) => {
           </EuiShowFor>
 
           <EuiHeaderSectionItem border='right'>
-            <Logo />
+            <Logo onClick={() => router.push('/', buildBrowserPath('/'))} />
           </EuiHeaderSectionItem>
 
           <EuiHeaderSectionItem border='right'>{/* <HeaderSpacesMenu /> */}</EuiHeaderSectionItem>

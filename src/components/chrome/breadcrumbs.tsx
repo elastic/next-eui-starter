@@ -4,6 +4,16 @@ import { Breadcrumb, EuiHeaderBreadcrumbs } from '@elastic/eui'
 
 const assetPrefix = process.env.PATH_PREFIX as string
 
+function segmentToName(segment: string): string {
+  if (!segment) {
+    return segment
+  }
+
+  const withSpaces = segment.replace(/-/g, ' ')
+
+  return withSpaces[0].toUpperCase() + withSpaces.slice(1)
+}
+
 /**
  * This component demonstrates a very simple use of the Next router to
  * render a breadcrumb. It's not particularly useful, but gives an idea.
@@ -11,28 +21,26 @@ const assetPrefix = process.env.PATH_PREFIX as string
 export const Breadcrumbs: FunctionComponent = () => {
   const router = useRouter()
 
-  const pathToBreadcrumb: { [path: string]: string } = {
-    '/': 'Home',
-    '/page-2': 'Page 2',
-  }
-
-  // router.pathname gives the path on disk, which could be e.g. `/[...slug]`
+  // router.pathname gives the path on disk, which could be e.g. `/my-app/[slug]`
   // We also don't want URL fragments to confuse the path -> title lookup.
-  const pathname = router.asPath.replace(/#.*/, '')
+  const pathname = router.asPath.replace(new RegExp('^' + assetPrefix + '/?'), '/').replace(/#.*/, '')
 
-  const breadcrumbs: Breadcrumb[] = [
-    {
-      text: pathToBreadcrumb[pathname] || pathname.replace(/^\//, ''),
-      href: pathname.replace(new RegExp('^' + assetPrefix + '/?'), ''),
-      onClick: (e: React.MouseEvent) => {
-        e.preventDefault()
+  const pathSegments = pathname.split('/')
 
-        router.push(router.pathname)
-      },
-      'data-test-subj': 'breadcrumbsAnimals',
-      className: 'customClass',
-    },
-  ]
+  const breadcrumbs: Breadcrumb[] = []
+
+  const breadcrumbContext: string[] = []
+
+  for (const segment of pathSegments) {
+    const breadcrumbPath = breadcrumbContext.concat(segment).join('/')
+
+    breadcrumbs.push({
+      text: segmentToName(segment),
+      onClick: () => router.push(breadcrumbPath),
+    })
+
+    breadcrumbContext.push(segment)
+  }
 
   return <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} />
 }

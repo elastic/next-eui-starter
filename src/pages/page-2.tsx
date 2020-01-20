@@ -10,6 +10,7 @@ import {
   EuiPageContentHeaderSection,
   EuiPageHeader,
   EuiPageHeaderSection,
+  EuiSpacer,
   EuiTitle,
 } from '@elastic/eui'
 
@@ -36,6 +37,12 @@ const SecondPage: FunctionComponent = () => (
         <EuiPageContentBody>
           <Link href='/'>
             <a>Go to Home</a>
+          </Link>
+
+          <EuiSpacer />
+
+          <Link href='/my-app/[slug]' as='/my-app/stack-monitoring'>
+            <a>Go to Stack Monitoring</a>
           </Link>
         </EuiPageContentBody>
       </EuiPageContent>

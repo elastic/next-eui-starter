@@ -16,10 +16,11 @@ export function buildBrowserPath(href: string): string {
  * Next's `<Link />` need to support the `as` prop. This is tedious, so wrap the
  * component and apply the `as` logic in one place.
  */
-const NextJsLink: FunctionComponent<LinkProps> = ({ href, ...rest }) => {
-  const path = typeof href === 'object' ? href.pathname! : href
+const NextJsLink: FunctionComponent<LinkProps> = ({ href, as, ...rest }) => {
+  const asSource = as != null ? as : href
+  const asTarget = typeof asSource === 'object' ? asSource.pathname! : asSource
 
-  return <Link href={href} as={buildBrowserPath(path)} {...rest} />
+  return <Link href={href} as={buildBrowserPath(asTarget)} {...rest} />
 }
 
 export default NextJsLink

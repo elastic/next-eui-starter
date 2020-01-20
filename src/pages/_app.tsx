@@ -1,9 +1,12 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import React, { FunctionComponent } from 'react'
+import { EuiErrorBoundary } from '@elastic/eui'
 
 import Chrome from '../components/chrome'
-import { EuiErrorBoundary } from '@elastic/eui'
+import { patchRouter } from '../lib/routing'
+
+patchRouter()
 
 const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>

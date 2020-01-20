@@ -8,32 +8,59 @@ const withImages = require('next-images')
 const withSass = require('@zeit/next-sass')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-// If you are deploying your site under a directory other than `/` e.g.
-// GitHub pages, then you have to tell Next where the files will be served.
-// We don't need this during local development, because everything is
-// available under `/`.
+/**
+ * If you are deploying your site under a directory other than `/` e.g.
+ * GitHub pages, then you have to tell Next where the files will be served.
+ * We don't need this during local development, because everything is
+ * available under `/`.
+ */
 const usePathPrefix = process.env.PATH_PREFIX === 'true'
 
-// Change this to be the name of your repository. GitHub will serve your
-// site under this path.
+/**
+ * Change this to be the name of your repository. GitHub will serve your
+ * site under this path.
+ */
 const pathPrefix = usePathPrefix ? '/next-eui-starter' : ''
 
 const themeConfig = buildThemeConfig()
 
 const nextConfig = {
+  /** Disable the `X-Powered-By: Next.js` response header. */
   poweredByHeader: false,
 
+  /**
+   * Next.js documents this for use hosting assets on a CDN, but we use
+   * it to support static HTML exports with a path prefix.
+   */
   assetPrefix: pathPrefix,
 
+  /**
+   * Set custom `process.env.SOMETHING` values to use in the application.
+   * You can do this with Webpack's `DefinePlugin`, but this is more concise.
+   * It's also possible to provide values via `publicRuntimeConfig`, but
+   * this method is preferred as it can be done statically at build time.
+   *
+   * @see https://nextjs.org/docs/api-reference/next.config.js/environment-variables
+   */
   env: {
     PATH_PREFIX: pathPrefix,
     THEME_CONFIG: JSON.stringify(themeConfig),
   },
 
+  /**
+   * Next.js reports TypeScript errors by default. If you don't want to
+   * leverage this behavior and prefer something else instead, like your
+   * editor's integration, you may want to disable it.
+   */
+  typescript: {
+    ignoreDevErrors: false,
+  },
+
+  /** Customises the build */
   webpack(config, { isServer }) {
     // EUI uses some libraries and features that don't work outside of a
     // browser by default. We need to configure the build so that these
-    // features are either ignored or replaced with stubs.
+    // features are either ignored or replaced with stub implementations.
     if (isServer) {
       config.externals = config.externals.map(fn => {
         return (context, request, callback) => {
@@ -45,7 +72,8 @@ const nextConfig = {
         }
       })
 
-      // Mock react-ace server-side
+      // Replace `react-ace` with an empty module on the server.
+      // https://webpack.js.org/loaders/null-loader/
       config.module.rules.push({
         test: /react-ace/,
         use: 'null-loader',
@@ -74,18 +102,76 @@ const nextConfig = {
       }
     }
 
+    // Copy theme CSS files into `public`
     config.plugins.push(new CopyWebpackPlugin(themeConfig.copyConfig))
 
     return config
   },
+
+  /**
+   * If you want to use wildcard routes with Static HTML Export, then you
+   * have to manually define (or in this case, extend) the path map.
+   * Otherwise, Next can't generate static pages for each path - everything
+   * would work on the client so long as an explicit path was loaded first,
+   * but a direct fetch on a wildcard route wouldn't work. If you don't use
+   * wildcard routes, then you don't need this function at all.
+   *
+   * If you can't generate all the possible paths at build time, for
+   * example by hard-coding or querying an API, you'll need some kind of
+   * server-side redirect, which is outside the scope of this project.
+   *
+   * @see https://nextjs.org/docs/routing/introduction
+   * @see https://nextjs.org/docs/advanced-features/static-html-export
+   */
+  exportPathMap: async function(defaultPathMap) {
+    const wildcardPaths = [
+      '/my-dashboard',
+      '/workpad',
+      '/my-logs',
+      '/my-workpad',
+      '/my-logs',
+      '/apm',
+      '/metrics',
+      '/logs',
+      '/uptime',
+      '/maps',
+      '/siem',
+      '/canvas',
+      '/discover',
+      '/visualize',
+      '/dashboard',
+      '/machine-learning',
+      '/custom-plugin',
+      '/dev-tools',
+      '/stack-monitoring',
+      '/stack-management',
+    ]
+
+    const pathMap = {
+      ...defaultPathMap,
+    }
+
+    for (const path of wildcardPaths) {
+      pathMap['/my-app' + path] = { page: '/my-app/[slug]' }
+    }
+
+    return pathMap
+  },
 }
 
+// Enhances the Next config with the ability to load images and SCSS files from JavaScript.
 module.exports = withImages(withSass(nextConfig))
 
 /**
- * Find all EUI themes and construct a CopyWebpackPlugin config for each.
- * When copying the files, inject a hash into the filename so that when
- * themes are updated, any caches will be refreshed.
+ * Find all EUI themes and construct a theme configuration object.
+ *
+ * The `copyConfig` key is used to configure CopyWebpackPlugin, which
+ * copies the default EUI themes into the `public` directory, injecting a
+ * hash into the filename so that when EUI is updated, new copies of the
+ * themes will be fetched.
+ *
+ * The `availableThemes` key is used in the app to includes the themes in
+ * the app's `<head>` element, and for theme switching.
  *
  * @return {ThemeConfig}
  */
@@ -127,6 +213,7 @@ function buildThemeConfig() {
  * of characters is truncated to match how Webpack generates hashes.
  *
  * @param {string} filePath the absolute path to the file to hash.
+ * @return string
  */
 function hashFile(filePath) {
   const hash = crypto.createHash(`sha256`)

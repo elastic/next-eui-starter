@@ -7,7 +7,7 @@ export const buildAdminLinks = (makeAction: (path: string) => () => void) => [
       listItems: [
         {
           label: 'Dev tools',
-          onClick: makeAction('/dev-tools'),
+          onClick: makeAction('/my-app/dev-tools'),
           iconType: 'devToolsApp',
           extraAction: {
             color: 'subdued',
@@ -18,7 +18,7 @@ export const buildAdminLinks = (makeAction: (path: string) => () => void) => [
         },
         {
           label: 'Stack Monitoring',
-          onClick: makeAction('/stack-monitoring'),
+          onClick: makeAction('/my-app/stack-monitoring'),
           iconType: 'monitoringApp',
           extraAction: {
             color: 'subdued',
@@ -29,7 +29,7 @@ export const buildAdminLinks = (makeAction: (path: string) => () => void) => [
         },
         {
           label: 'Stack Management',
-          onClick: makeAction('/stack-management'),
+          onClick: makeAction('/my-app/stack-management'),
           iconType: 'managementApp',
           extraAction: {
             color: 'subdued',

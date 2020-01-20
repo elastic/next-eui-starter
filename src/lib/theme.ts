@@ -36,13 +36,15 @@ export function setInitialTheme(): string {
   return theme
 }
 
+export interface Theme {
+  id: string
+  name: string
+  publicPath: string
+}
+
 // This is supplied to the app as JSON by Webpack - see next.config.js
 export interface ThemeConfig {
-  availableThemes: Array<{
-    id: string
-    name: string
-    publicPath: string
-  }>
+  availableThemes: Array<Theme>
   copyConfig: Array<{
     from: string
     to: string
