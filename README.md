@@ -110,3 +110,7 @@ A quick look at the top-level files and directories you'll see in this project.
 ## 🎓 Learning Next.js
 
 Looking for more guidance? Full documentation for Next.js lives [on the website](https://nextjs.org/). You probably want to being by following the [Getting Started Guide](https://nextjs.org/learn/basics/getting-started).
+
+## Other features
+
+* Bundle analysis - run `yarn analyze` and two windows will open in your browser, showing how big your server and client bundles are, and where that data is coming from. You can use this information to work out where you're sending too much data to the client, and speed up your pages.
