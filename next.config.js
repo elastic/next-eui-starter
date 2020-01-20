@@ -8,6 +8,7 @@ const withImages = require('next-images')
 const withBundleAnalyzer = require('@next/bundle-analyzer')
 const withSass = require('@zeit/next-sass')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack')
 
 /**
  * If you are deploying your site under a directory other than `/` e.g.
@@ -104,7 +105,12 @@ const nextConfig = {
     }
 
     // Copy theme CSS files into `public`
-    config.plugins.push(new CopyWebpackPlugin(themeConfig.copyConfig))
+    config.plugins.push(
+      new CopyWebpackPlugin(themeConfig.copyConfig),
+
+      // We don't want to load all highlight.js language - provide a mechanism to register just some
+      new NormalModuleReplacementPlugin(/^highlight\.js$/, path.join(__dirname, `src/lib/highlight.ts`)),
+    )
 
     return config
   },
