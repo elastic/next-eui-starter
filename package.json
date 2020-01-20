@@ -12,9 +12,10 @@
   ],
   "license": "Apache-2.0",
   "scripts": {
-    "dev": "next",
+    "analyze": "ANALYZE=true yarn build",
     "build": "yarn lint && rm public/themes/*.min.css && next build",
     "build-docs": "rm -rf docs && PATH_PREFIX=true yarn build && PATH_PREFIX=true next export -o docs && touch docs/.nojekyll",
+    "dev": "next",
     "lint": "eslint --cache 'src/**/*.{ts,tsx,js}' --max-warnings 0",
     "start": "next start"
   },
@@ -38,6 +39,7 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^9.2.0",
     "@types/node": "^13.1.7",
     "@typescript-eslint/eslint-plugin": "^2.16.0",
     "@typescript-eslint/parser": "^2.16.0",

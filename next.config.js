@@ -5,6 +5,7 @@ const glob = require('glob')
 const path = require('path')
 
 const withImages = require('next-images')
+const withBundleAnalyzer = require('@next/bundle-analyzer')
 const withSass = require('@zeit/next-sass')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -159,8 +160,13 @@ const nextConfig = {
   },
 }
 
-// Enhances the Next config with the ability to load images and SCSS files from JavaScript.
-module.exports = withImages(withSass(nextConfig))
+/**
+ * Enhances the Next config with the ability to:
+ * - Analyze the webpack bundle
+ * - Load images from JavaScript.
+ * - Load SCSS files from JavaScript.
+ */
+module.exports = withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })(withImages(withSass(nextConfig)))
 
 /**
  * Find all EUI themes and construct a theme configuration object.
