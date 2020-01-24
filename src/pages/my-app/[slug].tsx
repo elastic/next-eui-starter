@@ -27,7 +27,7 @@ const CatchAll: FunctionComponent = () => {
 
   let title = 'Next.js EUI Starter'
   if (finalPathSegment[0] !== '[') {
-    title = finalPathSegment + ' - ' + title
+    title = `${finalPathSegment} - ${title}`
   }
 
   return (

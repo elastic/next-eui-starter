@@ -22,12 +22,12 @@ const Index: FunctionComponent = () => (
     <EuiPageBody>
       <EuiPageHeader>
         <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Elastic's Next.js EUI Starter</h1>
+          <EuiTitle size='l'>
+            <h1>Elastic&apos;s Next.js EUI Starter</h1>
           </EuiTitle>
         </EuiPageHeaderSection>
         <EuiPageHeaderSection>
-          <EuiButton iconType="logoGithub" href="https://github.com/elastic/next-eui-starter" fill>
+          <EuiButton iconType='logoGithub' href='https://github.com/elastic/next-eui-starter' fill>
             Open in Github
           </EuiButton>
         </EuiPageHeaderSection>
@@ -47,11 +47,11 @@ const Index: FunctionComponent = () => (
           <EuiText>
             <p>
               This{' '}
-              <EuiLink external={true} target="_blank" href="https://nextjs.org/">
+              <EuiLink external={true} target='_blank' href='https://nextjs.org/'>
                 Next.js
               </EuiLink>{' '}
               EUI Starter is intended to help you quickly build and deploy prototypes for Kibana apps with the{' '}
-              <EuiLink href="https://elastic.github.io/eui/" external={true} target="_blank">
+              <EuiLink href='https://elastic.github.io/eui/' external={true} target='_blank'>
                 EUI library
               </EuiLink>
               .

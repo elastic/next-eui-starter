@@ -41,7 +41,7 @@ function themeLink(theme: Theme): ReactElement {
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <html lang='en'>
         <Head>{themeConfig.availableThemes.map(each => themeLink(each))}</Head>
         <body>
           <Main />

@@ -17,6 +17,6 @@ const NextEuiButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiButto
   )
 })
 
-NextEuiButton.displayName = `NextEuiButton(EuiButton)`
+NextEuiButton.displayName = 'NextEuiButton(EuiButton)'
 
 export default NextEuiButton

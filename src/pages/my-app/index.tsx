@@ -22,7 +22,7 @@ const SecondPage: FunctionComponent = () => (
       <EuiPageHeader>
         <EuiPageHeaderSection>
           <EuiTitle size='l'>
-            <h1>My App's index page</h1>
+            <h1>My App&apos;s index page</h1>
           </EuiTitle>
         </EuiPageHeaderSection>
       </EuiPageHeader>

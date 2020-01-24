@@ -8,7 +8,7 @@ const assetPrefix = process.env.PATH_PREFIX as string
  * @param href the route to potentially be prepended.
  */
 export function buildBrowserPath(href: string): string {
-  return href.startsWith('/') ? assetPrefix + href : assetPrefix + '/' + href
+  return href.startsWith('/') ? assetPrefix + href : `${assetPrefix}/${href}`
 }
 
 /**

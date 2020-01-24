@@ -23,7 +23,7 @@ export const Breadcrumbs: FunctionComponent = () => {
 
   // router.pathname gives the path on disk, which could be e.g. `/my-app/[slug]`
   // Make sure to remove any path prefix and URL fragments too.
-  const pathname = router.asPath.replace(new RegExp('^' + assetPrefix + '/?'), '/').replace(/#.*/, '')
+  const pathname = router.asPath.replace(new RegExp(`^${assetPrefix}/?`), '/').replace(/#.*/, '')
 
   const pathSegments = pathname.split('/')
 

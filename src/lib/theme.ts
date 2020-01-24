@@ -4,8 +4,8 @@
  * that doesn't work on the server, where we just use a default.
  */
 
-const selector = `link[data-name="eui-theme"]`
-export const defaultTheme = `light`
+const selector = 'link[data-name="eui-theme"]'
+export const defaultTheme = 'light'
 
 function getThemes(): HTMLLinkElement[] {
   // @ts-ignore
