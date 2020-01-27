@@ -1,14 +1,14 @@
-import React, { FunctionComponent } from 'react'
-import Link, { LinkProps } from 'next/link'
+import React, { FunctionComponent } from 'react';
+import Link, { LinkProps } from 'next/link';
 
-const assetPrefix = process.env.PATH_PREFIX as string
+const assetPrefix = process.env.PATH_PREFIX as string;
 
 /**
  * Builds the correct value to be used for the 'as' argument to the Next router.
  * @param href the route to potentially be prepended.
  */
 export function buildBrowserPath(href: string): string {
-  return href.startsWith('/') ? assetPrefix + href : `${assetPrefix}/${href}`
+  return href.startsWith('/') ? assetPrefix + href : `${assetPrefix}/${href}`;
 }
 
 /**
@@ -17,10 +17,10 @@ export function buildBrowserPath(href: string): string {
  * component and apply the `as` logic in one place.
  */
 const NextJsLink: FunctionComponent<LinkProps> = ({ href, as, ...rest }) => {
-  const asSource = as != null ? as : href
-  const asTarget = typeof asSource === 'object' ? asSource.pathname! : asSource
+  const asSource = as != null ? as : href;
+  const asTarget = typeof asSource === 'object' ? asSource.pathname! : asSource;
 
-  return <Link href={href} as={buildBrowserPath(asTarget)} {...rest} />
-}
+  return <Link href={href} as={buildBrowserPath(asTarget)} {...rest} />;
+};
 
-export default NextJsLink
+export default NextJsLink;

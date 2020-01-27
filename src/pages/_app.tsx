@@ -1,12 +1,12 @@
-import { AppProps } from 'next/app'
-import Head from 'next/head'
-import React, { FunctionComponent } from 'react'
-import { EuiErrorBoundary } from '@elastic/eui'
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import React, { FunctionComponent } from 'react';
+import { EuiErrorBoundary } from '@elastic/eui';
 
-import Chrome from '../components/chrome'
-import { patchRouter } from '../lib/routing'
+import Chrome from '../components/chrome';
+import { patchRouter } from '../lib/routing';
 
-patchRouter()
+patchRouter();
 
 /**
  * Next.js uses the App component to initialize pages. You can override it
@@ -26,6 +26,6 @@ const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       </EuiErrorBoundary>
     </Chrome>
   </>
-)
+);
 
-export default EuiApp
+export default EuiApp;

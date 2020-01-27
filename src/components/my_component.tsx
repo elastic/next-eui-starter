@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from 'react'
-import Link from './link'
-import NextEuiButton from './next_eui/button'
+import React, { FunctionComponent } from 'react';
+import Link from './link';
+import NextEuiButton from './next_eui/button';
 
 const MyComponent: FunctionComponent = () => (
-  <Link href='page-2'>
+  <Link href="page-2">
     <NextEuiButton>Go to page 2</NextEuiButton>
   </Link>
-)
+);
 
-export default MyComponent
+export default MyComponent;

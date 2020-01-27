@@ -1,4 +1,4 @@
-import { pinExtraAction } from './pin_extra_action'
+import { pinExtraAction } from './pin_extra_action';
 
 export const buildExploreLinks = (makeAction: (path: string) => () => void) => [
   {
@@ -40,4 +40,4 @@ export const buildExploreLinks = (makeAction: (path: string) => () => void) => [
     onClick: makeAction('/my-app/custom-plugin'),
     extraAction: pinExtraAction,
   },
-]
+];

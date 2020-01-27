@@ -1,6 +1,8 @@
-import { pinExtraAction } from './pin_extra_action'
+import { pinExtraAction } from './pin_extra_action';
 
-export const buildSolutionLinks = (makeAction: (path: string) => () => void) => [
+export const buildSolutionLinks = (
+  makeAction: (path: string) => () => void
+) => [
   {
     label: 'APM',
     onClick: makeAction('/my-app/apm'),
@@ -37,4 +39,4 @@ export const buildSolutionLinks = (makeAction: (path: string) => () => void) => 
     iconType: 'securityAnalyticsApp',
     extraAction: pinExtraAction,
   },
-]
+];

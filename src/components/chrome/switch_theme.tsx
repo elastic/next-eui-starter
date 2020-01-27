@@ -1,23 +1,28 @@
-import React, { FunctionComponent, useState } from 'react'
-import { EuiButton, EuiContextMenuItem, EuiContextMenuPanel, EuiPopover } from '@elastic/eui'
+import React, { FunctionComponent, useState } from 'react';
+import {
+  EuiButton,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
+  EuiPopover,
+} from '@elastic/eui';
 
-import { setInitialTheme, setTheme, themeConfig } from '../../lib/theme'
+import { setInitialTheme, setTheme, themeConfig } from '../../lib/theme';
 
-const initialTheme = setInitialTheme()
+const initialTheme = setInitialTheme();
 
 /**
  * Renders a dropdown menu for selecting the current theme. The selection
  * is set in localStorage, so that it persists between visits.
  */
 const SwitchTheme: FunctionComponent = () => {
-  const [isPopoverOpen, setPopoverOpen] = useState(false)
-  const [theme, setThemeInState] = useState(initialTheme)
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const [theme, setThemeInState] = useState(initialTheme);
 
   const handleChangeTheme = (newTheme: string) => {
-    setPopoverOpen(false)
-    setTheme(newTheme)
-    setThemeInState(newTheme)
-  }
+    setPopoverOpen(false);
+    setTheme(newTheme);
+    setThemeInState(newTheme);
+  };
 
   const items = themeConfig.availableThemes.map(each => (
     <EuiContextMenuItem
@@ -26,26 +31,29 @@ const SwitchTheme: FunctionComponent = () => {
       onClick={() => handleChangeTheme(each.id)}>
       {each.name}
     </EuiContextMenuItem>
-  ))
+  ));
 
   const button = (
-    <EuiButton iconType='arrowDown' iconSide='right' onClick={() => setPopoverOpen(!isPopoverOpen)}>
+    <EuiButton
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={() => setPopoverOpen(!isPopoverOpen)}>
       Switch theme
     </EuiButton>
-  )
+  );
 
   return (
     <EuiPopover
-      id='contextMenu'
+      id="contextMenu"
       button={button}
       isOpen={isPopoverOpen}
       closePopover={() => setPopoverOpen(false)}
-      panelPaddingSize='none'
+      panelPaddingSize="none"
       withTitle
-      anchorPosition='downLeft'>
+      anchorPosition="downLeft">
       <EuiContextMenuPanel items={items} />
     </EuiPopover>
-  )
-}
+  );
+};
 
-export default SwitchTheme
+export default SwitchTheme;

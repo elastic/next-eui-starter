@@ -1,6 +1,6 @@
-import * as routeMatcher from 'next/dist/next-server/lib/router/utils/route-matcher'
+import * as routeMatcher from 'next/dist/next-server/lib/router/utils/route-matcher';
 
-const pathPrefix = process.env.PATH_PREFIX as string
+const pathPrefix = process.env.PATH_PREFIX as string;
 
 /**
  * This is a hack.
@@ -20,21 +20,21 @@ export function patchRouter() {
   // @ts-ignore
   if (!routeMatcher._patched) {
     // @ts-ignore
-    routeMatcher._patched = true
+    routeMatcher._patched = true;
     // @ts-ignore
-    routeMatcher._getRouteMatcher = routeMatcher.getRouteMatcher
+    routeMatcher._getRouteMatcher = routeMatcher.getRouteMatcher;
     // @ts-ignore
     routeMatcher.getRouteMatcher = function getPatchedRouteMatcher(routeRegex) {
       // @ts-ignore
-      const originalMatcher = routeMatcher._getRouteMatcher(routeRegex)
+      const originalMatcher = routeMatcher._getRouteMatcher(routeRegex);
 
       return function patchedRouteMatcher(route: string) {
         if (route.indexOf(pathPrefix) === 0) {
-          route = route.substr(pathPrefix.length)
+          route = route.substr(pathPrefix.length);
         }
 
-        return originalMatcher(route)
-      }
-    }
+        return originalMatcher(route);
+      };
+    };
   }
 }

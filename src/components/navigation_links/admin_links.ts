@@ -41,4 +41,4 @@ export const buildAdminLinks = (makeAction: (path: string) => () => void) => [
       ],
     },
   },
-]
+];

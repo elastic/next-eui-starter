@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import React, { FunctionComponent } from 'react'
+import Head from 'next/head';
+import React, { FunctionComponent } from 'react';
 
 import {
   EuiPage,
@@ -11,7 +11,7 @@ import {
   EuiPageHeader,
   EuiPageHeaderSection,
   EuiTitle,
-} from '@elastic/eui'
+} from '@elastic/eui';
 
 const SecondPage: FunctionComponent = () => (
   <EuiPage restrictWidth>
@@ -21,7 +21,7 @@ const SecondPage: FunctionComponent = () => (
     <EuiPageBody>
       <EuiPageHeader>
         <EuiPageHeaderSection>
-          <EuiTitle size='l'>
+          <EuiTitle size="l">
             <h1>My App&apos;s index page</h1>
           </EuiTitle>
         </EuiPageHeaderSection>
@@ -34,10 +34,12 @@ const SecondPage: FunctionComponent = () => (
             </EuiTitle>
           </EuiPageContentHeaderSection>
         </EuiPageContentHeader>
-        <EuiPageContentBody>This is just an index page. Nothing special.</EuiPageContentBody>
+        <EuiPageContentBody>
+          This is just an index page. Nothing special.
+        </EuiPageContentBody>
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>
-)
+);
 
-export default SecondPage
+export default SecondPage;

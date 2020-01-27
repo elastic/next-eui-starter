@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires,@typescript-eslint/no-use-before-define,@typescript-eslint/no-empty-function */
-const crypto = require('crypto')
-const fs = require('fs')
-const glob = require('glob')
-const path = require('path')
+const crypto = require('crypto');
+const fs = require('fs');
+const glob = require('glob');
+const path = require('path');
 
-const withImages = require('next-images')
-const withBundleAnalyzer = require('@next/bundle-analyzer')
-const withSass = require('@zeit/next-sass')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack')
+const withImages = require('next-images');
+const withBundleAnalyzer = require('@next/bundle-analyzer');
+const withSass = require('@zeit/next-sass');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { NormalModuleReplacementPlugin } = require('webpack');
 
 /**
  * If you are deploying your site under a directory other than `/` e.g.
@@ -16,15 +16,15 @@ const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack')
  * We don't need this during local development, because everything is
  * available under `/`.
  */
-const usePathPrefix = process.env.PATH_PREFIX === 'true'
+const usePathPrefix = process.env.PATH_PREFIX === 'true';
 
 /**
  * Change this to be the name of your repository. GitHub will serve your
  * site under this path.
  */
-const pathPrefix = usePathPrefix ? '/next-eui-starter' : ''
+const pathPrefix = usePathPrefix ? '/next-eui-starter' : '';
 
-const themeConfig = buildThemeConfig()
+const themeConfig = buildThemeConfig();
 
 const nextConfig = {
   /** Disable the `X-Powered-By: Next.js` response header. */
@@ -66,23 +66,28 @@ const nextConfig = {
     if (isServer) {
       config.externals = config.externals.map(fn => {
         return (context, request, callback) => {
-          if (request.indexOf('@elastic/eui') > -1 || request.indexOf('react-ace') > -1) {
-            return callback()
+          if (
+            request.indexOf('@elastic/eui') > -1 ||
+            request.indexOf('react-ace') > -1
+          ) {
+            return callback();
           }
 
-          return fn(context, request, callback)
-        }
-      })
+          return fn(context, request, callback);
+        };
+      });
 
       // Replace `react-ace` with an empty module on the server.
       // https://webpack.js.org/loaders/null-loader/
       config.module.rules.push({
         test: /react-ace/,
         use: 'null-loader',
-      })
+      });
 
       // Mock HTMLElement, window and localStorage on the server-side
-      const definePluginId = config.plugins.findIndex(p => p.constructor.name === 'DefinePlugin')
+      const definePluginId = config.plugins.findIndex(
+        p => p.constructor.name === 'DefinePlugin'
+      );
 
       config.plugins[definePluginId].definitions = {
         ...config.plugins[definePluginId].definitions,
@@ -94,14 +99,14 @@ const nextConfig = {
         // nothing.
         localStorage: {
           getItem: function() {
-            return null
+            return null;
           },
 
           setItem: function() {
-            return
+            return;
           },
         },
-      }
+      };
     }
 
     // Copy theme CSS files into `public`
@@ -109,10 +114,13 @@ const nextConfig = {
       new CopyWebpackPlugin(themeConfig.copyConfig),
 
       // We don't want to load all highlight.js language - provide a mechanism to register just some
-      new NormalModuleReplacementPlugin(/^highlight\.js$/, path.join(__dirname, `src/lib/highlight.ts`))
-    )
+      new NormalModuleReplacementPlugin(
+        /^highlight\.js$/,
+        path.join(__dirname, `src/lib/highlight.ts`)
+      )
+    );
 
-    return config
+    return config;
   },
 
   /**
@@ -152,19 +160,19 @@ const nextConfig = {
       '/dev-tools',
       '/stack-monitoring',
       '/stack-management',
-    ]
+    ];
 
     const pathMap = {
       ...defaultPathMap,
-    }
+    };
 
     for (const path of dynamicPaths) {
-      pathMap['/my-app' + path] = { page: '/my-app/[slug]' }
+      pathMap[`/my-app${path}`] = { page: '/my-app/[slug]' };
     }
 
-    return pathMap
+    return pathMap;
   },
-}
+};
 
 /**
  * Enhances the Next config with the ability to:
@@ -172,7 +180,9 @@ const nextConfig = {
  * - Load images from JavaScript.
  * - Load SCSS files from JavaScript.
  */
-module.exports = withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })(withImages(withSass(nextConfig)))
+module.exports = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})(withImages(withSass(nextConfig)));
 
 /**
  * Find all EUI themes and construct a theme configuration object.
@@ -188,36 +198,49 @@ module.exports = withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })
  * @return {ThemeConfig}
  */
 function buildThemeConfig() {
-  const themeFiles = glob.sync(path.join(__dirname, 'node_modules', '@elastic', 'eui', 'dist', 'eui_theme_*.min.css'))
+  const themeFiles = glob.sync(
+    path.join(
+      __dirname,
+      'node_modules',
+      '@elastic',
+      'eui',
+      'dist',
+      'eui_theme_*.min.css'
+    )
+  );
 
   const themeConfig = {
     availableThemes: [],
     copyConfig: [],
-  }
+  };
 
   for (const each of themeFiles) {
-    const basename = path.basename(each, '.min.css')
+    const basename = path.basename(each, '.min.css');
 
-    const themeId = basename.replace(/^eui_theme_/, '')
+    const themeId = basename.replace(/^eui_theme_/, '');
 
-    const themeName = themeId[0].toUpperCase() + themeId.slice(1).replace(/_/g, ' ')
+    const themeName =
+      themeId[0].toUpperCase() + themeId.slice(1).replace(/_/g, ' ');
 
-    const publicPath = `themes/${basename}.${hashFile(each)}.min.css`
-    const toPath = path.join(__dirname, `public/themes/${basename}.${hashFile(each)}.min.css`)
+    const publicPath = `themes/${basename}.${hashFile(each)}.min.css`;
+    const toPath = path.join(
+      __dirname,
+      `public/themes/${basename}.${hashFile(each)}.min.css`
+    );
 
     themeConfig.availableThemes.push({
       id: themeId,
       name: themeName,
       publicPath,
-    })
+    });
 
     themeConfig.copyConfig.push({
       from: each,
       to: toPath,
-    })
+    });
   }
 
-  return themeConfig
+  return themeConfig;
 }
 
 /**
@@ -228,11 +251,11 @@ function buildThemeConfig() {
  * @return string
  */
 function hashFile(filePath) {
-  const hash = crypto.createHash(`sha256`)
-  const fileData = fs.readFileSync(filePath)
-  hash.update(fileData)
-  const fullHash = hash.digest(`hex`)
+  const hash = crypto.createHash(`sha256`);
+  const fileData = fs.readFileSync(filePath);
+  hash.update(fileData);
+  const fullHash = hash.digest(`hex`);
 
   // Use a hash length that matches what Webpack does
-  return fullHash.substr(0, 20)
+  return fullHash.substr(0, 20);
 }

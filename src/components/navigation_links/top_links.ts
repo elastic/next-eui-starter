@@ -3,7 +3,7 @@ const faveExtraAction = {
   iconType: 'starEmpty',
   iconSize: 's',
   'aria-label': 'Add to favorites',
-}
+};
 
 export const buildTopLinks = (makeAction: (path: string) => () => void) => [
   {
@@ -67,4 +67,4 @@ export const buildTopLinks = (makeAction: (path: string) => () => void) => [
       ],
     },
   },
-]
+];

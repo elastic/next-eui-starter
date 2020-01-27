@@ -5,11 +5,11 @@
 // simply return a value, which they do, thanks to Webpack.
 
 declare module '*.png' {
-  const value: any
-  export = value
+  const value: any;
+  export = value;
 }
 
 declare module '*.svg' {
-  const value: any
-  export = value
+  const value: any;
+  export = value;
 }

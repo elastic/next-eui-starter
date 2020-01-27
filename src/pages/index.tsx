@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent } from 'react';
 import {
   EuiButton,
   EuiCode,
@@ -12,22 +12,25 @@ import {
   EuiPageHeaderSection,
   EuiText,
   EuiTitle,
-} from '@elastic/eui'
+} from '@elastic/eui';
 
-import MyComponent from '../components/my_component'
-import { EuiLink } from '@elastic/eui'
+import MyComponent from '../components/my_component';
+import { EuiLink } from '@elastic/eui';
 
 const Index: FunctionComponent = () => (
   <EuiPage restrictWidth>
     <EuiPageBody>
       <EuiPageHeader>
         <EuiPageHeaderSection>
-          <EuiTitle size='l'>
+          <EuiTitle size="l">
             <h1>Elastic&apos;s Next.js EUI Starter</h1>
           </EuiTitle>
         </EuiPageHeaderSection>
         <EuiPageHeaderSection>
-          <EuiButton iconType='logoGithub' href='https://github.com/elastic/next-eui-starter' fill>
+          <EuiButton
+            iconType="logoGithub"
+            href="https://github.com/elastic/next-eui-starter"
+            fill>
             Open in Github
           </EuiButton>
         </EuiPageHeaderSection>
@@ -47,11 +50,18 @@ const Index: FunctionComponent = () => (
           <EuiText>
             <p>
               This{' '}
-              <EuiLink external={true} target='_blank' href='https://nextjs.org/'>
+              <EuiLink
+                external={true}
+                target="_blank"
+                href="https://nextjs.org/">
                 Next.js
               </EuiLink>{' '}
-              EUI Starter is intended to help you quickly build and deploy prototypes for Kibana apps with the{' '}
-              <EuiLink href='https://elastic.github.io/eui/' external={true} target='_blank'>
+              EUI Starter is intended to help you quickly build and deploy
+              prototypes for Kibana apps with the{' '}
+              <EuiLink
+                href="https://elastic.github.io/eui/"
+                external={true}
+                target="_blank">
                 EUI library
               </EuiLink>
               .
@@ -60,8 +70,10 @@ const Index: FunctionComponent = () => (
             <h3>Clone the project</h3>
             <p>
               To use this starter, simply run{' '}
-              <EuiCode>git clone https://github.com/elastic/next-eui-starter my-app</EuiCode>. Then{' '}
-              <EuiCode>cd my-app</EuiCode> and start editing.
+              <EuiCode>
+                git clone https://github.com/elastic/next-eui-starter my-app
+              </EuiCode>
+              . Then <EuiCode>cd my-app</EuiCode> and start editing.
             </p>
 
             <h3>Running locally</h3>
@@ -80,8 +92,9 @@ const Index: FunctionComponent = () => (
 
             <h3>Deploying to GitHub Pages</h3>
             <p>
-              Make sure that your repo has Github Pages enabled in settings. Then run <EuiCode>yarn build-docs</EuiCode>
-              , commit the results and push to GitHub.
+              Make sure that your repo has Github Pages enabled in settings.
+              Then run <EuiCode>yarn build-docs</EuiCode>, commit the results
+              and push to GitHub.
             </p>
 
             <MyComponent />
@@ -90,6 +103,6 @@ const Index: FunctionComponent = () => (
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>
-)
+);
 
-export default Index
+export default Index;
