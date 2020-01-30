@@ -14,8 +14,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "analyze": "ANALYZE=true yarn build",
-    "build": "yarn lint && rm public/themes/*.min.css && next build",
-    "build-docs": "rm -rf docs && PATH_PREFIX=true yarn build && PATH_PREFIX=true next export -o docs && touch docs/.nojekyll",
+    "build": "yarn lint && rm -f public/themes/*.min.css && next build",
+    "build-docs": "bash scripts/update-docs.sh",
     "dev": "next",
     "lint": "eslint --cache 'src/**/*.{ts,tsx,js}' --max-warnings 0",
     "start": "next start"
