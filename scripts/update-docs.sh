@@ -11,7 +11,7 @@ yarn build
 next export -o "$BUILD_DIR"
 
 git checkout gh-pages
-git ls-files | xargs git rm
+git ls-files | grep -v .gitignore | xargs git rm
 
 tar cf - "$BUILD_DIR"  | tar xf - --strip-components 2
 touch .nojekyll
