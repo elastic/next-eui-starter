@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo >&2
+  echo "You have uncommitted changes. Please commit or revert them before proceeding." >&2
+  echo >&2
+  exit 1
+fi
+
 set -ex
 
 # Generate a fresh temp directory for each build
