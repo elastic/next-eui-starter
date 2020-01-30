@@ -47,8 +47,9 @@ rm -rf "$BUILD_DIR"
 
 cat >&2 <<EOF
 
-gh-pages updated to $HASH. You can now execute:
+gh-pages updated to $HASH. You can now publish your changes. For example, if your
+git remote is 'upstream', then you could execute:
 
-    git push upstream gh-pages
+    git push upstream master gh-pages
 
 EOF
