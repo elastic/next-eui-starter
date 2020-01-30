@@ -67,6 +67,19 @@ const Index: FunctionComponent = () => (
               .
             </p>
 
+            <h3>Try it out in CodeSandbox</h3>
+
+            <p>
+              Simply go to{' '}
+              <EuiLink
+                href="https://codesandbox.io/s/github/elastic/next-eui-starter"
+                external={true}
+                target="_blank">
+                https://codesandbox.io/s/github/elastic/next-eui-starter
+              </EuiLink>
+              . CodeSandbox will fork the template when you make changes!
+            </p>
+
             <h3>Clone the project</h3>
             <p>
               To use this starter, simply run{' '}

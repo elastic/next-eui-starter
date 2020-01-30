@@ -8,6 +8,13 @@
 
 Jump right in to building Kibana prototypes with [EUI](https://github.com/elastic/eui).
 
+## 🚀 Super-quick start using CodeSandbox
+
+1. Go to
+   [https://codesandbox.io/s/github/elastic/next-eui-starter](https://codesandbox.io/s/github/elastic/next-eui-starter)
+   and start editing. CodeSandbox will fork the sandbox when you make
+   changes!
+
 ## 🚀 Quick start
 
 1.  **Install yarn**
@@ -48,13 +55,18 @@ Jump right in to building Kibana prototypes with [EUI](https://github.com/elasti
 
 1. **Deploy your site to GitHub pages**
 
-    When you're ready to deploy and share your site, you can use the provided `yarn build-docs` script to do so.
+    When you're ready to deploy and share your site, you can use the provided `yarn build-docs` script to do so. The first time you do this, you need to do some preparation:
 
-    1. Ensure your repository is configured so that the `/docs` path is used for serving the site
-    1. Modify the `pathPrefix` option in `next.config.js` to reflect the name of your repo
+    1. Modify the `pathPrefix` option in `next.config.js` to reflect the name of your GitHub repo
+    1. Commit the above change
+    2. Create the GitHub pages branch: `git branch gh-pages`
+
+    Then whenever you want to update your site:
+
+    1. Commit any pending changes
     1. Run `yarn build-docs`
-    1. Add and commit all changes: `git add . && git commit -m "Update docs"`
-    1. Publish your changes by pushing them to GitHub: `git push`
+    1. Publish the `master` and `gh-pages` branches by pushing them to GitHub: `git push origin master gh-pages`
+    1. Edit your repository settings to ensure your repository is configured so that the `gh-pages` branch is used for serving the site. (You only need to do this once, but you that you have to push the branch before you can change this setting)
     1. Access your site at https://your-username.github.io/repo-name
 
 ---
