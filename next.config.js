@@ -91,18 +91,18 @@ const nextConfig = {
 
       config.plugins[definePluginId].definitions = {
         ...config.plugins[definePluginId].definitions,
-        HTMLElement: function() {},
+        HTMLElement: function () {},
 
-        window: function() {},
+        window: function () {},
 
         // This definition allows localStorage to be called, but it stores
         // nothing.
         localStorage: {
-          getItem: function() {
+          getItem: function () {
             return null;
           },
 
-          setItem: function() {
+          setItem: function () {
             return;
           },
         },
@@ -138,7 +138,7 @@ const nextConfig = {
    * @see https://nextjs.org/docs/routing/introduction
    * @see https://nextjs.org/docs/advanced-features/static-html-export
    */
-  exportPathMap: async function(defaultPathMap) {
+  exportPathMap: async function (defaultPathMap) {
     const dynamicPaths = [
       '/my-dashboard',
       '/workpad',

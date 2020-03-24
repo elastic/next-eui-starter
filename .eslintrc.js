@@ -93,5 +93,11 @@ module.exports = {
 
     // We're using TypeScript, so prop-types aren't so interesting
     "react/prop-types": "off",
+
+    // This is documented as the default, but apparently now needs to be
+    // set explicitly
+    "prettier/prettier": ["error", {}, {
+      "usePrettierrc": true
+    }]
   }
 };
