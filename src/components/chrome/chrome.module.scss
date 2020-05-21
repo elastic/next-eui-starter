@@ -7,7 +7,7 @@
    left: 0;
    right: 0;
 
-  .euiHeaderSectionItem::after {
+  :global(.euiHeaderSectionItem::after) {
     top: 0;
   }
 }

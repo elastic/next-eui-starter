@@ -1,4 +1,8 @@
-export const buildAdminLinks = (makeAction: (path: string) => () => void) => [
+import { EuiNavDrawerGroupProps } from '@elastic/eui';
+
+export const buildAdminLinks = (
+  makeAction: (path: string) => () => void
+): EuiNavDrawerGroupProps['listItems'] => [
   {
     label: 'Admin',
     iconType: 'managementApp',
