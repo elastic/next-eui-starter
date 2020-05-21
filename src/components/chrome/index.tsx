@@ -23,7 +23,6 @@ import { buildAdminLinks } from '../navigation_links/admin_links';
 import { Breadcrumbs } from './breadcrumbs';
 import SwitchTheme from './switch_theme';
 
-// @ts-ignore
 import styles from './chrome.module.scss';
 
 const Logo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
