@@ -1,7 +1,7 @@
 {
   "name": "@elastic/next-eui-starter",
   "private": true,
-  "description": "Start building Kibana protoypes quickly with the Next.js EUI Starter",
+  "description": "Start building protoypes quickly with the Next.js EUI Starter",
   "version": "1.0.0",
   "author": "Rory Hunter <rory@elastic.co>",
   "keywords": [

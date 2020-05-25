@@ -18,6 +18,7 @@ patchRouter();
 const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
     <Head>
+      {/* You can override this in other pages - see page-2.tsx for an example */}
       <title>Next.js EUI Starter</title>
     </Head>
     <Chrome>

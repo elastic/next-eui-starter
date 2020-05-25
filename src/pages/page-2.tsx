@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React, { FunctionComponent } from 'react';
 import Link from '../components/link';
 
@@ -16,6 +17,9 @@ import {
 
 const SecondPage: FunctionComponent = () => (
   <EuiPage restrictWidth>
+    <Head>
+      <title>Secondary page title</title>
+    </Head>
     <EuiPageBody>
       <EuiPageHeader>
         <EuiPageHeaderSection>
