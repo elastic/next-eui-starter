@@ -9,9 +9,7 @@ import {
   EuiHeaderSectionItemButton,
   EuiHorizontalRule,
   EuiIcon,
-  // @ts-ignore
   EuiNavDrawer,
-  // @ts-ignore
   EuiNavDrawerGroup,
   EuiShowFor,
 } from '@elastic/eui';
@@ -25,11 +23,7 @@ import { buildAdminLinks } from '../navigation_links/admin_links';
 import { Breadcrumbs } from './breadcrumbs';
 import SwitchTheme from './switch_theme';
 
-import './_index.scss';
-
-interface EuiNavDrawerStub {
-  toggleOpen: () => void;
-}
+import styles from './chrome.module.scss';
 
 const Logo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
   <EuiHeaderLogo
@@ -52,7 +46,7 @@ const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({
  */
 const Chrome: FunctionComponent = ({ children }) => {
   // This is an EuiNavDrawer, which isn't a TypeScript module yet
-  const navDrawerRef = useRef<EuiNavDrawerStub>(null);
+  const navDrawerRef = useRef<EuiNavDrawer>(null);
 
   const router = useRouter();
 
@@ -65,7 +59,7 @@ const Chrome: FunctionComponent = ({ children }) => {
 
   return (
     <>
-      <EuiHeader className="chrHeader">
+      <EuiHeader className={styles.chrHeader}>
         <EuiHeaderSection grow={false}>
           <EuiShowFor sizes={['xs', 's']}>
             <EuiHeaderSectionItem border="right">
@@ -85,7 +79,7 @@ const Chrome: FunctionComponent = ({ children }) => {
         <Breadcrumbs />
 
         <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem className="chrHeaderSectionItem">
+          <EuiHeaderSectionItem className={styles.chrHeaderSectionItem}>
             <SwitchTheme />
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
@@ -102,7 +96,7 @@ const Chrome: FunctionComponent = ({ children }) => {
 
         <EuiNavDrawerGroup listItems={buildAdminLinks(buildOnClick)} />
       </EuiNavDrawer>
-      <div className="chrWrap">{children}</div>
+      <div className={styles.chrWrap}>{children}</div>
     </>
   );
 };

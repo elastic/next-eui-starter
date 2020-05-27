@@ -1,11 +1,18 @@
-const faveExtraAction = {
+import {
+  EuiButtonIconPropsForButton,
+  EuiNavDrawerGroupProps,
+} from '@elastic/eui';
+
+const faveExtraAction: EuiButtonIconPropsForButton = {
   color: 'subdued',
   iconType: 'starEmpty',
   iconSize: 's',
   'aria-label': 'Add to favorites',
 };
 
-export const buildTopLinks = (makeAction: (path: string) => () => void) => [
+export const buildTopLinks = (
+  makeAction: (path: string) => () => void
+): EuiNavDrawerGroupProps['listItems'] => [
   {
     label: 'Recently viewed',
     iconType: 'clock',

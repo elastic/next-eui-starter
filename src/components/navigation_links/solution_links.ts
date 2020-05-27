@@ -1,8 +1,9 @@
+import { EuiNavDrawerGroupProps } from '@elastic/eui';
 import { pinExtraAction } from './pin_extra_action';
 
 export const buildSolutionLinks = (
   makeAction: (path: string) => () => void
-) => [
+): EuiNavDrawerGroupProps['listItems'] => [
   {
     label: 'APM',
     onClick: makeAction('/my-app/apm'),

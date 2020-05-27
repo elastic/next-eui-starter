@@ -17,6 +17,12 @@ function segmentToName(segment: string): string {
 /**
  * This component demonstrates a very simple use of the Next router to
  * render a breadcrumb. It's not particularly useful, but gives an idea.
+ *
+ * One deficiency of this component is that it you'll end up with different
+ * content between server and client when rendering e.g a 404 page, because
+ * the server sees the path as `/404`, whereas the client sees the path as
+ * whatever was requested. There doesn't seem to be much I can do about
+ * that at the moment.
  */
 export const Breadcrumbs: FunctionComponent = () => {
   const router = useRouter();

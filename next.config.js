@@ -4,9 +4,9 @@ const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
 
-const withImages = require('next-images');
+// We don't use `next-images` because v1.4.0 has a bug with SVGs
+const withImages = require('next-optimized-images');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
-const withSass = require('@zeit/next-sass');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { NormalModuleReplacementPlugin } = require('webpack');
 
@@ -111,7 +111,7 @@ const nextConfig = {
 
     // Copy theme CSS files into `public`
     config.plugins.push(
-      new CopyWebpackPlugin(themeConfig.copyConfig),
+      new CopyWebpackPlugin({ patterns: themeConfig.copyConfig }),
 
       // We don't want to load all highlight.js language - provide a mechanism to register just some
       new NormalModuleReplacementPlugin(
@@ -182,7 +182,7 @@ const nextConfig = {
  */
 module.exports = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
-})(withImages(withSass(nextConfig)));
+})(withImages(nextConfig));
 
 /**
  * Find all EUI themes and construct a theme configuration object.

@@ -1,30 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": ".",
-    "declaration": false,
-    "noUnusedLocals": true,
-    "strict": true,
-    "module": "esnext",
-    "target": "esnext",
-    "allowSyntheticDefaultImports": true,
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "esnext",
-      "dom"
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
     ],
-    "typeRoots": [
-      "node_modules/@types",
-      "src/custom_typings"
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
   "include": [
     "./src/**/*"
