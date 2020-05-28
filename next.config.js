@@ -64,7 +64,11 @@ const nextConfig = {
     // browser by default. We need to configure the build so that these
     // features are either ignored or replaced with stub implementations.
     if (isServer) {
-      config.externals = config.externals.map(fn => {
+      config.externals = config.externals.map(eachExternal => {
+        if (typeof eachExternal !== 'function') {
+          return eachExternal;
+        }
+
         return (context, request, callback) => {
           if (
             request.indexOf('@elastic/eui') > -1 ||
@@ -73,7 +77,7 @@ const nextConfig = {
             return callback();
           }
 
-          return fn(context, request, callback);
+          return eachExternal(context, request, callback);
         };
       });
 

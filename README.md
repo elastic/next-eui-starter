@@ -117,7 +117,7 @@ A quick look at the top-level files and directories you'll see in this project.
 
 13. **`tsconfig.json`**: This file configures the [TypeScript](https://www.typescriptlang.org/) compiler
 
-14. **`yarn.lock`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
+14. **`yarn.lock`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly, but you need to commit any changes to git).**
 
 ## 🎓 Learning Next.js
 
