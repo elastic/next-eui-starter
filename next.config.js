@@ -263,7 +263,7 @@ function hashFile(filePath) {
  * repository name is what will be used to serve the site.
  */
 function derivePathPrefix() {
-  const gitConfigPath = path.join('.git', 'config');
+  const gitConfigPath = path.join(__dirname, '.git', 'config');
 
   if (fs.existsSync(gitConfigPath)) {
     const gitConfig = iniparser.parseSync(gitConfigPath);
@@ -276,9 +276,7 @@ function derivePathPrefix() {
     }
   }
 
-  // path.join('.', 'package.json') seems to throw away the '.' path, which means
-  // that Node tries to load a "package.json" module, and that doesn't exist.
-  const packageJsonPath = '.' + path.sep + 'package.json';
+  const packageJsonPath = path.join(__dirname, 'package.json');
 
   if (fs.existsSync(packageJsonPath)) {
     const { name: packageName } = require(packageJsonPath);
