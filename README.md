@@ -53,21 +53,22 @@ Jump right in to building Kibana prototypes with [EUI](https://github.com/elasti
 
     Open the `my-eui-starter` directory in your code editor of choice and edit `src/pages/index.tsx`. Save your changes and the browser will update in real time!
 
-1. **Deploy your site to GitHub pages**
+1. **Deploy your site to GitHub Pages**
 
-    When you're ready to deploy and share your site, you can use the provided `yarn build-docs` script to do so. The first time you do this, you need to do some preparation:
+    When you're ready to deploy and share your site to GitHub Pages, you can use the provided `yarn build-docs` script to do so. The first time you do this, you need to do some preparation:
 
-    1. Modify the `pathPrefix` option in `next.config.js` to reflect the name of your GitHub repo
-    1. Commit the above change
-    2. Create the GitHub pages branch: `git branch gh-pages`
+    1. (Optional) If you need to, set the `pathPrefix` option in `next.config.js` to reflect the name of your GitHub repo. The starter kit will try to derive this itself, so you're unlikely to see to do anything here.
+    1. (Optional) Commit the above change
+    1. Create the GitHub pages branch: `git branch gh-pages`
 
     Then whenever you want to update your site:
 
     1. Commit any pending changes
     1. Run `yarn build-docs`
     1. Publish the `master` and `gh-pages` branches by pushing them to GitHub: `git push origin master gh-pages`
-    1. Edit your repository settings to ensure your repository is configured so that the `gh-pages` branch is used for serving the site. (You only need to do this once, but you that you have to push the branch before you can change this setting)
-    1. Access your site at https://your-username.github.io/repo-name
+    1. Edit your repository settings to ensure your repository is configured so that the `gh-pages` branch is used for serving the site. (You only need to do this once, but you have to push the branch before you can change this setting)
+    1. Access your site at https://your-username.github.io/repo-name. There
+       can be a slight delay before changes become visible.
 
 ---
 
