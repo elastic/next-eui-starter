@@ -85,7 +85,7 @@ const nextConfig = {
         use: 'null-loader',
       });
 
-      // Mock HTMLElement, window and localStorage on the server-side
+      // Mock HTMLElement on the server-side
       const definePluginId = config.plugins.findIndex(
         p => p.constructor.name === 'DefinePlugin'
       );
@@ -93,20 +93,6 @@ const nextConfig = {
       config.plugins[definePluginId].definitions = {
         ...config.plugins[definePluginId].definitions,
         HTMLElement: function () {},
-
-        window: function () {},
-
-        // This definition allows localStorage to be called, but it stores
-        // nothing.
-        localStorage: {
-          getItem: function () {
-            return null;
-          },
-
-          setItem: function () {
-            return;
-          },
-        },
       };
     }
 
@@ -114,7 +100,8 @@ const nextConfig = {
     config.plugins.push(
       new CopyWebpackPlugin({ patterns: themeConfig.copyConfig }),
 
-      // We don't want to load all highlight.js language - provide a mechanism to register just some
+      // We don't want to load all highlight.js language - provide a mechanism to register just some.
+      // If you need to highlight more than just JSON, edit the file below.
       new NormalModuleReplacementPlugin(
         /^highlight\.js$/,
         path.join(__dirname, `src/lib/highlight.ts`)
