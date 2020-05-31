@@ -6,7 +6,7 @@
   Elastic's Next.js EUI Starter
 </h1>
 
-Jump right in to building Kibana prototypes with [EUI](https://github.com/elastic/eui).
+Jump right in to building prototypes with [EUI](https://github.com/elastic/eui).
 
 ## 🚀 Super-quick start using CodeSandbox
 
@@ -83,7 +83,6 @@ A quick look at the top-level files and directories you'll see in this project.
     ├── .prettierrc
     ├── LICENSE
     ├── README.md
-    ├── docs/
     ├── next.config.js
     ├── node_modules/
     ├── package.json
@@ -104,21 +103,19 @@ A quick look at the top-level files and directories you'll see in this project.
 
 6.  **`README.md`**: A text file containing useful reference information about your project.
 
-7.  **`docs/`**: When you build your project so that it can be shared, this is where the final result is generated.
+7.  **`next.config.js`**: This file customizes the Next.js build process so that it can work with EUI.
 
-8.  **`next.config.js`**: This file customizes the Next.js build process so that it can work with EUI.
+8.  **`node_modules/`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
 
-9.  **`node_modules/`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+9. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
-10. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+10. **`public/`**: Files that will never change can be put here. This starter project automatically puts EUI theme files here during the build
 
-11. **`public/`**: Files that will never change can be put here. This starter project automatically puts EUI theme files here during the build
+11. **`src/`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
 
-12. **`src/`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+12. **`tsconfig.json`**: This file configures the [TypeScript](https://www.typescriptlang.org/) compiler
 
-13. **`tsconfig.json`**: This file configures the [TypeScript](https://www.typescriptlang.org/) compiler
-
-14. **`yarn.lock`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly, but you need to commit any changes to git).**
+13. **`yarn.lock`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly, but you need to commit any changes to git).**
 
 ## 🎓 Learning Next.js
 

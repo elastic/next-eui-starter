@@ -213,7 +213,9 @@ function buildThemeConfig() {
     const publicPath = `themes/${basename}.${hashFile(each)}.min.css`;
     const toPath = path.join(
       __dirname,
-      `public/themes/${basename}.${hashFile(each)}.min.css`
+      `public`,
+      `themes`,
+      `${basename}.${hashFile(each)}.min.css`
     );
 
     themeConfig.availableThemes.push({
