@@ -6,7 +6,7 @@
   Elastic's Next.js EUI Starter
 </h1>
 
-Jump right in to building Kibana prototypes with [EUI](https://github.com/elastic/eui).
+Jump right in to building prototypes with [EUI](https://github.com/elastic/eui).
 
 ## 🚀 Super-quick start using CodeSandbox
 
@@ -53,21 +53,22 @@ Jump right in to building Kibana prototypes with [EUI](https://github.com/elasti
 
     Open the `my-eui-starter` directory in your code editor of choice and edit `src/pages/index.tsx`. Save your changes and the browser will update in real time!
 
-1. **Deploy your site to GitHub pages**
+1. **Deploy your site to GitHub Pages**
 
-    When you're ready to deploy and share your site, you can use the provided `yarn build-docs` script to do so. The first time you do this, you need to do some preparation:
+    When you're ready to deploy and share your site to GitHub Pages, you can use the provided `yarn build-docs` script to do so. The first time you do this, you need to do some preparation:
 
-    1. Modify the `pathPrefix` option in `next.config.js` to reflect the name of your GitHub repo
-    1. Commit the above change
-    2. Create the GitHub pages branch: `git branch gh-pages`
+    1. (Optional) If you need to, set the `pathPrefix` option in `next.config.js` to reflect the name of your GitHub repo. The starter kit will try to derive this itself, so you're unlikely to see to do anything here.
+    1. (Optional) Commit the above change
+    1. Create the GitHub pages branch: `git branch gh-pages`
 
     Then whenever you want to update your site:
 
     1. Commit any pending changes
     1. Run `yarn build-docs`
     1. Publish the `master` and `gh-pages` branches by pushing them to GitHub: `git push origin master gh-pages`
-    1. Edit your repository settings to ensure your repository is configured so that the `gh-pages` branch is used for serving the site. (You only need to do this once, but you that you have to push the branch before you can change this setting)
-    1. Access your site at https://your-username.github.io/repo-name
+    1. Edit your repository settings to ensure your repository is configured so that the `gh-pages` branch is used for serving the site. (You only need to do this once, but you have to push the branch before you can change this setting)
+    1. Access your site at https://your-username.github.io/repo-name. There
+       can be a slight delay before changes become visible.
 
 ---
 
@@ -82,7 +83,6 @@ A quick look at the top-level files and directories you'll see in this project.
     ├── .prettierrc
     ├── LICENSE
     ├── README.md
-    ├── docs/
     ├── next.config.js
     ├── node_modules/
     ├── package.json
@@ -103,21 +103,19 @@ A quick look at the top-level files and directories you'll see in this project.
 
 6.  **`README.md`**: A text file containing useful reference information about your project.
 
-7.  **`docs/`**: When you build your project so that it can be shared, this is where the final result is generated.
+7.  **`next.config.js`**: This file customizes the Next.js build process so that it can work with EUI.
 
-8.  **`next.config.js`**: This file customizes the Next.js build process so that it can work with EUI.
+8.  **`node_modules/`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
 
-9.  **`node_modules/`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+9. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
-10. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+10. **`public/`**: Files that will never change can be put here. This starter project automatically puts EUI theme files here during the build
 
-11. **`public/`**: Files that will never change can be put here. This starter project automatically puts EUI theme files here during the build
+11. **`src/`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
 
-12. **`src/`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+12. **`tsconfig.json`**: This file configures the [TypeScript](https://www.typescriptlang.org/) compiler
 
-13. **`tsconfig.json`**: This file configures the [TypeScript](https://www.typescriptlang.org/) compiler
-
-14. **`yarn.lock`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly, but you need to commit any changes to git).**
+13. **`yarn.lock`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly, but you need to commit any changes to git).**
 
 ## 🎓 Learning Next.js
 
