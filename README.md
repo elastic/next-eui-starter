@@ -41,7 +41,7 @@ Jump right in to building prototypes with [EUI](https://github.com/elastic/eui).
     yarn
 
     # Optional: start a new git project
-    rm -rf .git && git add . && git commit -m "Initial commit"
+    rm -rf .git && git init && git add . && git commit -m "Initial commit"
 
     # Start the dev server
     yarn dev
