@@ -11,7 +11,7 @@ import {
   EuiSpacer,
   EuiTitle,
 } from '@elastic/eui';
-import Link from '../../components/link';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 

@@ -39,7 +39,7 @@ function themeLink(theme: Theme): ReactElement {
  * @see https://nextjs.org/docs/advanced-features/custom-document
  */
 export default class MyDocument extends Document {
-  render() {
+  render(): ReactElement {
     return (
       <html lang="en">
         <Head>{themeConfig.availableThemes.map(each => themeLink(each))}</Head>

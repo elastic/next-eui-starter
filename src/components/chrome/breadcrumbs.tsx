@@ -2,8 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { useRouter } from 'next/router';
 import { Breadcrumb, EuiHeaderBreadcrumbs } from '@elastic/eui';
 
-const assetPrefix = process.env.PATH_PREFIX as string;
-
 function segmentToName(segment: string): string {
   if (!segment) {
     return segment;
@@ -27,11 +25,9 @@ function segmentToName(segment: string): string {
 export const Breadcrumbs: FunctionComponent = () => {
   const router = useRouter();
 
-  // router.pathname gives the path on disk, which could be e.g. `/my-app/[slug]`
-  // Make sure to remove any path prefix and URL fragments too.
-  const pathname = router.asPath
-    .replace(new RegExp(`^${assetPrefix}/?`), '/')
-    .replace(/#.*/, '');
+  // We don't use router.pathname as it gives the path on disk, which could
+  // be e.g. `/my-app/[slug]`.  Make sure to remove any URL fragment too.
+  const pathname = router.asPath.replace(/#.*/, '');
 
   const pathSegments = pathname.split('/');
 

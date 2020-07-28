@@ -1,6 +1,6 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import React, { FunctionComponent } from 'react';
-import Link from '../components/link';
 
 import {
   EuiPage,
