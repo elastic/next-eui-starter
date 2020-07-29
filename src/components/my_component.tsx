@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import Link from './link';
+import Link from 'next/link';
 import NextEuiButton from './next_eui/button';
 
 const MyComponent: FunctionComponent = () => (
-  <Link href="page-2">
+  <Link href="/page-2">
     <NextEuiButton>Go to page 2</NextEuiButton>
   </Link>
 );

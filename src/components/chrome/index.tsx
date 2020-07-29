@@ -14,7 +14,6 @@ import {
   EuiShowFor,
 } from '@elastic/eui';
 
-import { buildBrowserPath } from '../link';
 import { buildTopLinks } from '../navigation_links/top_links';
 import { buildSolutionLinks } from '../navigation_links/solution_links';
 import { buildExploreLinks } from '../navigation_links/explore_links';
@@ -55,7 +54,7 @@ const Chrome: FunctionComponent = ({ children }) => {
   // Next.js router doesn't infer the catch-all, we have to link to it
   // explicitly.
   const buildOnClick = (path: string) => () =>
-    router.push('/my-app/[slug]', buildBrowserPath(path));
+    router.push('/my-app/[slug]', path);
 
   return (
     <>
@@ -68,7 +67,7 @@ const Chrome: FunctionComponent = ({ children }) => {
           </EuiShowFor>
 
           <EuiHeaderSectionItem border="right">
-            <Logo onClick={() => router.push('/', buildBrowserPath('/'))} />
+            <Logo onClick={() => router.push('/')} />
           </EuiHeaderSectionItem>
 
           <EuiHeaderSectionItem border="right">

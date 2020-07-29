@@ -1,6 +1,9 @@
+import { EuiNavDrawerGroupProps } from '@elastic/eui';
 import { pinExtraAction } from './pin_extra_action';
 
-export const buildExploreLinks = (makeAction: (path: string) => () => void) => [
+export const buildExploreLinks = (
+  makeAction: (path: string) => () => void
+): EuiNavDrawerGroupProps['listItems'] => [
   {
     label: 'Canvas',
     onClick: makeAction('/my-app/canvas'),

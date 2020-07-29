@@ -28,10 +28,11 @@ const nextConfig = {
   poweredByHeader: false,
 
   /**
-   * Next.js documents this for use hosting assets on a CDN, but we use
-   * it to support static HTML exports with a path prefix.
+   * When set to something other than '', this field instructs Next to
+   * expect all paths to have a specific directory prefix. This fact is
+   * transparent to (almost all of) the rest of the application.
    */
-  assetPrefix: pathPrefix,
+  basePath: pathPrefix,
 
   /**
    * Set custom `process.env.SOMETHING` values to use in the application.

@@ -1,6 +1,6 @@
 import React, { Fragment, FunctionComponent } from 'react';
 import { EuiButton, EuiEmptyPrompt } from '@elastic/eui';
-import Link from '../components/link';
+import Link from 'next/link';
 
 const NotFoundPage: FunctionComponent = () => (
   <EuiEmptyPrompt

@@ -4,9 +4,6 @@ import React, { FunctionComponent } from 'react';
 import { EuiErrorBoundary } from '@elastic/eui';
 
 import Chrome from '../components/chrome';
-import { patchRouter } from '../lib/routing';
-
-patchRouter();
 
 /**
  * Next.js uses the App component to initialize pages. You can override it
