@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { defaultTheme, Theme, themeConfig } from '../lib/theme';
 
 const pathPrefix = process.env.PATH_PREFIX;
@@ -41,13 +41,13 @@ function themeLink(theme: Theme): ReactElement {
 export default class MyDocument extends Document {
   render(): ReactElement {
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>{themeConfig.availableThemes.map(each => themeLink(each))}</Head>
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useRouter } from 'next/router';
-import { Breadcrumb, EuiHeaderBreadcrumbs } from '@elastic/eui';
+import { EuiBreadcrumb, EuiHeaderBreadcrumbs } from '@elastic/eui';
 
 function segmentToName(segment: string): string {
   if (!segment) {
@@ -31,7 +31,7 @@ export const Breadcrumbs: FunctionComponent = () => {
 
   const pathSegments = pathname.split('/');
 
-  const breadcrumbs: Breadcrumb[] = [];
+  const breadcrumbs: EuiBreadcrumb[] = [];
 
   const breadcrumbContext: string[] = [];
 
