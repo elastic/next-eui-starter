@@ -1,17 +1,18 @@
-import React, { FunctionComponent, useRef } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import {
+  EuiSideNav,
   EuiHeader,
   EuiHeaderLogo,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
-  EuiHorizontalRule,
   EuiIcon,
-  EuiNavDrawer,
-  EuiNavDrawerGroup,
   EuiShowFor,
+  EuiPage,
+  EuiPageSideBar,
+  EuiPageBody,
 } from '@elastic/eui';
 
 import { buildTopLinks } from '../navigation_links/top_links';
@@ -44,9 +45,6 @@ const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({
  * Renders the UI that surrounds the page content.
  */
 const Chrome: FunctionComponent = ({ children }) => {
-  // This is an EuiNavDrawer, which isn't a TypeScript module yet
-  const navDrawerRef = useRef<EuiNavDrawer>(null);
-
   const router = useRouter();
 
   // In this example app, all the side navigation links go to a placeholder
@@ -56,15 +54,23 @@ const Chrome: FunctionComponent = ({ children }) => {
   const buildOnClick = (path: string) => () =>
     router.push('/my-app/[slug]', path);
 
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+
+  const toggleOpenOnMobile = () => {
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+  };
+
+  const sideNav = [...buildTopLinks(buildOnClick)];
+
   return (
     <>
       <EuiHeader className={styles.chrHeader}>
         <EuiHeaderSection grow={false}>
-          <EuiShowFor sizes={['xs', 's']}>
-            <EuiHeaderSectionItem border="right">
-              <MenuTrigger onClick={() => navDrawerRef.current!.toggleOpen()} />
-            </EuiHeaderSectionItem>
-          </EuiShowFor>
+          {/*<EuiShowFor sizes={['xs', 's']}>*/}
+          {/*  <EuiHeaderSectionItem border="right">*/}
+          {/*    <MenuTrigger onClick={() => setOpen(true)} />*/}
+          {/*  </EuiHeaderSectionItem>*/}
+          {/*</EuiShowFor>*/}
 
           <EuiHeaderSectionItem border="right">
             <Logo onClick={() => router.push('/')} />
@@ -83,21 +89,40 @@ const Chrome: FunctionComponent = ({ children }) => {
           </EuiHeaderSectionItem>
         </EuiHeaderSection>
       </EuiHeader>
-      <EuiNavDrawer ref={navDrawerRef}>
-        <EuiNavDrawerGroup listItems={buildTopLinks(buildOnClick)} />
-        <EuiHorizontalRule margin="none" />
+      <EuiPage restrictWidth={true} style={{ marginTop: 40 }}>
+        <EuiPageSideBar>
+          <EuiSideNav
+            mobileTitle="Navigate within $APP_NAME"
+            toggleOpenOnMobile={toggleOpenOnMobile}
+            isOpenOnMobile={isSideNavOpenOnMobile}
+            items={sideNav}
+          />
+        </EuiPageSideBar>
 
-        <EuiNavDrawerGroup listItems={buildExploreLinks(buildOnClick)} />
-        <EuiHorizontalRule margin="none" />
-
-        <EuiNavDrawerGroup listItems={buildSolutionLinks(buildOnClick)} />
-        <EuiHorizontalRule margin="none" />
-
-        <EuiNavDrawerGroup listItems={buildAdminLinks(buildOnClick)} />
-      </EuiNavDrawer>
-      <div className={styles.chrWrap}>{children}</div>
+        <EuiPageBody component="div">
+          <div className={styles.chrWrap}>{children}</div>
+        </EuiPageBody>
+      </EuiPage>
     </>
   );
 };
 
 export default Chrome;
+
+/*
+        <EuiCollapsibleNavGroup>
+          <EuiListGroup listItems={buildTopLinks(buildOnClick)} />
+        </EuiCollapsibleNavGroup>
+
+        <EuiCollapsibleNavGroup>
+          <EuiListGroup listItems={buildExploreLinks(buildOnClick)} />
+        </EuiCollapsibleNavGroup>
+
+        <EuiCollapsibleNavGroup>
+          <EuiListGroup listItems={buildSolutionLinks(buildOnClick)} />
+        </EuiCollapsibleNavGroup>
+
+        <EuiCollapsibleNavGroup>
+          <EuiListGroup listItems={buildAdminLinks(buildOnClick)} />
+        </EuiCollapsibleNavGroup>
+        */

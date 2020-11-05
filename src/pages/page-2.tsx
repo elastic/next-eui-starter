@@ -47,7 +47,7 @@ const SecondPage: FunctionComponent = () => (
 
           <EuiSpacer />
 
-          <Link href="/my-app/[slug]" as="/my-app/stack-monitoring">
+          <Link href="/my-app/stack-monitoring">
             <a>Go to Stack Monitoring</a>
           </Link>
         </EuiPageContentBody>
