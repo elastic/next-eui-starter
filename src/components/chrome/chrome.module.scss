@@ -1,28 +1,31 @@
-@import '~@elastic/eui/src/global_styling/functions/_index.scss';
-@import '~@elastic/eui/src/global_styling/variables/_index.scss';
+.guidePage {
+  padding: 0;
+}
 
-.chrHeader {
-   position: fixed;
-   top: 0;
-   left: 0;
-   right: 0;
+.guideSideNav {
+  width: 260px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 
-  :global(.euiHeaderSectionItem::after) {
-    top: 0;
+  .guideSideNav__content {
+    width: 260px;
+    padding: 0 16px;
   }
 }
 
-.chrHeaderSectionItem {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding-left: .5rem;
-  padding-right: .5rem;
-  width: 11rem;
+.guidePageContent {
+  flex: 1 1 auto;
+  padding: 16px 32px;
+  min-height: 100vh;
+  background-color: #fff;
+  border-left: 1px solid #D3DAE6;
+  max-width: 1000px;
+  margin-left: 260px;
 }
 
-.chrWrap {
-  width: calc(100% - 3rem);
-  margin-left: 3rem;
-  padding-top: $euiSizeXXL + $euiSizeS;
+.guideIdentity {
+  border-bottom: 1px solid #D3DAE6;
+  margin-bottom: 16px;
 }
+

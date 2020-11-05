@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import {
-  EuiPage,
-  EuiPageBody,
   EuiPageContent,
   EuiPageContentBody,
   EuiPageContentHeader,
@@ -31,47 +29,46 @@ const CatchAll: FunctionComponent = () => {
   }
 
   return (
-    <EuiPage restrictWidth>
+    <>
       <Head>
         <title>{title}</title>
       </Head>
-      <EuiPageBody>
-        <EuiPageHeader>
-          <EuiPageHeaderSection>
-            <EuiTitle size="l">
-              <h1>Placeholder page for {finalPathSegment}</h1>
+
+      <EuiPageHeader>
+        <EuiPageHeaderSection>
+          <EuiTitle size="l">
+            <h1>Placeholder page for {finalPathSegment}</h1>
+          </EuiTitle>
+        </EuiPageHeaderSection>
+        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
+      </EuiPageHeader>
+
+      <EuiPageContent>
+        <EuiPageContentHeader>
+          <EuiPageContentHeaderSection>
+            <EuiTitle>
+              <h2>Placeholder title for {finalPathSegment}</h2>
             </EuiTitle>
-          </EuiPageHeaderSection>
-          <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
-        </EuiPageHeader>
+          </EuiPageContentHeaderSection>
+          <EuiPageContentHeaderSection>
+            Content abilities
+          </EuiPageContentHeaderSection>
+        </EuiPageContentHeader>
 
-        <EuiPageContent>
-          <EuiPageContentHeader>
-            <EuiPageContentHeaderSection>
-              <EuiTitle>
-                <h2>Placeholder title for {finalPathSegment}</h2>
-              </EuiTitle>
-            </EuiPageContentHeaderSection>
-            <EuiPageContentHeaderSection>
-              Content abilities
-            </EuiPageContentHeaderSection>
-          </EuiPageContentHeader>
+        <EuiPageContentBody>
+          <p>
+            This is the catch-all component for routes without their own
+            dedicated page.
+          </p>
 
-          <EuiPageContentBody>
-            <p>
-              This is the catch-all component for routes without their own
-              dedicated page.
-            </p>
+          <EuiSpacer />
 
-            <EuiSpacer />
-
-            <Link href="/">
-              <a>Go to Home</a>
-            </Link>
-          </EuiPageContentBody>
-        </EuiPageContent>
-      </EuiPageBody>
-    </EuiPage>
+          <Link href="/">
+            <a>Go to Home</a>
+          </Link>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </>
   );
 };
 

@@ -1,43 +1,50 @@
-import { EuiNavDrawerGroupProps } from '@elastic/eui';
-import { pinExtraAction } from './pin_extra_action';
+import React from 'react';
+import { EuiIcon, EuiSideNavItemType } from '@elastic/eui';
 
 export const buildSolutionLinks = (
   makeAction: (path: string) => () => void
-): EuiNavDrawerGroupProps['listItems'] => [
+): EuiSideNavItemType<unknown>[] => [
   {
-    label: 'APM',
-    onClick: makeAction('/my-app/apm'),
-    iconType: 'apmApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Metrics',
-    onClick: makeAction('/my-app/metrics'),
-    iconType: 'metricsApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Logs',
-    onClick: makeAction('/my-app/logs'),
-    iconType: 'logsApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Uptime',
-    onClick: makeAction('/my-app/uptime'),
-    iconType: 'upgradeAssistantApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Maps',
-    onClick: makeAction('/my-app/maps'),
-    iconType: 'gisApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'SIEM',
-    onClick: makeAction('/my-app/siem'),
-    iconType: 'securityAnalyticsApp',
-    extraAction: pinExtraAction,
+    id: 'solutions',
+    name: 'Solutions',
+    icon: <EuiIcon type="cheer" />,
+    items: [
+      {
+        id: 'apm',
+        name: 'APM',
+        onClick: makeAction('/my-app/apm'),
+        icon: <EuiIcon type="apmApp" />,
+      },
+      {
+        id: 'metrics',
+        name: 'Metrics',
+        onClick: makeAction('/my-app/metrics'),
+        icon: <EuiIcon type="metricsApp" />,
+      },
+      {
+        id: 'logs',
+        name: 'Logs',
+        onClick: makeAction('/my-app/logs'),
+        icon: <EuiIcon type="logsApp" />,
+      },
+      {
+        id: 'uptime',
+        name: 'Uptime',
+        onClick: makeAction('/my-app/uptime'),
+        icon: <EuiIcon type="upgradeAssistantApp" />,
+      },
+      {
+        id: 'maps',
+        name: 'Maps',
+        onClick: makeAction('/my-app/maps'),
+        icon: <EuiIcon type="gisApp" />,
+      },
+      {
+        id: 'siem',
+        name: 'SIEM',
+        onClick: makeAction('/my-app/siem'),
+        icon: <EuiIcon type="securityAnalyticsApp" />,
+      },
+    ],
   },
 ];

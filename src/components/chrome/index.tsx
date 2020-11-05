@@ -3,16 +3,18 @@ import { useRouter } from 'next/router';
 
 import {
   EuiSideNav,
-  EuiHeader,
   EuiHeaderLogo,
-  EuiHeaderSection,
-  EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
   EuiIcon,
-  EuiShowFor,
   EuiPage,
   EuiPageSideBar,
   EuiPageBody,
+  EuiErrorBoundary,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPopover,
+  EuiPopoverTitle,
 } from '@elastic/eui';
 
 import { buildTopLinks } from '../navigation_links/top_links';
@@ -24,13 +26,28 @@ import { Breadcrumbs } from './breadcrumbs';
 import SwitchTheme from './switch_theme';
 
 import styles from './chrome.module.scss';
+import Link from 'next/link';
 
 const Logo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
-  <EuiHeaderLogo
-    iconType="logoElastic"
-    onClick={onClick}
-    aria-label="Goes to home"
-  />
+  <EuiFlexGroup
+    alignItems="center"
+    gutterSize="xs"
+    className={styles.guideIdentity}>
+    <EuiFlexItem grow={false}>
+      <EuiHeaderLogo
+        iconType="logoElastic"
+        onClick={onClick}
+        aria-label="Goes to home"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <Link href="/">
+        <a>
+          <strong>Elastic UI</strong>
+        </a>
+      </Link>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );
 
 const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({
@@ -60,69 +77,33 @@ const Chrome: FunctionComponent = ({ children }) => {
     setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
   };
 
-  const sideNav = [...buildTopLinks(buildOnClick)];
+  const sideNav = [
+    ...buildTopLinks(buildOnClick),
+    ...buildSolutionLinks(buildOnClick),
+    ...buildExploreLinks(buildOnClick),
+    ...buildAdminLinks(buildOnClick),
+  ];
 
   return (
-    <>
-      <EuiHeader className={styles.chrHeader}>
-        <EuiHeaderSection grow={false}>
-          {/*<EuiShowFor sizes={['xs', 's']}>*/}
-          {/*  <EuiHeaderSectionItem border="right">*/}
-          {/*    <MenuTrigger onClick={() => setOpen(true)} />*/}
-          {/*  </EuiHeaderSectionItem>*/}
-          {/*</EuiShowFor>*/}
-
-          <EuiHeaderSectionItem border="right">
-            <Logo onClick={() => router.push('/')} />
-          </EuiHeaderSectionItem>
-
-          <EuiHeaderSectionItem border="right">
-            {/* <HeaderSpacesMenu /> */}
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-
-        <Breadcrumbs />
-
-        <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem className={styles.chrHeaderSectionItem}>
-            <SwitchTheme />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
-      <EuiPage restrictWidth={true} style={{ marginTop: 40 }}>
-        <EuiPageSideBar>
-          <EuiSideNav
-            mobileTitle="Navigate within $APP_NAME"
-            toggleOpenOnMobile={toggleOpenOnMobile}
-            isOpenOnMobile={isSideNavOpenOnMobile}
-            items={sideNav}
-          />
+    <EuiPage restrictWidth={1240} className={styles.guidePage}>
+      <EuiPageBody>
+        <EuiPageSideBar className={styles.guideSideNav}>
+          <Logo onClick={() => router.push('/')} />
+          <EuiErrorBoundary>
+            <EuiSideNav
+              className={styles.guideSideNav__content}
+              mobileTitle="Navigate within $APP_NAME"
+              toggleOpenOnMobile={toggleOpenOnMobile}
+              isOpenOnMobile={isSideNavOpenOnMobile}
+              items={sideNav}
+            />
+          </EuiErrorBoundary>
         </EuiPageSideBar>
 
-        <EuiPageBody component="div">
-          <div className={styles.chrWrap}>{children}</div>
-        </EuiPageBody>
-      </EuiPage>
-    </>
+        <div className={styles.guidePageContent}>{children}</div>
+      </EuiPageBody>
+    </EuiPage>
   );
 };
 
 export default Chrome;
-
-/*
-        <EuiCollapsibleNavGroup>
-          <EuiListGroup listItems={buildTopLinks(buildOnClick)} />
-        </EuiCollapsibleNavGroup>
-
-        <EuiCollapsibleNavGroup>
-          <EuiListGroup listItems={buildExploreLinks(buildOnClick)} />
-        </EuiCollapsibleNavGroup>
-
-        <EuiCollapsibleNavGroup>
-          <EuiListGroup listItems={buildSolutionLinks(buildOnClick)} />
-        </EuiCollapsibleNavGroup>
-
-        <EuiCollapsibleNavGroup>
-          <EuiListGroup listItems={buildAdminLinks(buildOnClick)} />
-        </EuiCollapsibleNavGroup>
-        */

@@ -1,46 +1,50 @@
-import { EuiNavDrawerGroupProps } from '@elastic/eui';
-import { pinExtraAction } from './pin_extra_action';
+import React from 'react';
+import { EuiIcon, EuiSideNavItemType } from '@elastic/eui';
 
 export const buildExploreLinks = (
   makeAction: (path: string) => () => void
-): EuiNavDrawerGroupProps['listItems'] => [
+): EuiSideNavItemType<unknown>[] => [
   {
-    label: 'Canvas',
-    onClick: makeAction('/my-app/canvas'),
-    iconType: 'canvasApp',
-    isActive: true,
-    extraAction: {
-      ...pinExtraAction,
-      alwaysShow: true,
-    },
-  },
-  {
-    label: 'Discover',
-    onClick: makeAction('/my-app/discover'),
-    iconType: 'discoverApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Visualize',
-    onClick: makeAction('/my-app/visualize'),
-    iconType: 'visualizeApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Dashboard',
-    onClick: makeAction('/my-app/dashboard'),
-    iconType: 'dashboardApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Machine learning',
-    onClick: makeAction('/my-app/machine-learning'),
-    iconType: 'machineLearningApp',
-    extraAction: pinExtraAction,
-  },
-  {
-    label: 'Custom Plugin (no icon)',
-    onClick: makeAction('/my-app/custom-plugin'),
-    extraAction: pinExtraAction,
+    id: 'explore',
+    name: 'Explore',
+    icon: <EuiIcon type="globe" />,
+    items: [
+      {
+        id: 'canvas',
+        name: 'Canvas',
+        onClick: makeAction('/my-app/canvas'),
+        icon: <EuiIcon type="canvasApp" />,
+      },
+      {
+        id: 'Discover',
+        name: 'Discover',
+        onClick: makeAction('/my-app/discover'),
+        icon: <EuiIcon type="discoverApp" />,
+      },
+      {
+        id: 'visualize',
+        name: 'Visualize',
+        onClick: makeAction('/my-app/visualize'),
+        icon: <EuiIcon type="visualizeApp" />,
+      },
+      {
+        id: 'dashboard',
+        name: 'Dashboard',
+        onClick: makeAction('/my-app/dashboard'),
+        icon: <EuiIcon type="dashboardApp" />,
+      },
+      {
+        id: 'ml',
+        name: 'Machine learning',
+        onClick: makeAction('/my-app/machine-learning'),
+        icon: <EuiIcon type="machineLearningApp" />,
+      },
+      {
+        id: 'custom',
+        name: 'Custom Plugin (no icon)',
+        onClick: makeAction('/my-app/custom-plugin'),
+        icon: <EuiIcon type="empty" />,
+      },
+    ],
   },
 ];
