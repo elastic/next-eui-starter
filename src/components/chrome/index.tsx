@@ -22,6 +22,11 @@ import ThemeSwitcher from './theme_switcher';
 import styles from './chrome.module.scss';
 import Link from 'next/link';
 
+/**
+ * This component render the logo, title and theme icon at the top of
+ * the application navigation.
+ * @param onClick the action to take when the user clicks the icon or name
+ */
 const AppLogo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
   <EuiFlexGroup
     responsive={false}

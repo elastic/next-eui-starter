@@ -3,7 +3,8 @@ import { EuiButton } from '@elastic/eui';
 
 /**
  * Next's `<Link/>` component passes a ref to its children, which triggers a warning
- * on EUI buttons. Wrap the button component to pass on the ref, and silence the warning.
+ * on EUI buttons (they expect `buttonRef`). Wrap the button component to pass on the
+ * ref, and silence the warning.
  */
 
 type EuiButtonProps = React.ComponentProps<typeof EuiButton>;

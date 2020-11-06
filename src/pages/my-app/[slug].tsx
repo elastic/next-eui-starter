@@ -7,17 +7,18 @@ import Head from 'next/head';
 /**
  * A simple page that is rendered for all "app" pages. The filename is
  * interpreted by Next and the "slug" part of the route name made available
- * through `router` (although we don't actually use it here).
+ * through `router` (although we don't actually use the slug in this page).
  */
 const CatchAll: FunctionComponent = () => {
   const router = useRouter();
 
+  console.log(router);
+
+  // `asPath` gives is the path as seen in the browser location bar. The `slug`
+  // parameter from this file's name can be found under `router.query.slug`.
   const finalPathSegment = router.asPath.split('/').pop() ?? '';
 
-  let title = 'Next.js EUI Starter';
-  if (finalPathSegment[0] !== '[') {
-    title = `${finalPathSegment} - ${title}`;
-  }
+  const title = `${finalPathSegment} - Next.js EUI Starter`;
 
   return (
     <>
