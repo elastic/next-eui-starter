@@ -12,8 +12,6 @@ import Head from 'next/head';
 const CatchAll: FunctionComponent = () => {
   const router = useRouter();
 
-  console.log(router);
-
   // `asPath` gives is the path as seen in the browser location bar. The `slug`
   // parameter from this file's name can be found under `router.query.slug`.
   const finalPathSegment = router.asPath.split('/').pop() ?? '';
