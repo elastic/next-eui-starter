@@ -2,8 +2,6 @@ import React, { ReactElement } from 'react';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { defaultTheme, Theme, themeConfig } from '../lib/theme';
 
-import styles from './document.module.css';
-
 const pathPrefix = process.env.PATH_PREFIX;
 
 function themeLink(theme: Theme): ReactElement {
@@ -45,10 +43,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>{themeConfig.availableThemes.map(each => themeLink(each))}</Head>
-        <body
-          style={{
-            background: 'linear-gradient(90deg, #fafbfd 50%, #fff 50%',
-          }}>
+        <body className='guideBody'>
           <Main />
           <NextScript />
         </body>

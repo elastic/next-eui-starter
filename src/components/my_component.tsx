@@ -4,7 +4,7 @@ import NextEuiButton from './next_eui/button';
 
 const MyComponent: FunctionComponent = () => (
   <Link href="/page-2">
-    <NextEuiButton>Go to page 2</NextEuiButton>
+    <NextEuiButton>Go to example page 2</NextEuiButton>
   </Link>
 );
 

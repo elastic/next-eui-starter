@@ -8,9 +8,24 @@
   top: 0;
   bottom: 0;
 
+  @media only screen and (max-width: 574px) {
+    position: static;
+    width: auto;
+    margin-right: 0;
+  }
+
   .guideSideNav__content {
     width: 260px;
     padding: 0 16px;
+
+    @media only screen and (max-width: 574px) {
+      position: relative;
+      width: auto;
+      top: auto;
+      bottom: auto;
+      padding: 0;
+      overflow-y: hidden;
+    }
   }
 }
 
@@ -22,10 +37,27 @@
   border-left: 1px solid #D3DAE6;
   max-width: 1000px;
   margin-left: 260px;
+
+  :global(.appTheme-dark) &, :global(.appTheme-amsterdam_dark) & {
+    background-color: #1D1E24;
+    border-left: 1px solid #343741;
+  }
+
+  @media only screen and (max-width: 574px) {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .guideIdentity {
   border-bottom: 1px solid #D3DAE6;
   margin-bottom: 16px;
+  @media only screen and (max-width: 574px) {
+    margin-bottom: 0;
+  }
+
+  :global(.appTheme-dark) &, :global(.appTheme-amsterdam_dark) & {
+    border-bottom: 1px solid #343741;
+  }
 }
 

@@ -1,14 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
-  EuiPageHeader,
-  EuiPageHeaderSection,
-  EuiSpacer,
-  EuiTitle,
-} from '@elastic/eui';
+import { EuiSpacer, EuiText, EuiTitle } from '@elastic/eui';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -34,40 +25,24 @@ const CatchAll: FunctionComponent = () => {
         <title>{title}</title>
       </Head>
 
-      <EuiPageHeader>
-        <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Placeholder page for {finalPathSegment}</h1>
-          </EuiTitle>
-        </EuiPageHeaderSection>
-        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
-      </EuiPageHeader>
+      <EuiTitle size="l">
+        <h1>Placeholder page for {finalPathSegment}</h1>
+      </EuiTitle>
 
-      <EuiPageContent>
-        <EuiPageContentHeader>
-          <EuiPageContentHeaderSection>
-            <EuiTitle>
-              <h2>Placeholder title for {finalPathSegment}</h2>
-            </EuiTitle>
-          </EuiPageContentHeaderSection>
-          <EuiPageContentHeaderSection>
-            Content abilities
-          </EuiPageContentHeaderSection>
-        </EuiPageContentHeader>
+      <EuiSpacer />
 
-        <EuiPageContentBody>
-          <p>
-            This is the catch-all component for routes without their own
-            dedicated page.
-          </p>
+      <EuiText>
+        <p>
+          This is the catch-all component for routes without their own dedicated
+          page.
+        </p>
+      </EuiText>
 
-          <EuiSpacer />
+      <EuiSpacer />
 
-          <Link href="/">
-            <a>Go to Home</a>
-          </Link>
-        </EuiPageContentBody>
-      </EuiPageContent>
+      <Link href="/">
+        <a>Go to Home</a>
+      </Link>
     </>
   );
 };

@@ -1,9 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
 import {
-  EuiButton,
+  EuiButtonIcon,
   EuiContextMenuItem,
   EuiContextMenuPanel,
   EuiPopover,
+  EuiPopoverTitle,
 } from '@elastic/eui';
 
 import { setInitialTheme, setTheme, themeConfig } from '../../lib/theme';
@@ -14,7 +15,7 @@ const initialTheme = setInitialTheme();
  * Renders a dropdown menu for selecting the current theme. The selection
  * is set in localStorage, so that it persists between visits.
  */
-const SwitchTheme: FunctionComponent = () => {
+const ThemeSwitcher: FunctionComponent = () => {
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const [theme, setThemeInState] = useState(initialTheme);
 
@@ -34,12 +35,12 @@ const SwitchTheme: FunctionComponent = () => {
   ));
 
   const button = (
-    <EuiButton
-      iconType="arrowDown"
-      iconSide="right"
+    <EuiButtonIcon
+      iconType="gear"
+      aria-label="Open theme menu"
       onClick={() => setPopoverOpen(!isPopoverOpen)}>
       Switch theme
-    </EuiButton>
+    </EuiButtonIcon>
   );
 
   return (
@@ -49,11 +50,11 @@ const SwitchTheme: FunctionComponent = () => {
       isOpen={isPopoverOpen}
       closePopover={() => setPopoverOpen(false)}
       panelPaddingSize="none"
-      withTitle
       anchorPosition="downLeft">
+      <EuiPopoverTitle>Theme options</EuiPopoverTitle>
       <EuiContextMenuPanel items={items} />
     </EuiPopover>
   );
 };
 
-export default SwitchTheme;
+export default ThemeSwitcher;
