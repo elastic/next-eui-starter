@@ -1,0 +1,7 @@
+.guideBody {
+  background: linear-gradient(90deg, #fafbfd 50%, #fff 50%);
+
+  &.appTheme-dark, &.appTheme-amsterdam_dark {
+    background: linear-gradient(90deg, #1a1b20 50%, #1D1E24 50%);
+  }
+}

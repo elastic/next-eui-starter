@@ -5,8 +5,6 @@ const glob = require('glob');
 const path = require('path');
 const iniparser = require('iniparser');
 
-// We don't use `next-images` because v1.4.0 has a bug with SVGs
-const withImages = require('next-optimized-images');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { NormalModuleReplacementPlugin } = require('webpack');
@@ -109,6 +107,8 @@ const nextConfig = {
       )
     );
 
+    config.resolve.mainFields = ['module', 'main'];
+
     return config;
   },
 
@@ -171,7 +171,7 @@ const nextConfig = {
  */
 module.exports = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
-})(withImages(nextConfig));
+})(nextConfig);
 
 /**
  * Find all EUI themes and construct a theme configuration object.

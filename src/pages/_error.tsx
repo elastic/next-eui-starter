@@ -3,7 +3,9 @@ import Error, { ErrorProps } from 'next/error';
 
 /**
  * An example of how to render a custom error page. Note that we have a
- * dedicated './404.tsx` page.
+ * dedicated './404.tsx` page. See:
+ *
+ * https://nextjs.org/docs/advanced-features/custom-error-page
  */
 const ErrorWrapper: FunctionComponent<ErrorProps> = ({ statusCode }) => {
   return <Error statusCode={statusCode} />;

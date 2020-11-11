@@ -43,7 +43,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>{themeConfig.availableThemes.map(each => themeLink(each))}</Head>
-        <body>
+        <body className='guideBody'>
           <Main />
           <NextScript />
         </body>

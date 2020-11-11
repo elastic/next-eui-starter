@@ -7,16 +7,29 @@
 const selector = 'link[data-name="eui-theme"]';
 export const defaultTheme = 'light';
 
-function getThemes(): HTMLLinkElement[] {
+function getAllThemes(): HTMLLinkElement[] {
   // @ts-ignore
   return [...document.querySelectorAll(selector)];
 }
 
-export function setTheme(name: string): void {
-  localStorage.setItem('theme', name);
+export function setTheme(newThemeName: string): void {
+  const oldThemeName = getTheme();
+  localStorage.setItem('theme', newThemeName);
 
-  for (const theme of getThemes()) {
-    theme.disabled = theme.dataset.theme !== name;
+  for (const themeLink of getAllThemes()) {
+    // Disable all theme links, except for the desired theme, which we enable
+    themeLink.disabled = themeLink.dataset.theme !== newThemeName;
+  }
+
+  // Add a class to the `body` element that indicates which theme we're using.
+  // This allows any custom styling to adapt to the current theme.
+  if (document.body.classList.contains(`appTheme-${oldThemeName}`)) {
+    document.body.classList.replace(
+      `appTheme-${oldThemeName}`,
+      `appTheme-${newThemeName}`
+    );
+  } else {
+    document.body.classList.add(`appTheme-${newThemeName}`);
   }
 }
 

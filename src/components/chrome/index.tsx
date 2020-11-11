@@ -1,17 +1,15 @@
-import React, { FunctionComponent, useRef } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import {
-  EuiHeader,
+  EuiSideNav,
   EuiHeaderLogo,
-  EuiHeaderSection,
-  EuiHeaderSectionItem,
-  EuiHeaderSectionItemButton,
-  EuiHorizontalRule,
-  EuiIcon,
-  EuiNavDrawer,
-  EuiNavDrawerGroup,
-  EuiShowFor,
+  EuiPage,
+  EuiPageSideBar,
+  EuiPageBody,
+  EuiErrorBoundary,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '@elastic/eui';
 
 import { buildTopLinks } from '../navigation_links/top_links';
@@ -19,84 +17,96 @@ import { buildSolutionLinks } from '../navigation_links/solution_links';
 import { buildExploreLinks } from '../navigation_links/explore_links';
 import { buildAdminLinks } from '../navigation_links/admin_links';
 
-import { Breadcrumbs } from './breadcrumbs';
-import SwitchTheme from './switch_theme';
+import ThemeSwitcher from './theme_switcher';
 
 import styles from './chrome.module.scss';
+import Link from 'next/link';
 
-const Logo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
-  <EuiHeaderLogo
-    iconType="logoElastic"
-    onClick={onClick}
-    aria-label="Goes to home"
-  />
-);
+/**
+ * This component render the logo, title and theme icon at the top of
+ * the application navigation.
+ * @param onClick the action to take when the user clicks the icon or name
+ */
+const AppLogo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
+  <EuiFlexGroup
+    responsive={false}
+    alignItems="center"
+    gutterSize="xs"
+    className={styles.guideIdentity}>
+    <EuiFlexItem grow={false}>
+      <EuiHeaderLogo
+        iconType="logoElastic"
+        onClick={onClick}
+        aria-label="Goes to home"
+      />
+    </EuiFlexItem>
 
-const MenuTrigger: FunctionComponent<{ onClick: () => void }> = ({
-  onClick,
-}) => (
-  <EuiHeaderSectionItemButton aria-label="Open nav" onClick={onClick}>
-    <EuiIcon type="apps" href="#" size="m" />
-  </EuiHeaderSectionItemButton>
+    <EuiFlexItem>
+      <Link href="/">
+        <a>
+          <strong>Elastic UI</strong>
+        </a>
+      </Link>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false} style={{ marginRight: 8 }}>
+      <ThemeSwitcher />
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );
 
 /**
  * Renders the UI that surrounds the page content.
  */
 const Chrome: FunctionComponent = ({ children }) => {
-  // This is an EuiNavDrawer, which isn't a TypeScript module yet
-  const navDrawerRef = useRef<EuiNavDrawer>(null);
-
   const router = useRouter();
+
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+
+  const toggleOpenOnMobile = () => {
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+  };
 
   // In this example app, all the side navigation links go to a placeholder
   // page. That's why the `push` call here points at the catch-all route - the
   // Next.js router doesn't infer the catch-all, we have to link to it
   // explicitly.
-  const buildOnClick = (path: string) => () =>
-    router.push('/my-app/[slug]', path);
+  const buildOnClick = (path: string) => () => {
+    setIsSideNavOpenOnMobile(false);
+    return router.push('/my-app/[slug]', path);
+  };
+
+  const sideNav = [
+    ...buildTopLinks(buildOnClick),
+    ...buildSolutionLinks(buildOnClick),
+    ...buildExploreLinks(buildOnClick),
+    ...buildAdminLinks(buildOnClick),
+  ];
 
   return (
-    <>
-      <EuiHeader className={styles.chrHeader}>
-        <EuiHeaderSection grow={false}>
-          <EuiShowFor sizes={['xs', 's']}>
-            <EuiHeaderSectionItem border="right">
-              <MenuTrigger onClick={() => navDrawerRef.current!.toggleOpen()} />
-            </EuiHeaderSectionItem>
-          </EuiShowFor>
+    <EuiPage restrictWidth={1240} className={styles.guidePage}>
+      <EuiPageBody>
+        <EuiPageSideBar className={styles.guideSideNav}>
+          <AppLogo
+            onClick={() => {
+              setIsSideNavOpenOnMobile(false);
+              router.push('/');
+            }}
+          />
+          <EuiErrorBoundary>
+            <EuiSideNav
+              className={styles.guideSideNav__content}
+              mobileTitle="Navigate"
+              toggleOpenOnMobile={toggleOpenOnMobile}
+              isOpenOnMobile={isSideNavOpenOnMobile}
+              items={sideNav}
+            />
+          </EuiErrorBoundary>
+        </EuiPageSideBar>
 
-          <EuiHeaderSectionItem border="right">
-            <Logo onClick={() => router.push('/')} />
-          </EuiHeaderSectionItem>
-
-          <EuiHeaderSectionItem border="right">
-            {/* <HeaderSpacesMenu /> */}
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-
-        <Breadcrumbs />
-
-        <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem className={styles.chrHeaderSectionItem}>
-            <SwitchTheme />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
-      <EuiNavDrawer ref={navDrawerRef}>
-        <EuiNavDrawerGroup listItems={buildTopLinks(buildOnClick)} />
-        <EuiHorizontalRule margin="none" />
-
-        <EuiNavDrawerGroup listItems={buildExploreLinks(buildOnClick)} />
-        <EuiHorizontalRule margin="none" />
-
-        <EuiNavDrawerGroup listItems={buildSolutionLinks(buildOnClick)} />
-        <EuiHorizontalRule margin="none" />
-
-        <EuiNavDrawerGroup listItems={buildAdminLinks(buildOnClick)} />
-      </EuiNavDrawer>
-      <div className={styles.chrWrap}>{children}</div>
-    </>
+        <div className={styles.guidePageContent}>{children}</div>
+      </EuiPageBody>
+    </EuiPage>
   );
 };
 
