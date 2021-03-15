@@ -8,6 +8,8 @@
 
 Jump right in to building prototypes with [EUI](https://github.com/elastic/eui).
 
+_🚩 This starter is not constantly maintained and may get out of sync with the latest EUI release._
+
 ## 🚀 Super-quick start using CodeSandbox
 
 1. Go to
