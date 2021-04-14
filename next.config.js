@@ -104,6 +104,11 @@ const nextConfig = {
       new NormalModuleReplacementPlugin(
         /^highlight\.js$/,
         path.join(__dirname, `src/lib/highlight.ts`)
+      ),
+
+      new NormalModuleReplacementPlugin(
+        /^lowlight$/,
+        path.join(__dirname, `src/lib/lowlight.ts`)
       )
     );
 
