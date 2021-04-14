@@ -7,7 +7,7 @@ const iniparser = require('iniparser');
 
 const withBundleAnalyzer = require('@next/bundle-analyzer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { NormalModuleReplacementPlugin } = require('webpack');
+const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack');
 
 /**
  * If you are deploying your site under a directory other than `/` e.g.
@@ -109,7 +109,12 @@ const nextConfig = {
       new NormalModuleReplacementPlugin(
         /^lowlight$/,
         path.join(__dirname, `src/lib/lowlight.ts`)
-      )
+      ),
+
+      // Moment ships with a large number of locales. Exclude them, leaving
+      // just the default English locale. If you need other locales, see:
+      // https://create-react-app.dev/docs/troubleshooting/#momentjs-locales-are-missing
+      new IgnorePlugin(/^\.\/locale$/, /moment$/)
     );
 
     config.resolve.mainFields = ['module', 'main'];
