@@ -9,7 +9,7 @@
 // @ts-ignore
 const hljs = require('highlight.js/lib/highlight');
 
-// Add whatever languages you need here.
+// Add whatever languages you need here. See also `./lowlight.ts`
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 
 module.exports = hljs;
