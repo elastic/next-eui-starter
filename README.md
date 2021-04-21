@@ -101,7 +101,7 @@ A quick look at the top-level files and directories you'll see in this project.
 
 4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
 
-5.  **`LICENSE`**: Gatsby is licensed under the MIT license.
+5.  **`LICENSE`**: Next.js is licensed under the MIT license.
 
 6.  **`README.md`**: A text file containing useful reference information about your project.
 
