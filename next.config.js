@@ -65,15 +65,15 @@ const nextConfig = {
           return eachExternal;
         }
 
-        return (context, request, callback) => {
+        return (context, callback) => {
           if (
-            request.indexOf('@elastic/eui') > -1 ||
-            request.indexOf('react-ace') > -1
+            context.request.indexOf('@elastic/eui') > -1 ||
+            context.request.indexOf('react-ace') > -1
           ) {
             return callback();
           }
 
-          return eachExternal(context, request, callback);
+          return eachExternal(context, callback);
         };
       });
 
