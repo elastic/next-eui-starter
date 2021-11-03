@@ -67,8 +67,8 @@ const nextConfig = {
 
         return (context, callback) => {
           if (
-            context.request.indexOf('@elastic/eui') > -1 ||
-            context.request.indexOf('react-ace') > -1
+            context?.request?.indexOf('@elastic/eui') > -1 ||
+            context?.request?.indexOf('react-ace') > -1
           ) {
             return callback();
           }
