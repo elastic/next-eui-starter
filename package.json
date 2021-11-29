@@ -28,19 +28,11 @@
   "bugs": {
     "url": "https://github.com/elastic/next-eui-starter/issues"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "^41.3.0",
     "@next/bundle-analyzer": "^12.0.4",
-    "glob": "^7.2.0",
-    "moment": "^2.29.1",
-    "next": "^12.0.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "sass": "^1.43.5",
-    "typescript-plugin-css-modules": "^3.4.0"
-  },
-  "devDependencies": {
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
@@ -52,10 +44,20 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "glob": "^7.2.0",
     "iniparser": "^1.0.5",
+    "moment": "^2.29.1",
+    "next": "^12.0.4",
     "null-loader": "^4.0.1",
     "prettier": "^2.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.43.5",
     "serve": "^13.0.2",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "typescript-plugin-css-modules": "^3.4.0"
+  },
+  "resolutions": {
+    "trim": "0.0.3"
   }
 }
