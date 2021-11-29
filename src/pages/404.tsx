@@ -12,7 +12,7 @@ const NotFoundPage: FunctionComponent = () => (
       </Fragment>
     }
     actions={
-      <Link href="/">
+      <Link href="/" passHref>
         <EuiButton color="primary" fill>
           Go Home
         </EuiButton>

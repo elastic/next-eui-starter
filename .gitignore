@@ -19,3 +19,6 @@ node_modules
 
 # Default `next export` output directory
 out
+
+# TypeScript cache
+tsconfig.tsbuildinfo

@@ -114,7 +114,10 @@ const nextConfig = {
       // Moment ships with a large number of locales. Exclude them, leaving
       // just the default English locale. If you need other locales, see:
       // https://create-react-app.dev/docs/troubleshooting/#momentjs-locales-are-missing
-      new IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/,
+      })
     );
 
     config.resolve.mainFields = ['module', 'main'];
