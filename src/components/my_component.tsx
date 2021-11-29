@@ -7,7 +7,7 @@ import NextEuiButton from './next_eui/button';
  * in another. This component also demonstrates routing using a button.
  */
 const MyComponent: FunctionComponent = () => (
-  <Link href="/page-2">
+  <Link href="/page-2" passHref>
     <NextEuiButton>Go to example page 2</NextEuiButton>
   </Link>
 );
