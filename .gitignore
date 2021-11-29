@@ -19,3 +19,4 @@ node_modules
 
 # Default `next export` output directory
 out
+tsconfig.tsbuildinfo
