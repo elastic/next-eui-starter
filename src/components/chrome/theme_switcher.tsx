@@ -51,7 +51,7 @@ const ThemeSwitcher: FunctionComponent = () => {
       closePopover={() => setPopoverOpen(false)}
       panelPaddingSize="none"
       anchorPosition="downLeft">
-      <EuiPopoverTitle>Theme options</EuiPopoverTitle>
+      <EuiPopoverTitle paddingSize="s">Theme options</EuiPopoverTitle>
       <EuiContextMenuPanel items={items} />
     </EuiPopover>
   );
