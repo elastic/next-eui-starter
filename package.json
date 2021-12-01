@@ -18,11 +18,11 @@
   "scripts": {
     "analyze": "ANALYZE=true yarn build",
     "build": "yarn lint && rm -f public/themes/*.min.css && next build",
-    "build-docs": "bash scripts/update-docs.sh",
+    "build-docs": "yarn lint && bash scripts/update-docs.sh",
     "dev": "next",
-    "lint": "tsc && eslint --cache 'src/**/*.{ts,tsx,js}' --max-warnings 0",
+    "lint": "tsc && next lint",
     "start": "next start",
-    "test-docs": "bash scripts/test-docs.sh"
+    "test-docs": "yarn lint && bash scripts/test-docs.sh"
   },
   "repository": {
     "type": "git",
@@ -37,16 +37,12 @@
     "@elastic/eui": "^41.3.0",
     "@next/bundle-analyzer": "^12.0.4",
     "@types/node": "^16.11.10",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
     "copy-webpack-plugin": "^10.0.0",
     "eslint": "<8.0.0",
+    "eslint-config-next": "12.0.4",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prefer-object-spread": "^1.2.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.1",
-    "eslint-plugin-react-hooks": "^4.3.0",
     "glob": "^7.2.0",
     "iniparser": "^1.0.5",
     "moment": "^2.29.1",

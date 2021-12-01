@@ -1,30 +1,10 @@
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
-    ecmaFeatures: {
-      jsx: true, // Allows for the parsing of JSX
-    },
-  },
-  settings: {
-    react: {
-      // Tells eslint-plugin-react to automatically detect the version of
-      // React to use
-      version: 'detect',
-    },
-  },
   extends: [
-    // Uses the recommended rules from @eslint-plugin-react
-    'plugin:react/recommended',
-
-    // Uses the recommended rules from the @typescript-eslint/eslint-plugin
     'plugin:@typescript-eslint/recommended',
-
-    // Enables linting for formatting
-    'plugin:prettier/recommended',
+    'prettier',
+    'next/core-web-vitals',
   ],
-  plugins: ['jsx-a11y', 'prefer-object-spread', 'prettier', 'react-hooks'],
+  plugins: ['prettier'],
   rules: {
     // In an ideal world, we'd never have to use @ts-ignore, but that's not
     // possible right now.
@@ -39,7 +19,7 @@ module.exports = {
     // the linter.
     '@typescript-eslint/no-non-null-assertion': 'off',
 
-    // Accessibility rules
+    // Accessibility is important to EUI. Enforce all a11y rules.
     'jsx-a11y/accessible-emoji': 'error',
     'jsx-a11y/alt-text': 'error',
     'jsx-a11y/anchor-has-content': 'error',
@@ -66,19 +46,13 @@ module.exports = {
     'jsx-a11y/tabindex-no-positive': 'error',
     'jsx-a11y/label-has-associated-control': 'error',
 
-    'prefer-object-spread/prefer-object-spread': 'error',
-
-    // Use template strings instead of string concatenation
-    'prefer-template': 'error',
-
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
 
-    // Place to specify ESLint rules. Can be used to overwrite rules
-    // specified from the extended configs
+    'prefer-object-spread': 'error',
 
-    // We're using TypeScript, so prop-types aren't so interesting
-    'react/prop-types': 'off',
+    // Use template strings instead of string concatenation
+    'prefer-template': 'error',
 
     // This is documented as the default, but apparently now needs to be
     // set explicitly
