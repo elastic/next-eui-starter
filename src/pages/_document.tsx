@@ -42,7 +42,10 @@ export default class MyDocument extends Document {
   render(): ReactElement {
     return (
       <Html lang="en">
-        <Head>{themeConfig.availableThemes.map(each => themeLink(each))}</Head>
+        <Head>
+          <meta name="eui-styles-global" />
+          {themeConfig.availableThemes.map(each => themeLink(each))}
+        </Head>
         <body className="guideBody">
           <Main />
           <NextScript />

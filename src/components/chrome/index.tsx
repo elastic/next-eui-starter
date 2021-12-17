@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { useRouter } from 'next/router';
+import createCache from '@emotion/cache';
 
 import {
   EuiSideNav,
@@ -10,7 +11,10 @@ import {
   EuiErrorBoundary,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiProvider,
 } from '@elastic/eui';
+
+import { useProvider } from '../provider';
 
 import { buildTopLinks } from '../navigation_links/top_links';
 import { buildSolutionLinks } from '../navigation_links/solution_links';
@@ -60,6 +64,15 @@ const AppLogo: FunctionComponent<{ onClick: () => void }> = ({ onClick }) => (
  */
 const Chrome: FunctionComponent = ({ children }) => {
   const router = useRouter();
+  const { colorMode } = useProvider();
+
+  const emotionCache = createCache({
+    key: 'eui-styles',
+    container:
+      typeof document !== 'undefined'
+        ? document.querySelector('meta[name="eui-styles-global"]')
+        : null,
+  });
 
   const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
 
@@ -84,29 +97,31 @@ const Chrome: FunctionComponent = ({ children }) => {
   ];
 
   return (
-    <EuiPage restrictWidth={1240} className={styles.guidePage}>
-      <EuiPageBody>
-        <EuiPageSideBar className={styles.guideSideNav}>
-          <AppLogo
-            onClick={() => {
-              setIsSideNavOpenOnMobile(false);
-              router.push('/');
-            }}
-          />
-          <EuiErrorBoundary>
-            <EuiSideNav
-              className={styles.guideSideNav__content}
-              mobileTitle="Navigate"
-              toggleOpenOnMobile={toggleOpenOnMobile}
-              isOpenOnMobile={isSideNavOpenOnMobile}
-              items={sideNav}
+    <EuiProvider colorMode={colorMode} cache={emotionCache}>
+      <EuiPage restrictWidth={1240} className={styles.guidePage}>
+        <EuiPageBody>
+          <EuiPageSideBar className={styles.guideSideNav}>
+            <AppLogo
+              onClick={() => {
+                setIsSideNavOpenOnMobile(false);
+                router.push('/');
+              }}
             />
-          </EuiErrorBoundary>
-        </EuiPageSideBar>
+            <EuiErrorBoundary>
+              <EuiSideNav
+                className={styles.guideSideNav__content}
+                mobileTitle="Navigate"
+                toggleOpenOnMobile={toggleOpenOnMobile}
+                isOpenOnMobile={isSideNavOpenOnMobile}
+                items={sideNav}
+              />
+            </EuiErrorBoundary>
+          </EuiPageSideBar>
 
-        <div className={styles.guidePageContent}>{children}</div>
-      </EuiPageBody>
-    </EuiPage>
+          <div className={styles.guidePageContent}>{children}</div>
+        </EuiPageBody>
+      </EuiPage>
+    </EuiProvider>
   );
 };
 

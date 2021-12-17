@@ -7,28 +7,28 @@ import {
   EuiPopoverTitle,
 } from '@elastic/eui';
 
-import { setInitialTheme, setTheme, themeConfig } from '../../lib/theme';
+import { useProvider } from '../provider';
 
-const initialTheme = setInitialTheme();
+import { setTheme, themeConfig } from '../../lib/theme';
 
 /**
  * Renders a dropdown menu for selecting the current theme. The selection
  * is set in localStorage, so that it persists between visits.
  */
 const ThemeSwitcher: FunctionComponent = () => {
+  const { colorMode, setColorMode } = useProvider();
   const [isPopoverOpen, setPopoverOpen] = useState(false);
-  const [theme, setThemeInState] = useState(initialTheme);
 
   const handleChangeTheme = (newTheme: string) => {
     setPopoverOpen(false);
+    setColorMode(newTheme);
     setTheme(newTheme);
-    setThemeInState(newTheme);
   };
 
   const items = themeConfig.availableThemes.map(each => (
     <EuiContextMenuItem
       key={each.id}
-      icon={each.id === theme ? 'check' : 'empty'}
+      icon={each.id === colorMode ? 'check' : 'empty'}
       onClick={() => handleChangeTheme(each.id)}>
       {each.name}
     </EuiContextMenuItem>
