@@ -7,7 +7,7 @@ const iniparser = require('iniparser');
 
 const withBundleAnalyzer = require('@next/bundle-analyzer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack');
+const { IgnorePlugin } = require('webpack');
 
 /**
  * If you are deploying your site under a directory other than `/` e.g.
@@ -66,22 +66,12 @@ const nextConfig = {
         }
 
         return (context, callback) => {
-          if (
-            context.request.indexOf('@elastic/eui') > -1 ||
-            context.request.indexOf('react-ace') > -1
-          ) {
+          if (context.request.indexOf('@elastic/eui') > -1) {
             return callback();
           }
 
           return eachExternal(context, callback);
         };
-      });
-
-      // Replace `react-ace` with an empty module on the server.
-      // https://webpack.js.org/loaders/null-loader/
-      config.module.rules.push({
-        test: /react-ace/,
-        use: 'null-loader',
       });
 
       // Mock HTMLElement on the server-side
@@ -98,18 +88,6 @@ const nextConfig = {
     // Copy theme CSS files into `public`
     config.plugins.push(
       new CopyWebpackPlugin({ patterns: themeConfig.copyConfig }),
-
-      // We don't want to load all highlight.js language - provide a mechanism to register just some.
-      // If you need to highlight more than just JSON, edit the file below.
-      new NormalModuleReplacementPlugin(
-        /^highlight\.js$/,
-        path.join(__dirname, `src/lib/highlight.ts`)
-      ),
-
-      new NormalModuleReplacementPlugin(
-        /^lowlight$/,
-        path.join(__dirname, `src/lib/lowlight.ts`)
-      ),
 
       // Moment ships with a large number of locales. Exclude them, leaving
       // just the default English locale. If you need other locales, see:

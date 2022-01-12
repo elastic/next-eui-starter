@@ -19,6 +19,7 @@ export function setTheme(newThemeName: string): void {
   for (const themeLink of getAllThemes()) {
     // Disable all theme links, except for the desired theme, which we enable
     themeLink.disabled = themeLink.dataset.theme !== newThemeName;
+    themeLink['aria-disabled'] = themeLink.dataset.theme !== newThemeName;
   }
 
   // Add a class to the `body` element that indicates which theme we're using.
