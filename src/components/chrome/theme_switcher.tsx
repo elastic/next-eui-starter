@@ -17,43 +17,24 @@ import { setTheme, themeConfig } from '../../lib/theme';
  */
 const ThemeSwitcher: FunctionComponent = () => {
   const { colorMode, setColorMode } = useProvider();
-  const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const [isDarkTheme, setDarkTheme] = useState(false);
 
   const handleChangeTheme = (newTheme: string) => {
-    setPopoverOpen(false);
+    setDarkTheme(!isDarkTheme);
     setColorMode(newTheme);
     setTheme(newTheme);
   };
 
-  const items = themeConfig.availableThemes.map(each => (
-    <EuiContextMenuItem
-      key={each.id}
-      icon={each.id === colorMode ? 'check' : 'empty'}
-      onClick={() => handleChangeTheme(each.id)}>
-      {each.name}
-    </EuiContextMenuItem>
-  ));
-
-  const button = (
-    <EuiButtonIcon
-      iconType="gear"
-      aria-label="Open theme menu"
-      onClick={() => setPopoverOpen(!isPopoverOpen)}>
-      Switch theme
-    </EuiButtonIcon>
-  );
+  console.log(themeConfig.availableThemes);
 
   return (
-    <EuiPopover
-      id="contextMenu"
-      button={button}
-      isOpen={isPopoverOpen}
-      closePopover={() => setPopoverOpen(false)}
-      panelPaddingSize="none"
-      anchorPosition="downLeft">
-      <EuiPopoverTitle paddingSize="s">Theme options</EuiPopoverTitle>
-      <EuiContextMenuPanel items={items} />
-    </EuiPopover>
+    <EuiButtonIcon
+      color="ghost"
+      iconType={isDarkTheme ? 'moon' : 'cloudSunny'}
+      aria-label={`Change theme to ${isDarkTheme ? 'dark' : 'light'}`}
+      onClick={() =>
+        handleChangeTheme(isDarkTheme ? 'dark' : 'light')
+      }></EuiButtonIcon>
   );
 };
 
