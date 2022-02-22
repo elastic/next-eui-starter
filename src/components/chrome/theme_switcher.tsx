@@ -6,12 +6,12 @@ import { useProvider } from '../provider';
 import { setTheme } from '../../lib/theme';
 
 /**
- * Renders a dropdown menu for selecting the current theme. The selection
- * is set in localStorage, so that it persists between visits.
+ * Current theme is set in localStorage
+ * so that it persists between visits.
  */
 const ThemeSwitcher: FunctionComponent = () => {
-  const { setColorMode } = useProvider();
-  const [isDarkTheme, setDarkTheme] = useState(false);
+  const { colorMode, setColorMode } = useProvider();
+  const [isDarkTheme, setDarkTheme] = useState(colorMode === 'dark');
 
   const handleChangeTheme = (newTheme: string) => {
     setDarkTheme(!isDarkTheme);
@@ -22,10 +22,10 @@ const ThemeSwitcher: FunctionComponent = () => {
   return (
     <EuiButtonIcon
       color="ghost"
-      iconType={isDarkTheme ? 'moon' : 'sun'}
-      aria-label={`Change theme to ${isDarkTheme ? 'dark' : 'light'}`}
+      iconType={isDarkTheme ? 'sun' : 'moon'}
+      aria-label="Change theme"
       onClick={() =>
-        handleChangeTheme(isDarkTheme ? 'dark' : 'light')
+        handleChangeTheme(isDarkTheme ? 'light' : 'dark')
       }></EuiButtonIcon>
   );
 };

@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  createContext,
-  useContext,
-  useState,
-} from 'react';
+import { FunctionComponent, createContext, useContext, useState } from 'react';
 
 import { setInitialTheme } from '../lib/theme';
 
@@ -20,6 +15,7 @@ export const GlobalProvider = createContext<{
 export const Provider: FunctionComponent = ({ children }) => {
   const initialTheme = setInitialTheme();
   const [colorMode, setColorMode] = useState(initialTheme);
+
   return (
     <GlobalProvider.Provider value={{ colorMode, setColorMode }}>
       {children}
