@@ -1,11 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
 
-import {
-  EuiPageTemplate,
-  EuiProvider,
-  EuiSideNav,
-  htmlIdGenerator,
-} from '@elastic/eui';
+import { EuiProvider, EuiThemeColorMode } from '@elastic/eui';
 
 import { useProvider } from '../provider';
 
@@ -20,7 +15,7 @@ const Chrome: FunctionComponent = ({ children }) => {
   const { colorMode } = useProvider();
 
   return (
-    <EuiProvider colorMode={colorMode}>
+    <EuiProvider colorMode={colorMode as EuiThemeColorMode}>
       <div
         css={css`
           padding-top: 96px; // top nav
