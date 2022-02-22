@@ -27,7 +27,7 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
     iconType: 'home',
     isActive: true,
     'aria-current': true,
-    onClick: () => {},
+    href: '/',
     pinnable: false,
   },
 ];
@@ -35,14 +35,14 @@ const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
   link => {
     return {
       ...link,
-      onClick: () => {},
+      href: '/',
     };
   }
 );
 const LearnLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Docs', onClick: () => {} },
-  { label: 'Blogs', onClick: () => {} },
-  { label: 'Webinars', onClick: () => {} },
+  { label: 'Docs', href: '/docs/' },
+  { label: 'Blogs', href: '/' },
+  { label: 'Webinars', href: '/' },
   { label: 'Elastic.co', href: 'https://elastic.co' },
 ];
 
