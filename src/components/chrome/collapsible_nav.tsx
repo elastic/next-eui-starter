@@ -306,17 +306,6 @@ const CollapsibleNav = () => {
             breadcrumbs: breadcrumbs,
             borders: 'right',
           },
-          {
-            items: [
-              <EuiHeaderSectionItemButton
-                key={useGeneratedHtmlId()}
-                aria-label="News feed: Updates available"
-                notification={true}>
-                <EuiIcon type="cheer" size="m" />
-              </EuiHeaderSectionItemButton>,
-            ],
-            borders: 'none',
-          },
         ]}
       />
     </>
