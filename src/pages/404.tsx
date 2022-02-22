@@ -1,17 +1,15 @@
-import React, { Fragment, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import {
   EuiButton,
   EuiEmptyPrompt,
   EuiPageTemplate,
   EuiImage,
-  EuiButtonEmpty,
 } from '@elastic/eui';
 import Link from 'next/link';
-import { isColorDark } from '@elastic/eui/src/services/color/is_color_dark';
 import { useProvider } from '../components/provider';
 
 const NotFoundPage: FunctionComponent = () => {
-  const { colorMode, setColorMode } = useProvider();
+  const { colorMode } = useProvider();
 
   const isDarkTheme = colorMode === 'dark';
 
@@ -31,8 +29,8 @@ const NotFoundPage: FunctionComponent = () => {
         ]}
         body={
           <p>
-            Sorry, we can't find the page you're looking for. It might have been
-            removed or renamed, or maybe it never existed.
+            Sorry, we can&apos;t find the page you&apos;re looking for. It might
+            have been removed or renamed, or maybe it never existed.
           </p>
         }
         icon={<EuiImage alt="" size="fullWidth" src={illustration} />}
