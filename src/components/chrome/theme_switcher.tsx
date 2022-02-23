@@ -1,22 +1,18 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
 import { EuiButtonIcon } from '@elastic/eui';
 
-import { useProvider } from '../provider';
-
-import { setTheme } from '../../lib/theme';
+import { useTheme } from '../theme';
 
 /**
  * Current theme is set in localStorage
  * so that it persists between visits.
  */
 const ThemeSwitcher: FunctionComponent = () => {
-  const { colorMode, setColorMode } = useProvider();
-  const [isDarkTheme, setDarkTheme] = useState(colorMode === 'dark');
+  const { colorMode, setColorMode } = useTheme();
+  const isDarkTheme = colorMode === 'dark';
 
   const handleChangeTheme = (newTheme: string) => {
-    setDarkTheme(!isDarkTheme);
     setColorMode(newTheme);
-    setTheme(newTheme);
   };
 
   return (

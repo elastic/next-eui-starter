@@ -6,7 +6,7 @@ import { EuiErrorBoundary } from '@elastic/eui';
 import './app.scss';
 
 import Chrome from '../components/chrome';
-import { Provider } from '../components/provider';
+import { Theme } from '../components/theme';
 
 /**
  * Next.js uses the App component to initialize pages. You can override it
@@ -21,13 +21,13 @@ const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       {/* You can override this in other pages - see page-2.tsx for an example */}
       <title>Next.js EUI Starter</title>
     </Head>
-    <Provider>
+    <Theme>
       <Chrome>
         <EuiErrorBoundary>
           <Component {...pageProps} />
         </EuiErrorBoundary>
       </Chrome>
-    </Provider>
+    </Theme>
   </>
 );
 

@@ -6,10 +6,10 @@ import {
   EuiImage,
 } from '@elastic/eui';
 import Link from 'next/link';
-import { useProvider } from '../components/provider';
+import { useTheme } from '../components/theme';
 
 const NotFoundPage: FunctionComponent = () => {
-  const { colorMode } = useProvider();
+  const { colorMode } = useTheme();
 
   const isDarkTheme = colorMode === 'dark';
 

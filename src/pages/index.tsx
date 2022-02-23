@@ -14,11 +14,11 @@ import {
   EuiImage,
 } from '@elastic/eui';
 
-import { useProvider } from '../components/provider';
-import { setTheme } from '../lib/theme';
+import { useTheme } from '../components/theme';
+import { enableTheme } from '../lib/theme';
 
 const Index: FunctionComponent = () => {
-  const { colorMode, setColorMode } = useProvider();
+  const { colorMode, setColorMode } = useTheme();
 
   const isDarkTheme = colorMode === 'dark';
 
@@ -28,7 +28,6 @@ const Index: FunctionComponent = () => {
 
   const handleChangeTheme = (newTheme: string) => {
     setColorMode(newTheme);
-    setTheme(newTheme);
   };
 
   return (

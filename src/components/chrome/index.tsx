@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import { EuiProvider, EuiThemeColorMode } from '@elastic/eui';
 
-import { useProvider } from '../provider';
+import { useTheme } from '../theme';
 
 import CollapsibleNav from './collapsible_nav';
 
@@ -13,7 +13,7 @@ import createCache from '@emotion/cache';
  * Renders the UI that surrounds the page content.
  */
 const Chrome: FunctionComponent = ({ children }) => {
-  const { colorMode } = useProvider();
+  const { colorMode } = useTheme();
 
   /**
    * This `@emotion/cache` instance is used to insert the global styles

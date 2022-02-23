@@ -12,7 +12,7 @@ function getAllThemes(): HTMLLinkElement[] {
   return [...document.querySelectorAll(selector)];
 }
 
-export function setTheme(newThemeName: string): void {
+export function enableTheme(newThemeName: string): void {
   const oldThemeName = getTheme();
   localStorage.setItem('theme', newThemeName);
 
@@ -38,16 +38,6 @@ export function getTheme(): string {
   const storedTheme = localStorage.getItem('theme');
 
   return storedTheme || defaultTheme;
-}
-
-export function setInitialTheme(): string {
-  if (typeof window !== 'object') {
-    return defaultTheme;
-  }
-
-  const theme = getTheme();
-  setTheme(theme);
-  return theme;
 }
 
 export interface Theme {
