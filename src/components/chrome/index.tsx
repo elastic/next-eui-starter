@@ -4,9 +4,6 @@ import { EuiProvider, EuiThemeColorMode } from '@elastic/eui';
 
 import { useTheme } from '../theme';
 
-import CollapsibleNav from './collapsible_nav';
-
-import { css } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 /**
@@ -34,14 +31,7 @@ const Chrome: FunctionComponent = ({ children }) => {
     <EuiProvider
       colorMode={colorMode as EuiThemeColorMode}
       cache={emotionCache}>
-      <div
-        css={css`
-          padding-top: 96px; // top nav
-          max-height: calc(100vh - 96px);
-        `}>
-        <CollapsibleNav />
-        {children}
-      </div>
+      {children}
     </EuiProvider>
   );
 };

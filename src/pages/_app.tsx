@@ -3,8 +3,6 @@ import Head from 'next/head';
 import React, { FunctionComponent } from 'react';
 import { EuiErrorBoundary } from '@elastic/eui';
 
-import './app.scss';
-
 import Chrome from '../components/chrome';
 import { Theme } from '../components/theme';
 

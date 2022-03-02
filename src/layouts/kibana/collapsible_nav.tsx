@@ -6,7 +6,6 @@ import {
   EuiHeaderLogo,
   EuiHeader,
   EuiIcon,
-  EuiButton,
   EuiPinnableListGroup,
   EuiPinnableListGroupItemProps,
   EuiFlexItem,
@@ -17,9 +16,8 @@ import {
 } from '@elastic/eui';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
-import { KibanaNavLinks, SecurityGroup } from './collapsible_nav_list';
 
-import ThemeSwitcher from './theme_switcher';
+import ThemeSwitcher from '../../components/chrome/theme_switcher';
 
 const TopLinks: EuiPinnableListGroupItemProps[] = [
   {
@@ -27,27 +25,18 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
     iconType: 'home',
     isActive: true,
     'aria-current': true,
-    href: '/',
+    href: '/kibana',
     pinnable: false,
   },
 ];
-const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
-  link => {
-    return {
-      ...link,
-      href: '/',
-    };
-  }
-);
-const LearnLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Docs', href: '/docs/' },
-  { label: 'Blogs', href: '/' },
-  { label: 'Webinars', href: '/' },
-  { label: 'Elastic.co', href: 'https://elastic.co' },
+
+const KibanaLinks: EuiPinnableListGroupItemProps[] = [
+  { label: 'Discover', href: '/kibana/discover' },
+  { label: 'Dashboards', href: '/kibana/dashboards' },
 ];
 
 const CollapsibleNav = () => {
-  const [navIsOpen, setNavIsOpen] = useState(true);
+  const [navIsOpen, setNavIsOpen] = useState(false);
 
   const breadcrumbs = [
     {
@@ -58,7 +47,7 @@ const CollapsibleNav = () => {
   /**
    * Accordion toggling
    */
-  const [openGroups, setOpenGroups] = useState(['Kibana', 'Learn']);
+  const [openGroups, setOpenGroups] = useState(['Kibana']);
 
   // Save which groups are open and which are not with state and local store
   const toggleAccordion = (isOpen: boolean, title?: string) => {
@@ -186,9 +175,7 @@ const CollapsibleNav = () => {
 
       <EuiHorizontalRule margin="none" />
 
-      {/* BOTTOM */}
       <EuiFlexItem className="eui-yScroll">
-        {/* Kibana section */}
         <EuiCollapsibleNavGroup
           title={
             <a
@@ -214,53 +201,13 @@ const CollapsibleNav = () => {
             size="s"
           />
         </EuiCollapsibleNavGroup>
-
-        {/* Security callout */}
-        {SecurityGroup}
-
-        {/* Learn section */}
-        <EuiCollapsibleNavGroup
-          title={
-            <a
-              className="eui-textInheritColor"
-              href="#/navigation/collapsible-nav"
-              onClick={e => e.stopPropagation()}>
-              Training
-            </a>
-          }
-          buttonElement="div"
-          iconType="training"
-          isCollapsible={true}
-          initialIsOpen={openGroups.includes('Learn')}
-          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}>
-          <EuiPinnableListGroup
-            aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-            listItems={alterLinksWithCurrentState(LearnLinks)}
-            pinTitle={addLinkNameToPinTitle}
-            onPinClick={addPin}
-            maxWidth="none"
-            color="subdued"
-            gutterSize="none"
-            size="s"
-          />
-        </EuiCollapsibleNavGroup>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        {/* Span fakes the nav group into not being the first item and therefore adding a top border */}
-        <span />
-        <EuiCollapsibleNavGroup>
-          <EuiButton fill fullWidth iconType="plusInCircleFilled">
-            Add data
-          </EuiButton>
-        </EuiCollapsibleNavGroup>
       </EuiFlexItem>
     </EuiCollapsibleNav>
   );
 
   const leftSectionItems = [collapsibleNav];
 
-  const headers = (
+  return (
     <>
       <EuiHeader
         theme="dark"
@@ -310,8 +257,6 @@ const CollapsibleNav = () => {
       />
     </>
   );
-
-  return headers;
 };
 
 export default CollapsibleNav;
