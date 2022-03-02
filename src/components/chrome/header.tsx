@@ -1,11 +1,20 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { EuiHeader, EuiTitle, useEuiTheme } from '@elastic/eui';
+import {
+  EuiHeader,
+  EuiTitle,
+  EuiHeaderSectionItemButton,
+  useEuiTheme,
+  EuiToolTip,
+  EuiIcon,
+} from '@elastic/eui';
 import ThemeSwitcher from '../../components/chrome/theme_switcher';
 
 const Header = () => {
   const { euiTheme } = useEuiTheme();
+  const href = 'https://github.com/elastic/next-eui-starter';
+  const label = 'EUI GitHub repo';
 
   return (
     <EuiHeader
@@ -35,7 +44,14 @@ const Header = () => {
           borders: 'none',
         },
         {
-          items: [<ThemeSwitcher key="theme-switcher" />],
+          items: [
+            <ThemeSwitcher key="theme-switcher" />,
+            <EuiToolTip content="Github" key="github">
+              <EuiHeaderSectionItemButton aria-label={label} href={href}>
+                <EuiIcon type="logoGithub" aria-hidden="true" />
+              </EuiHeaderSectionItemButton>
+            </EuiToolTip>,
+          ],
           borders: 'none',
         },
       ]}

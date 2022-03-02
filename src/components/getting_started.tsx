@@ -3,95 +3,84 @@ import {
   EuiSteps,
   EuiText,
   EuiCodeBlock,
-  EuiSubSteps,
   EuiSpacer,
 } from '@elastic/eui';
 
 const steps = [
   {
-    title: 'Step 1 has intro plus code snippet',
+    title: 'Install yarn',
     children: (
       <>
         <EuiText>
-          <p>Run this code snippet to install things.</p>
+          <p>
+            This starter expects to use yarn to manage dependencies, so go
+            install it.
+          </p>
         </EuiText>
         <EuiSpacer />
-        <EuiCodeBlock language="bash">npm install</EuiCodeBlock>
       </>
     ),
   },
   {
-    title: 'Step 2 has sub steps',
+    title: 'Copy the Next.js starter',
     children: (
       <EuiText>
-        <p>
-          In order to complete this step, do the following things{' '}
-          <strong>in order</strong>.
-        </p>
-        <EuiSubSteps>
-          <ol>
-            <li>Do thing 1</li>
-            <li>Do thing 2</li>
-            <li>Do thing 3</li>
-          </ol>
-        </EuiSubSteps>
-        <p>Here are some bullet point reminders.</p>
-        <ul>
-          <li>Reminder 1</li>
-          <li>Reminder 2</li>
-          <li>Reminder 3</li>
-        </ul>
+        <p>Clone the repository:</p>
+        <EuiCodeBlock language="bash">
+          git clone https://github.com/elastic/next-eui-starter.git
+          my-eui-starter
+        </EuiCodeBlock>
       </EuiText>
     ),
   },
   {
-    title: 'Step 3 has an intro and one line instruction',
+    title: 'Start developing',
     children: (
       <EuiText>
-        <p>
-          Now that you&apos;ve completed step 2, go find the{' '}
-          <EuiCode>thing</EuiCode>.
-        </p>
-        <p>
-          Go to <strong>Overview &gt;&gt; Endpoints</strong> note{' '}
-          <strong>Elasticsearch</strong> as <EuiCode>&lt;thing&gt;</EuiCode>.
-        </p>
+        <p>Navigate into your new site’s directory and start it up.</p>
+        <EuiCodeBlock language="bash" isCopyable>
+          {`cd my-eui-starter/
+
+# Install depdendencies.
+yarn
+
+# Optional: start a new git project
+rm -rf .git && git init && git add . && git commit -m "Initial commit"
+
+# Start the dev server
+yarn dev`}
+        </EuiCodeBlock>
       </EuiText>
     ),
   },
   {
-    title: 'The last step has two options',
+    title: 'Open the source code and start editing!',
     children: (
-      <EuiText size="s">
-        <h3>
-          <strong>Option 1:</strong> If you have this type of instance
-        </h3>
-        <EuiSubSteps>
-          <ol>
-            <li>Do thing 1</li>
-            <li>Do thing 2</li>
-            <li>Do thing 3</li>
-          </ol>
-        </EuiSubSteps>
-        <h3>
-          <strong>Option 2:</strong> If you have the other type of instance
-        </h3>
-        <EuiSubSteps>
-          <ol>
-            <li>Do thing 1</li>
-            <li>Do thing 2</li>
-            <li>Do thing 3</li>
-          </ol>
-        </EuiSubSteps>
+      <EuiText>
+        <p>
+          Your site is now running at <EuiCode>http://localhost:3000</EuiCode>.
+        </p>
+        <p>
+          Open the <EuiCode>my-eui-starter</EuiCode> directory in your code
+          editor of choice and edit <EuiCode>src/pages/index.tsx</EuiCode>. Save
+          your changes and the browser will update in real time!
+        </p>
+        <p>
+          You can also start by using one of available templates:{' '}
+          <strong>kibana</strong> or <strong>docs</strong>. For that just edit{' '}
+          <EuiCode>src/pages/kibana/index.tsx</EuiCode> or{' '}
+          <EuiCode>src/pages/docs/index.tsx</EuiCode>
+        </p>
+        <p>
+          Those pages are going run in{' '}
+          <EuiCode>http://localhost:3000/kibana</EuiCode> or{' '}
+          <EuiCode>http://localhost:3000/docs</EuiCode>
+        </p>
       </EuiText>
     ),
   },
 ];
 
-const GettingStarted = () => (
-  <div>
-    <EuiSteps headingElement="h2" steps={steps} />
-  </div>
-);
+const GettingStarted = () => <EuiSteps headingElement="h2" steps={steps} />;
 
 export default GettingStarted;

@@ -147,16 +147,14 @@ const Index: FunctionComponent = () => {
                 alt=""
               />
             </span>
-            <div>
-              <EuiSpacer size="xxl" />
-
+            <div
+              css={css`
+                max-width: 800px;
+                padding-top: calc(${euiTheme.size.xxl} * 2);
+                padding-bottom: calc(${euiTheme.size.xxl} * 2);
+              `}>
               <EuiTitle>
-                <h2 id="getting-started">
-                  Get started!{' '}
-                  <span role="img" aria-label="Rocket emoji">
-                    🚀
-                  </span>
-                </h2>
+                <h2 id="getting-started">How to get started?</h2>
               </EuiTitle>
 
               <EuiSpacer size="xxl" />
