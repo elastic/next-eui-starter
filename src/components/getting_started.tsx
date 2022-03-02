@@ -6,7 +6,6 @@ import {
   EuiSubSteps,
   EuiSpacer,
 } from '@elastic/eui';
-import React from 'react';
 
 const steps = [
   {

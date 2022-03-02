@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import NextEuiButton from './next_eui/button';
 
