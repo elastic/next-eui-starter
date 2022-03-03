@@ -5,7 +5,7 @@ const KibanaLayout = ({ children }) => {
   return (
     <div
       css={css`
-        padding-top: 96px; // top nav
+        padding-top: 96px; // two top navs
         max-height: calc(100vh - 96px);
       `}>
       <CollapsibleNav />

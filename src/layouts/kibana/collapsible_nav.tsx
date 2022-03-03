@@ -16,6 +16,7 @@ import {
 } from '@elastic/eui';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
+import { css } from '@emotion/react';
 
 import ThemeSwitcher from '../../components/chrome/theme_switcher';
 
@@ -119,6 +120,12 @@ const CollapsibleNav = () => {
 
   const collapsibleNav = (
     <EuiCollapsibleNav
+      ownFocus={false}
+      css={css`
+        margin-top: 96px; // two top navs
+        min-height: calc(100vh - 96px);
+        display: flex;
+      `}
       id={collapsibleNavId}
       aria-label="Main navigation"
       isOpen={navIsOpen}

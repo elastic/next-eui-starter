@@ -5,6 +5,7 @@ import {
   EuiTitle,
   EuiSpacer,
   EuiText,
+  EuiButton,
   EuiLink,
 } from '@elastic/eui';
 import HomeIllustration from './home_illustration';
@@ -28,23 +29,27 @@ const HomeHero: FunctionComponent = () => {
         <EuiSpacer size="s" />
         <EuiText grow={false}>
           <p>
-            The NextJS Starter uses NextJS(opens in a new tab or window) and
-            EUI(opens in a new tab or window) to help you make prototypes. You
-            just need to know a few basic NextJS concepts and how to use EUI and
-            you&apos;re ready to ship it!
+            The NextJS Starter uses{' '}
+            <EuiLink external={true} target="_blank" href="https://nextjs.org/">
+              Next.js
+            </EuiLink>{' '}
+            and{' '}
+            <EuiLink
+              href="https://elastic.github.io/eui/"
+              external={true}
+              target="_blank">
+              EUI library
+            </EuiLink>{' '}
+            to help you make prototypes. You just need to know a few basic
+            NextJS concepts and how to use EUI and you&apos;re ready to ship it!
           </p>
           <EuiFlexGroup gutterSize="xl" wrap responsive={false}>
             <EuiFlexItem grow={false}>
               <Link href="/getting-started" passHref>
-                <EuiLink>
+                <EuiButton>
                   <strong>Getting started</strong>
-                </EuiLink>
+                </EuiButton>
               </Link>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiLink href="https://github.com/elastic/eui/blob/main/CONTRIBUTING.md">
-                <strong>Contributing</strong>
-              </EuiLink>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiText>

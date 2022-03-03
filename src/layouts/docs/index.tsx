@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { css } from '@emotion/react';
 import {
   EuiHeader,
@@ -10,38 +9,21 @@ import {
 } from '@elastic/eui';
 import ThemeSwitcher from '../../components/chrome/theme_switcher';
 
-const DocsLayout = ({ title, children, iconType, description }) => {
-  const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
-
-  const toggleOpenOnMobile = () => {
-    setisSideNavOpenOnMobile(!isSideNavOpenOnMobile);
-  };
-
+const DocsLayout = ({ pageHeader, children }) => {
   const sideNav = [
     {
-      name: 'Root item',
+      name: 'Docs',
       id: htmlIdGenerator('basicExample')(),
       items: [
         {
-          name: 'Item with onClick',
+          name: 'Home',
           id: htmlIdGenerator('basicExample')(),
-          onClick: () => {},
+          href: '/docs/',
         },
         {
-          name: 'Item with href',
+          name: 'Page 2',
           id: htmlIdGenerator('basicExample')(),
-          href: '/#/navigation/side-nav',
-        },
-        {
-          name: 'Selected item',
-          id: htmlIdGenerator('basicExample')(),
-          onClick: () => {},
-          isSelected: true,
-        },
-        {
-          name: 'Disabled item',
-          id: htmlIdGenerator('basicExample')(),
-          disabled: true,
+          href: '/docs/page-2',
         },
       ],
     },
@@ -73,12 +55,8 @@ const DocsLayout = ({ title, children, iconType, description }) => {
         ]}
       />
       <EuiPageTemplate
-        pageSideBar={<EuiSideNav mobileTitle="Nav Items" items={sideNav} />}
-        pageHeader={{
-          iconType: iconType,
-          pageTitle: title,
-          description: description,
-        }}>
+        pageHeader={pageHeader}
+        pageSideBar={<EuiSideNav mobileTitle="Nav Items" items={sideNav} />}>
         {children}
       </EuiPageTemplate>
     </div>
