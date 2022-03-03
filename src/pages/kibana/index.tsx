@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react';
 import {
   EuiPageTemplate,
-  EuiText,
   EuiFlexGroup,
   EuiFlexItem,
   EuiCard,
@@ -24,7 +23,6 @@ const Index: FunctionComponent = () => {
               icon={<EuiIcon size="xxl" type="discoverApp" />}
               title="Discover"
               description="Example of a card's description. Stick to one or two sentences."
-              onClick={() => {}}
             />
           </EuiFlexItem>
           <EuiFlexItem>
@@ -32,7 +30,6 @@ const Index: FunctionComponent = () => {
               icon={<EuiIcon size="xxl" type="dashboardApp" />}
               title="Dashboards"
               description="Example of a card's description. Stick to one or two sentences."
-              onClick={() => {}}
             />
           </EuiFlexItem>
 
@@ -41,7 +38,6 @@ const Index: FunctionComponent = () => {
               icon={<EuiIcon size="xxl" type="lensApp" />}
               title="Lens"
               description="Example of a card's description. Stick to one or two sentences."
-              onClick={() => {}}
             />
           </EuiFlexItem>
         </EuiFlexGroup>
