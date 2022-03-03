@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
-import { EuiFlexGroup, EuiFlexItem, EuiIcon, EuiCard } from '@elastic/eui';
-import { useTheme } from './theme';
+import { useTheme } from '../theme';
 import { css } from '@emotion/react';
 import Image from 'next/image';
 

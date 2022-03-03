@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { EuiFlexGroup, EuiFlexItem, EuiIcon, EuiCard } from '@elastic/eui';
-import { useTheme } from './theme';
+import { useTheme } from '../theme';
 
 const HomeCards: FunctionComponent = () => {
   const { colorMode } = useTheme();

@@ -81,6 +81,8 @@ yarn dev`}
   },
 ];
 
-const GettingStarted = () => <EuiSteps headingElement="h2" steps={steps} />;
+const GettingStartedSteps = () => (
+  <EuiSteps headingElement="h2" steps={steps} />
+);
 
-export default GettingStarted;
+export default GettingStartedSteps;

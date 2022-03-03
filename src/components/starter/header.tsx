@@ -9,7 +9,7 @@ import {
   EuiToolTip,
   EuiIcon,
 } from '@elastic/eui';
-import ThemeSwitcher from '../../components/chrome/theme_switcher';
+import ThemeSwitcher from './theme_switcher';
 
 const Header = () => {
   const { euiTheme } = useEuiTheme();

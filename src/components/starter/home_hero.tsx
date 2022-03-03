@@ -35,8 +35,8 @@ const HomeHero: FunctionComponent = () => {
           </p>
           <EuiFlexGroup gutterSize="xl" wrap responsive={false}>
             <EuiFlexItem grow={false}>
-              <Link href="/#getting-started" passHref>
-                <EuiLink href="/guidelines/getting-started">
+              <Link href="/getting-started" passHref>
+                <EuiLink>
                   <strong>Getting started</strong>
                 </EuiLink>
               </Link>
