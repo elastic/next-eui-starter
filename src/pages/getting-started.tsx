@@ -45,6 +45,7 @@ const GettingStarted: FunctionComponent = () => {
                 'aria-current': false,
                 href: '#',
                 onClick: handleClick,
+                //@ts-ignore
                 color: 'primary',
               },
             ]}
