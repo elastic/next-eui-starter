@@ -3,9 +3,13 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { EuiPanel, useEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
+import { useTheme } from '../theme';
 
 const DocPanel: FunctionComponent = ({ children }) => {
   const { euiTheme } = useEuiTheme();
+  const { colorMode } = useTheme();
+
+  const pattern2 = `/images/patterns/pattern-2-${colorMode}.svg`;
 
   return (
     <>
@@ -43,12 +47,7 @@ const DocPanel: FunctionComponent = ({ children }) => {
             right: 0;
             bottom: 0;
           `}>
-          <Image
-            width={165}
-            height={130}
-            src="/images/patterns/pattern-2.svg"
-            alt=""
-          />
+          <Image width={165} height={130} src={pattern2} alt="" />
         </span>
         <div
           css={css`

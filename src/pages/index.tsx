@@ -1,9 +1,10 @@
 import { FunctionComponent } from 'react';
 import Head from 'next/head';
-import { EuiHorizontalRule } from '@elastic/eui';
-import HomeCards from '../components/starter/home_cards';
+import { EuiSpacer } from '@elastic/eui';
 import HomeHero from '../components/starter/home_hero';
 import Wrapper from '../components/starter/wrapper';
+import HomeTemplates from '../components/starter/home_templates';
+import HomeWhy from '../components/starter/home_why';
 
 const Index: FunctionComponent = () => {
   return (
@@ -15,11 +16,19 @@ const Index: FunctionComponent = () => {
       <Wrapper>
         <HomeHero />
 
-        <EuiHorizontalRule />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
 
-        <HomeCards />
+        <HomeWhy />
 
-        <EuiHorizontalRule />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
+
+        <HomeTemplates />
+
+        <EuiSpacer size="xxl" />
+        <EuiSpacer size="xxl" />
       </Wrapper>
     </>
   );

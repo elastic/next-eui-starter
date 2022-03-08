@@ -5,6 +5,7 @@ import {
   EuiCodeBlock,
   EuiSpacer,
 } from '@elastic/eui';
+import Link from 'next/link';
 
 const steps = [
   {
@@ -13,8 +14,9 @@ const steps = [
       <>
         <EuiText>
           <p>
-            This starter expects to use yarn to manage dependencies, so go
-            install it.
+            This starter expects to use{' '}
+            <Link href="https://yarnpkg.com/">yarn</Link> to manage
+            dependencies, so go install it.
           </p>
         </EuiText>
         <EuiSpacer />
@@ -69,12 +71,9 @@ yarn dev`}
           You can also start by using one of available templates:{' '}
           <strong>kibana</strong> or <strong>docs</strong>. For that just edit{' '}
           <EuiCode>src/pages/kibana/index.tsx</EuiCode> or{' '}
-          <EuiCode>src/pages/docs/index.tsx</EuiCode>
-        </p>
-        <p>
-          Those pages are going run in{' '}
-          <EuiCode>http://localhost:3000/kibana</EuiCode> or{' '}
-          <EuiCode>http://localhost:3000/docs</EuiCode>
+          <EuiCode>src/pages/docs/index.tsx</EuiCode>. These pages are going run
+          in <EuiCode>http://localhost:3000/kibana</EuiCode> or{' '}
+          <EuiCode>http://localhost:3000/docs</EuiCode> respectively.
         </p>
       </EuiText>
     ),

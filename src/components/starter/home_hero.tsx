@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { css } from '@emotion/react';
 import {
   EuiFlexGroup,
   EuiFlexItem,
@@ -10,8 +11,15 @@ import {
 } from '@elastic/eui';
 import HomeIllustration from './home_illustration';
 import Link from 'next/link';
+import { useTheme } from '../theme';
 
 const HomeHero: FunctionComponent = () => {
+  const { colorMode } = useTheme();
+
+  const isDarkTheme = colorMode === 'dark';
+
+  const circleCenterColor = isDarkTheme ? 'black' : 'white';
+
   return (
     <EuiFlexGroup
       alignItems="center"
@@ -30,31 +38,39 @@ const HomeHero: FunctionComponent = () => {
         <EuiText grow={false}>
           <p>
             The NextJS Starter uses{' '}
-            <EuiLink external={true} target="_blank" href="https://nextjs.org/">
-              Next.js
-            </EuiLink>{' '}
-            and{' '}
-            <EuiLink
-              href="https://elastic.github.io/eui/"
-              external={true}
-              target="_blank">
+            <EuiLink external={true} href="https://nextjs.org/">
+              NextJS
+            </EuiLink>
+            ,{' '}
+            <EuiLink href="https://elastic.github.io/eui/" external={true}>
               EUI library
+            </EuiLink>
+            , and{' '}
+            <EuiLink
+              href="https://emotion.sh/docs/introduction"
+              external={true}>
+              Emotion
             </EuiLink>{' '}
             to help you make prototypes. You just need to know a few basic
             NextJS concepts and how to use EUI and you&apos;re ready to ship it!
           </p>
-          <EuiFlexGroup gutterSize="xl" wrap responsive={false}>
-            <EuiFlexItem grow={false}>
-              <Link href="/getting-started" passHref>
-                <EuiButton>
-                  <strong>Getting started</strong>
-                </EuiButton>
-              </Link>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+
+          <Link href="/getting-started" passHref>
+            <EuiButton>
+              <strong>Getting started</strong>
+            </EuiButton>
+          </Link>
         </EuiText>
       </EuiFlexItem>
-      <EuiFlexItem>
+      <EuiFlexItem
+        css={css`
+          background: radial-gradient(
+            circle at center,
+            ${circleCenterColor} 0,
+            transparent 70%,
+            transparent 100%
+          );
+        `}>
         <HomeIllustration />
       </EuiFlexItem>
     </EuiFlexGroup>
