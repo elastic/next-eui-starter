@@ -23,7 +23,7 @@ const GradientBg: FunctionComponent = ({ children }) => {
     <div
       css={css`
         position: relative;
-        margin-top: 48px; // top nav
+        padding-top: 48px; // top nav
         min-height: calc(100vh - 48px);
         background: radial-gradient(
             circle 600px at top left,
