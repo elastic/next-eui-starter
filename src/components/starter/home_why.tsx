@@ -9,11 +9,8 @@ import {
   EuiIcon,
 } from '@elastic/eui';
 import Link from 'next/link';
-import { useTheme } from '../theme';
 
 const HomeWhy: FunctionComponent = () => {
-  const { colorMode } = useTheme();
-
   return (
     <>
       <EuiTitle size="l">

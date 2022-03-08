@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { EuiButtonIcon } from '@elastic/eui';
+import { EuiButtonIcon, EuiToolTip } from '@elastic/eui';
 import { useTheme } from '../theme';
 
 /**
@@ -14,14 +14,15 @@ const ThemeSwitcher: FunctionComponent = () => {
     setColorMode(newTheme);
   };
 
+  const lightOrDark = isDarkTheme ? 'light' : 'dark';
+
   return (
-    <EuiButtonIcon
-      color="text"
-      iconType={isDarkTheme ? 'sun' : 'moon'}
-      aria-label="Change theme"
-      onClick={() =>
-        handleChangeTheme(isDarkTheme ? 'light' : 'dark')
-      }></EuiButtonIcon>
+    <EuiToolTip content={`Change theme to ${lightOrDark}`} key="github">
+      <EuiButtonIcon
+        color="text"
+        iconType={isDarkTheme ? 'sun' : 'moon'}
+        onClick={() => handleChangeTheme(lightOrDark)}></EuiButtonIcon>
+    </EuiToolTip>
   );
 };
 
