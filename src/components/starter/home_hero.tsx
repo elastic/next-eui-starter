@@ -62,15 +62,7 @@ const HomeHero: FunctionComponent = () => {
           </Link>
         </EuiText>
       </EuiFlexItem>
-      <EuiFlexItem
-        css={css`
-          background: radial-gradient(
-            circle at center,
-            ${circleCenterColor} 0,
-            transparent 70%,
-            transparent 100%
-          );
-        `}>
+      <EuiFlexItem>
         <HomeIllustration />
       </EuiFlexItem>
     </EuiFlexGroup>
