@@ -66,6 +66,8 @@ const HomeTemplates: FunctionComponent = () => {
       <EuiFlexGroup gutterSize="xl">
         <EuiFlexItem>
           <EuiPanel
+            color="transparent"
+            hasBorder
             css={css`
               position: relative;
             `}>
@@ -96,6 +98,8 @@ const HomeTemplates: FunctionComponent = () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel
+            color="transparent"
+            hasBorder
             css={css`
               position: relative;
             `}>

@@ -39,6 +39,8 @@ const HomeWhy: FunctionComponent = () => {
         <EuiFlexItem>
           <EuiCard
             icon={<EuiIcon size="l" type="cheer" />}
+            display="transparent"
+            hasBorder
             title="Prototype"
             description="This starter comes with NextJS, EUI, and Emotion so these give an easy setup to prototype."
           />
@@ -46,6 +48,8 @@ const HomeWhy: FunctionComponent = () => {
         <EuiFlexItem>
           <EuiCard
             icon={<EuiIcon size="l" type="training" />}
+            display="transparent"
+            hasBorder
             title="Learn how to code"
             description="An easy way to learn how to use EUI and ReactJS, or Emotion."
           />
@@ -53,6 +57,8 @@ const HomeWhy: FunctionComponent = () => {
         <EuiFlexItem>
           <EuiCard
             icon={<EuiIcon size="l" type="beaker" />}
+            display="transparent"
+            hasBorder
             title="Experiment"
             description="This starter gives you the perfect environment to experiment
             with functionalities, plugins, or anything custom."
@@ -61,6 +67,8 @@ const HomeWhy: FunctionComponent = () => {
         <EuiFlexItem>
           <EuiCard
             icon={<EuiIcon size="l" type="wrench" />}
+            display="transparent"
+            hasBorder
             title="Test a functionality"
             description="The perfect environment to test a new EUI component or any ReactJS react component. "
           />
