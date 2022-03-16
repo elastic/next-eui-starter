@@ -222,7 +222,7 @@ const CollapsibleNav = () => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo key="ops" iconType="logoElastic">
+              <EuiHeaderLogo key="ops" iconType="logoElastic" href="/">
                 Elastic
               </EuiHeaderLogo>,
             ],

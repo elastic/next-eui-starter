@@ -34,7 +34,7 @@ const ThemeSwitcher: FunctionComponent = () => {
   const { euiTheme } = useEuiTheme();
 
   return (
-    <EuiToolTip content={`Chang theme to ${lightOrDark}`} key="theme-switch">
+    <EuiToolTip content={`Change theme to ${lightOrDark}`} key="theme-switch">
       <EuiHeaderSectionItemButton
         aria-label="Change theme"
         onClick={() => handleChangeTheme(lightOrDark)}>

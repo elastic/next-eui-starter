@@ -42,7 +42,7 @@ const DocsLayout = ({ pageHeader, children }) => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo key="elastic-docs" iconType="logoElastic">
+              <EuiHeaderLogo key="elastic-docs" iconType="logoElastic" href="/">
                 Elastic docs
               </EuiHeaderLogo>,
             ],
