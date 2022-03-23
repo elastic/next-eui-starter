@@ -2,12 +2,14 @@ import { FunctionComponent } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { EuiPanel, useEuiTheme } from '@elastic/eui';
-import { css } from '@emotion/react';
 import { useTheme } from '../theme';
+import { docPanelStyles } from './doc_panel.styles';
 
 const DocPanel: FunctionComponent = ({ children }) => {
   const { euiTheme } = useEuiTheme();
   const { colorMode } = useTheme();
+
+  const styles = docPanelStyles(euiTheme);
 
   const pattern2 = `/images/patterns/pattern-2-${colorMode}.svg`;
 
@@ -17,22 +19,8 @@ const DocPanel: FunctionComponent = ({ children }) => {
         <title>Getting started</title>
       </Head>
 
-      <EuiPanel
-        css={css`
-          position: relative;
-          min-height: 280px;
-          overflow: hidden;
-          display: flex;
-          justify-content: center;
-          font-size: 20px;
-        `}>
-        <span
-          css={css`
-            display: flex;
-            position: absolute;
-            left: 0;
-            top: 0;
-          `}>
+      <EuiPanel css={styles.panel}>
+        <span css={styles.pattern1}>
           <Image
             width={165}
             height={130}
@@ -40,23 +28,10 @@ const DocPanel: FunctionComponent = ({ children }) => {
             alt=""
           />
         </span>
-        <span
-          css={css`
-            display: flex;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-          `}>
+        <span css={styles.pattern2}>
           <Image width={165} height={130} src={pattern2} alt="" />
         </span>
-        <div
-          css={css`
-            max-width: 800px;
-            padding-top: calc(${euiTheme.size.xxl} * 2);
-            padding-bottom: calc(${euiTheme.size.xxl} * 2);
-          `}>
-          {children}
-        </div>
+        <div css={styles.content}>{children}</div>
       </EuiPanel>
     </>
   );

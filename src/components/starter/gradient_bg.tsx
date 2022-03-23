@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import { useEuiTheme, transparentize } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { useTheme } from '../theme';
+import { gradientBgStyles } from './gradient_bg.styles';
 
 const GradientBg: FunctionComponent = ({ children }) => {
   const { euiTheme } = useEuiTheme();
@@ -19,51 +20,9 @@ const GradientBg: FunctionComponent = ({ children }) => {
     bottomLeft: transparentize(euiTheme.colors.accent, alpha),
   };
 
-  return (
-    <div
-      css={css`
-        position: relative;
-        padding-top: 48px; // top nav
-        min-height: calc(100vh - 48px);
-        background: radial-gradient(
-            circle 600px at top left,
-            ${backgroundColors.topLeft},
-            transparent
-          ),
-          radial-gradient(
-            circle 800px at 600px 200px,
-            ${backgroundColors.centerTop},
-            transparent
-          ),
-          radial-gradient(
-            circle 800px at top right,
-            ${backgroundColors.topRight},
-            transparent
-          ),
-          radial-gradient(
-            circle 800px at left center,
-            ${backgroundColors.centerMiddleLeft},
-            transparent
-          ),
-          radial-gradient(
-            circle 800px at right center,
-            ${backgroundColors.centerMiddleRight},
-            transparent
-          ),
-          radial-gradient(
-            circle 800px at right bottom,
-            ${backgroundColors.bottomRight},
-            transparent
-          ),
-          radial-gradient(
-            circle 800px at left bottom,
-            ${backgroundColors.bottomLeft},
-            transparent
-          );
-      `}>
-      {children}
-    </div>
-  );
+  const styles = gradientBgStyles(backgroundColors);
+
+  return <div css={styles.gradientBg}>{children}</div>;
 };
 
 export default GradientBg;

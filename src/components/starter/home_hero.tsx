@@ -11,15 +11,8 @@ import {
 } from '@elastic/eui';
 import HomeIllustration from './home_illustration';
 import Link from 'next/link';
-import { useTheme } from '../theme';
 
 const HomeHero: FunctionComponent = () => {
-  const { colorMode } = useTheme();
-
-  const isDarkTheme = colorMode === 'dark';
-
-  const circleCenterColor = isDarkTheme ? 'black' : 'white';
-
   return (
     <EuiFlexGroup
       alignItems="center"

@@ -7,6 +7,7 @@ import {
   useEuiTheme,
 } from '@elastic/eui';
 import { useTheme } from '../theme';
+import { themeSwitcherStyles } from './theme_switcher.styles';
 
 /**
  * Current theme is set in localStorage
@@ -33,6 +34,8 @@ const ThemeSwitcher: FunctionComponent = () => {
   const lightOrDark = isDarkTheme ? 'light' : 'dark';
   const { euiTheme } = useEuiTheme();
 
+  const styles = themeSwitcherStyles(euiTheme);
+
   return (
     <EuiToolTip content={`Change theme to ${lightOrDark}`} key="theme-switch">
       <EuiHeaderSectionItemButton
@@ -41,11 +44,7 @@ const ThemeSwitcher: FunctionComponent = () => {
         <EuiIcon
           type={isDarkTheme ? 'sun' : 'moon'}
           aria-hidden="true"
-          css={css`
-            animation: ${rotate} 0.5s ease;
-            transition: all ${euiTheme.animation.extraSlow}
-              ${euiTheme.animation.bounce};
-          `}
+          css={styles.animation}
         />
       </EuiHeaderSectionItemButton>
     </EuiToolTip>

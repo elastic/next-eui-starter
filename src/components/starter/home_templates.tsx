@@ -13,6 +13,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from '../theme';
+import { homeTemplates } from './home_templates.styles';
 
 const HomeTemplates: FunctionComponent = () => {
   const { colorMode } = useTheme();
@@ -20,15 +21,11 @@ const HomeTemplates: FunctionComponent = () => {
 
   const pattern2 = `/images/patterns/pattern-2-${colorMode}.svg`;
 
+  const styles = homeTemplates(euiTheme);
+
   const circles = (
     <>
-      <span
-        css={css`
-          display: flex;
-          position: absolute;
-          left: 0;
-          top: 0;
-        `}>
+      <span css={styles.circle1}>
         <Image
           width={165 / 2}
           height={130 / 2}
@@ -36,13 +33,7 @@ const HomeTemplates: FunctionComponent = () => {
           alt=""
         />
       </span>
-      <span
-        css={css`
-          display: flex;
-          position: absolute;
-          right: 0;
-          bottom: 0;
-        `}>
+      <span css={styles.circle2}>
         <Image width={165 / 2} height={130 / 2} src={pattern2} alt="" />
       </span>
     </>
@@ -65,17 +56,9 @@ const HomeTemplates: FunctionComponent = () => {
 
       <EuiFlexGroup gutterSize="xl">
         <EuiFlexItem>
-          <EuiPanel
-            color="transparent"
-            hasBorder
-            css={css`
-              position: relative;
-            `}>
+          <EuiPanel color="transparent" hasBorder css={styles.panel}>
             {circles}
-            <div
-              css={css`
-                padding: ${euiTheme.size.xxxxl} 0;
-              `}>
+            <div css={styles.panelInner}>
               <EuiTitle size="s">
                 <h3>Kibana template</h3>
               </EuiTitle>
@@ -97,17 +80,9 @@ const HomeTemplates: FunctionComponent = () => {
           </EuiPanel>
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiPanel
-            color="transparent"
-            hasBorder
-            css={css`
-              position: relative;
-            `}>
+          <EuiPanel color="transparent" hasBorder css={styles.panel}>
             {circles}
-            <div
-              css={css`
-                padding: ${euiTheme.size.xxxxl} 0;
-              `}>
+            <div css={styles.panelInner}>
               <EuiTitle size="s">
                 <h3>Docs template</h3>
               </EuiTitle>

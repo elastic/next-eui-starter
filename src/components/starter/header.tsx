@@ -10,11 +10,13 @@ import {
   EuiIcon,
 } from '@elastic/eui';
 import ThemeSwitcher from './theme_switcher';
+import { headerStyles } from './header.styles';
 
 const Header = () => {
   const { euiTheme } = useEuiTheme();
   const href = 'https://github.com/elastic/next-eui-starter';
   const label = 'EUI GitHub repo';
+  const styles = headerStyles(euiTheme);
 
   return (
     <EuiHeader
@@ -23,12 +25,7 @@ const Header = () => {
         {
           items: [
             <Link key="logo-eui" href="/" passHref>
-              <a
-                css={css`
-                  display: inline-flex;
-                  flex-wrap: wrap;
-                  gap: ${euiTheme.size.m};
-                `}>
+              <a css={styles.logo}>
                 <Image
                   width={24}
                   height={24}
