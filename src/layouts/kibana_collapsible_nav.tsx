@@ -18,7 +18,7 @@ import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import { css } from '@emotion/react';
 
-import ThemeSwitcher from '../../components/chrome/theme_switcher';
+import ThemeSwitcher from '../components/chrome/theme_switcher';
 
 const TopLinks: EuiPinnableListGroupItemProps[] = [
   {
@@ -34,46 +34,6 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
 const KibanaLinks: EuiPinnableListGroupItemProps[] = [
   { label: 'Discover', href: '/kibana/discover' },
   { label: 'Dashboard', href: '/kibana/dashboards' },
-  { label: 'Canvas', href: '/kibana/canvas' },
-  { label: 'Maps', href: '/kibana/maps' },
-  { label: 'Machine Learning', href: '/kibana/machine-learning' },
-  { label: 'Graph', href: '/kibana/graph' },
-  { label: 'Visualize Library', href: '/kibana/visualize-library' },
-];
-
-const EntSearchLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'App Search', href: '/enterprise-search/app-search' },
-  { label: 'Workplace Search', href: '/enterprise-search/workplace-search' },
-];
-
-const ObservabilityLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Overview', href: '/observability/overview' },
-  { label: 'Alerts', href: '/observability/alerts' },
-  { label: 'Cases', href: '/observability/cases' },
-  { label: 'Logs', href: '/observability/logs' },
-  { label: 'Metrics', href: '/observability/metrics' },
-  { label: 'APM', href: '/observability/apm' },
-  { label: 'Uptime', href: '/observability/uptime' },
-  { label: 'User Experience', href: '/observability/ux' },
-];
-
-const SecurityLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Overview', href: '/security/overview' },
-  { label: 'Alerts', href: '/security/alerts' },
-  { label: 'Hosts', href: '/security/hosts' },
-  { label: 'Network', href: '/security/network' },
-  { label: 'Timelines', href: '/security/timelines' },
-  { label: 'Cases', href: '/security/cases' },
-  { label: 'Endpoints', href: '/security/endpoints' },
-];
-
-const ManagementLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Dev Tools', href: '/management/dev-tools' },
-  { label: 'Integrations', href: '/management/integrations' },
-  { label: 'Fleet', href: '/management/fleet' },
-  { label: 'Osquery', href: '/management/osquery' },
-  { label: 'Stack Monitoring', href: '/management/stack-monitoring' },
-  { label: 'Stack Management', href: '/management/stack-management' },
 ];
 
 const CollapsibleNav = () => {
@@ -235,110 +195,6 @@ const CollapsibleNav = () => {
           <EuiPinnableListGroup
             aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
             listItems={alterLinksWithCurrentState(KibanaLinks)}
-            pinTitle={addLinkNameToPinTitle}
-            onPinClick={addPin}
-            maxWidth="none"
-            color="subdued"
-            gutterSize="none"
-            size="s"
-          />
-        </EuiCollapsibleNavGroup>
-
-        <EuiCollapsibleNavGroup
-          title={
-            <a
-              className="eui-textInheritColor"
-              href="#/navigation/collapsible-nav"
-              onClick={e => e.stopPropagation()}>
-              Enteroprise Search
-            </a>
-          }
-          buttonElement="div"
-          iconType="logoEnterpriseSearch"
-          isCollapsible={true}
-          initialIsOpen={openGroups.includes('Kibana')}
-          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}>
-          <EuiPinnableListGroup
-            aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-            listItems={alterLinksWithCurrentState(EntSearchLinks)}
-            pinTitle={addLinkNameToPinTitle}
-            onPinClick={addPin}
-            maxWidth="none"
-            color="subdued"
-            gutterSize="none"
-            size="s"
-          />
-        </EuiCollapsibleNavGroup>
-
-        <EuiCollapsibleNavGroup
-          title={
-            <a
-              className="eui-textInheritColor"
-              href="#/navigation/collapsible-nav"
-              onClick={e => e.stopPropagation()}>
-              Observability
-            </a>
-          }
-          buttonElement="div"
-          iconType="logoObservability"
-          isCollapsible={true}
-          initialIsOpen={openGroups.includes('Kibana')}
-          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}>
-          <EuiPinnableListGroup
-            aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-            listItems={alterLinksWithCurrentState(ObservabilityLinks)}
-            pinTitle={addLinkNameToPinTitle}
-            onPinClick={addPin}
-            maxWidth="none"
-            color="subdued"
-            gutterSize="none"
-            size="s"
-          />
-        </EuiCollapsibleNavGroup>
-
-        <EuiCollapsibleNavGroup
-          title={
-            <a
-              className="eui-textInheritColor"
-              href="#/navigation/collapsible-nav"
-              onClick={e => e.stopPropagation()}>
-              Security
-            </a>
-          }
-          buttonElement="div"
-          iconType="logoSecurity"
-          isCollapsible={true}
-          initialIsOpen={openGroups.includes('Kibana')}
-          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}>
-          <EuiPinnableListGroup
-            aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-            listItems={alterLinksWithCurrentState(SecurityLinks)}
-            pinTitle={addLinkNameToPinTitle}
-            onPinClick={addPin}
-            maxWidth="none"
-            color="subdued"
-            gutterSize="none"
-            size="s"
-          />
-        </EuiCollapsibleNavGroup>
-
-        <EuiCollapsibleNavGroup
-          title={
-            <a
-              className="eui-textInheritColor"
-              href="#/navigation/collapsible-nav"
-              onClick={e => e.stopPropagation()}>
-              Management
-            </a>
-          }
-          buttonElement="div"
-          iconType="managementApp"
-          isCollapsible={true}
-          initialIsOpen={openGroups.includes('Kibana')}
-          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}>
-          <EuiPinnableListGroup
-            aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-            listItems={alterLinksWithCurrentState(ManagementLinks)}
             pinTitle={addLinkNameToPinTitle}
             onPinClick={addPin}
             maxWidth="none"

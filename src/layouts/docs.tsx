@@ -7,7 +7,8 @@ import {
   EuiSideNav,
   htmlIdGenerator,
 } from '@elastic/eui';
-import ThemeSwitcher from '../../components/chrome/theme_switcher';
+import ThemeSwitcher from '../components/chrome/theme_switcher';
+import { docsLayout } from './docs.styles';
 
 const DocsLayout = ({ pageHeader, children }) => {
   const sideNav = [
@@ -29,13 +30,10 @@ const DocsLayout = ({ pageHeader, children }) => {
     },
   ];
 
+  const styles = docsLayout();
+
   return (
-    <div
-      css={css`
-        margin-top: 48px; // top nav
-        min-height: calc(100vh - 48px);
-        display: flex;
-      `}>
+    <div css={styles.wrapper}>
       <EuiHeader
         theme="dark"
         position="fixed"

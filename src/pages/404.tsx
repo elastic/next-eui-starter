@@ -5,8 +5,8 @@ import {
   EuiPageTemplate,
   EuiImage,
 } from '@elastic/eui';
-import Link from 'next/link';
 import { useTheme } from '../components/theme';
+import { useRouter } from 'next/router';
 
 const NotFoundPage: FunctionComponent = () => {
   const { colorMode } = useTheme();
@@ -17,15 +17,24 @@ const NotFoundPage: FunctionComponent = () => {
     ? '/images/404_rainy_cloud_dark.png'
     : '/images/404_rainy_cloud_light.png';
 
+  const router = useRouter();
+
+  const handleClick = e => {
+    e.preventDefault();
+    router.back();
+  };
+
   return (
     <EuiPageTemplate template="empty">
       <EuiEmptyPrompt
         actions={[
-          <Link href="/" passHref key="ops">
-            <EuiButton color="primary" fill>
-              Go Home
-            </EuiButton>
-          </Link>,
+          <EuiButton
+            color="primary"
+            fill
+            onClick={handleClick}
+            key="404-go-back">
+            Go back
+          </EuiButton>,
         ]}
         body={
           <p>
