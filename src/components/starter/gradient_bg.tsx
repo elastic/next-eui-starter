@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
 import { useEuiTheme, transparentize } from '@elastic/eui';
-import { css } from '@emotion/react';
 import { useTheme } from '../theme';
 import { gradientBgStyles } from './gradient_bg.styles';
 

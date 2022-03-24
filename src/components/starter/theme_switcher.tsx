@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react';
-import { css, keyframes } from '@emotion/react';
 import {
   EuiHeaderSectionItemButton,
   EuiIcon,
@@ -8,20 +7,6 @@ import {
 } from '@elastic/eui';
 import { useTheme } from '../theme';
 import { themeSwitcherStyles } from './theme_switcher.styles';
-
-/**
- * Current theme is set in localStorage
- * so that it persists between visits.
- */
-
-const rotate = keyframes`
-   0% {
-     transform: rotate(0);
-   }
-   100% {
-     transform: rotate(360deg);
-   }
- `;
 
 const ThemeSwitcher: FunctionComponent = () => {
   const { colorMode, setColorMode } = useTheme();

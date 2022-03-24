@@ -1,10 +1,8 @@
 import { FunctionComponent } from 'react';
-import { css } from '@emotion/react';
 import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiTitle,
-  EuiSpacer,
   EuiText,
   EuiButton,
   EuiLink,

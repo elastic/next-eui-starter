@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
 import { EuiButtonIcon } from '@elastic/eui';
-
 import { useTheme } from '../theme';
 
 /**

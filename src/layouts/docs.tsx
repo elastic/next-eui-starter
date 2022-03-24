@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import {
   EuiHeader,
   EuiHeaderLogo,
