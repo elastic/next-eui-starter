@@ -8,13 +8,14 @@ import {
   EuiTitle,
   EuiIcon,
 } from '@elastic/eui';
-import { css } from '@emotion/react';
 import GettingStartedSteps from '../components/starter/getting_started_steps';
 import Wrapper from '../components/starter/wrapper';
 import DocPanel from '../components/starter/doc_panel';
+import { gettingStartedStyles } from '../styles/getting-started.styles';
 
 const GettingStarted: FunctionComponent = () => {
   const { euiTheme } = useEuiTheme();
+  const styles = gettingStartedStyles(euiTheme);
   const router = useRouter();
 
   const handleClick = e => {
@@ -29,11 +30,7 @@ const GettingStarted: FunctionComponent = () => {
       </Head>
 
       <Wrapper>
-        <div
-          css={css`
-            padding-top: ${euiTheme.size.xxl};
-            padding-bottom: ${euiTheme.size.xl};
-          `}>
+        <div css={styles.wrapperInner}>
           <EuiBreadcrumbs
             breadcrumbs={[
               {

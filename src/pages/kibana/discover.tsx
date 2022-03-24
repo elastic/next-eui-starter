@@ -7,11 +7,8 @@ const Discover: FunctionComponent = () => {
   return (
     <KibanaLayout>
       <EuiPageTemplate
-        template="centeredBody"
         pageHeader={{
-          iconType: 'logoKibana',
           pageTitle: 'Discover',
-          description: 'Lorem ipsum',
         }}>
         <EuiText>
           <p>

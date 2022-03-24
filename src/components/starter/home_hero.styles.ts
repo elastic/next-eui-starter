@@ -7,7 +7,7 @@ export const homeHeroStyles = euiTheme => ({
     @media (max-width: ${euiTheme.breakpoint.m}px) {
       text-align: center;
 
-      > .euiFlexItem:first-child {
+      > .euiFlexItem:first-of-type {
         order: 2;
       }
     }

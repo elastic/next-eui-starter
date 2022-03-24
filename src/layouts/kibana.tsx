@@ -4,9 +4,10 @@ import { kibanaLayoutStyles } from './kibana.styles';
 const KibanaLayout = ({ children }) => {
   const styles = kibanaLayoutStyles();
   return (
-    <div css={styles.wrapper}>
+    <div css={styles.mainWrapper}>
       <CollapsibleNav />
-      {children}
+
+      <div css={styles.contentWrapper}>{children}</div>
     </div>
   );
 };
