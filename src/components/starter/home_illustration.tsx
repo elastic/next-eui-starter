@@ -1,19 +1,19 @@
 import { FunctionComponent } from 'react';
 import { useTheme } from '../theme';
-import { css } from '@emotion/react';
 import Image from 'next/image';
+import { useEuiTheme } from '@elastic/eui';
 import { homeIllustration } from './home_illustration.styles';
 
 const HomeIllustration: FunctionComponent = () => {
   const { colorMode } = useTheme();
+  const { euiTheme } = useEuiTheme();
+  const styles = homeIllustration(euiTheme);
 
   const isDarkTheme = colorMode === 'dark';
 
   const illustration = isDarkTheme
     ? '/images/home/illustration-eui-hero-500-darkmode-shadow.svg'
     : '/images/home/illustration-eui-hero-500-shadow.svg';
-
-  const styles = homeIllustration();
 
   return (
     <div css={styles.homeIllustration}>

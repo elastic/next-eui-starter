@@ -11,24 +11,24 @@ import {
 } from '@elastic/eui';
 import HomeIllustration from './home_illustration';
 import Link from 'next/link';
+import { homeHeroStyles } from './home_hero.styles';
+import { useEuiTheme } from '@elastic/eui';
 
 const HomeHero: FunctionComponent = () => {
+  const { euiTheme } = useEuiTheme();
+  const styles = homeHeroStyles(euiTheme);
+
   return (
-    <EuiFlexGroup
-      alignItems="center"
-      gutterSize="none"
-      className="guideHome__hero">
+    <EuiFlexGroup alignItems="center" css={styles.container}>
       <EuiFlexItem>
-        <EuiTitle size="l">
+        <EuiTitle size="l" css={styles.title}>
           <h1>NextJS EUI Starter</h1>
         </EuiTitle>
-        <EuiSpacer />
-        <EuiSpacer />
-        <EuiTitle size="s">
+        <EuiTitle size="s" css={styles.subtitle}>
           <h2>Welcome to NextJS EUI Starter</h2>
         </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiText grow={false}>
+
+        <EuiText grow={false} css={styles.description}>
           <p>
             The NextJS Starter uses{' '}
             <EuiLink external={true} href="https://nextjs.org/">

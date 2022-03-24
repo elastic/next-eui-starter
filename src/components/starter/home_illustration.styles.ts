@@ -1,10 +1,14 @@
 import { css } from '@emotion/react';
 
-export const homeIllustration = () => ({
+export const homeIllustration = euiTheme => ({
   homeIllustration: css`
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+
+    @media (min-width: ${euiTheme.breakpoint.m}px) {
+      justify-content: flex-end;
+    }
   `,
   homeIllustrationEffect: css`
     display: block;

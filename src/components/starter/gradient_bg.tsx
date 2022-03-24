@@ -8,7 +8,7 @@ const GradientBg: FunctionComponent = ({ children }) => {
   const { euiTheme } = useEuiTheme();
   const { colorMode } = useTheme();
 
-  const alpha = colorMode === 'dark' ? 0.03 : 0.08;
+  const alpha = colorMode === 'dark' ? 0.03 : 0.05;
 
   const backgroundColors = {
     topLeft: transparentize(euiTheme.colors.success, alpha),
