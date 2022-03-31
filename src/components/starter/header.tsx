@@ -8,8 +8,10 @@ import {
   EuiToolTip,
   EuiIcon,
 } from '@elastic/eui';
+import { imageLoader } from '../../lib/loader';
 import ThemeSwitcher from './theme_switcher';
 import { headerStyles } from './header.styles';
+import Logo from '../../../public/images/logo-eui.svg';
 
 const Header = () => {
   const { euiTheme } = useEuiTheme();
@@ -28,8 +30,9 @@ const Header = () => {
                 <Image
                   width={24}
                   height={24}
-                  src="/images/logo-eui.svg"
+                  src={Logo}
                   alt=""
+                  loader={imageLoader}
                 />
                 <EuiTitle size="xxs">
                   <span>NextJS EUI Starter</span>

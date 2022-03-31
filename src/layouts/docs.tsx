@@ -9,6 +9,8 @@ import {
 import ThemeSwitcher from '../components/chrome/theme_switcher';
 import { docsLayout } from './docs.styles';
 
+const pathPrefix = process.env.PATH_PREFIX;
+
 const DocsLayout = ({ pageHeader, children }) => {
   const sideNav = [
     {
@@ -39,7 +41,10 @@ const DocsLayout = ({ pageHeader, children }) => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo key="elastic-docs" iconType="logoElastic" href="/">
+              <EuiHeaderLogo
+                key="elastic-docs"
+                iconType="logoElastic"
+                href={`${pathPrefix}`}>
                 Elastic docs
               </EuiHeaderLogo>,
             ],
