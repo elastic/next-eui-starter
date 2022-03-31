@@ -1,59 +1,27 @@
-import React, { FunctionComponent, useState } from 'react';
-import {
-  EuiButtonIcon,
-  EuiContextMenuItem,
-  EuiContextMenuPanel,
-  EuiPopover,
-  EuiPopoverTitle,
-} from '@elastic/eui';
-
-import { useProvider } from '../provider';
-
-import { setTheme, themeConfig } from '../../lib/theme';
+import { FunctionComponent } from 'react';
+import { EuiButtonIcon } from '@elastic/eui';
+import { useTheme } from '../theme';
 
 /**
- * Renders a dropdown menu for selecting the current theme. The selection
- * is set in localStorage, so that it persists between visits.
+ * Current theme is set in localStorage
+ * so that it persists between visits.
  */
 const ThemeSwitcher: FunctionComponent = () => {
-  const { colorMode, setColorMode } = useProvider();
-  const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const { colorMode, setColorMode } = useTheme();
+  const isDarkTheme = colorMode === 'dark';
 
   const handleChangeTheme = (newTheme: string) => {
-    setPopoverOpen(false);
     setColorMode(newTheme);
-    setTheme(newTheme);
   };
 
-  const items = themeConfig.availableThemes.map(each => (
-    <EuiContextMenuItem
-      key={each.id}
-      icon={each.id === colorMode ? 'check' : 'empty'}
-      onClick={() => handleChangeTheme(each.id)}>
-      {each.name}
-    </EuiContextMenuItem>
-  ));
-
-  const button = (
-    <EuiButtonIcon
-      iconType="gear"
-      aria-label="Open theme menu"
-      onClick={() => setPopoverOpen(!isPopoverOpen)}>
-      Switch theme
-    </EuiButtonIcon>
-  );
-
   return (
-    <EuiPopover
-      id="contextMenu"
-      button={button}
-      isOpen={isPopoverOpen}
-      closePopover={() => setPopoverOpen(false)}
-      panelPaddingSize="none"
-      anchorPosition="downLeft">
-      <EuiPopoverTitle paddingSize="s">Theme options</EuiPopoverTitle>
-      <EuiContextMenuPanel items={items} />
-    </EuiPopover>
+    <EuiButtonIcon
+      color="ghost"
+      iconType={isDarkTheme ? 'sun' : 'moon'}
+      aria-label="Change theme"
+      onClick={() =>
+        handleChangeTheme(isDarkTheme ? 'light' : 'dark')
+      }></EuiButtonIcon>
   );
 };
 

@@ -102,56 +102,6 @@ const nextConfig = {
 
     return config;
   },
-
-  /**
-   * If you want to use dynamic routes with Static HTML Export, then you
-   * have to manually define (or in this case, extend) the path map.
-   * Otherwise, Next can't generate static pages for each path - everything
-   * would work on the client so long as an explicit path was loaded first,
-   * but a direct fetch on a dynamic route wouldn't work. If you don't use
-   * dynamic routes, then you don't need this function at all.
-   *
-   * If you can't generate all the possible paths at build time, for
-   * example by hard-coding or querying an API, you'll need some kind of
-   * server-side redirect, which is outside the scope of this project.
-   *
-   * @see https://nextjs.org/docs/routing/introduction
-   * @see https://nextjs.org/docs/advanced-features/static-html-export
-   */
-  exportPathMap: async function (defaultPathMap) {
-    const dynamicPaths = [
-      '/my-dashboard',
-      '/workpad',
-      '/my-logs',
-      '/my-workpad',
-      '/my-logs',
-      '/apm',
-      '/metrics',
-      '/logs',
-      '/uptime',
-      '/maps',
-      '/siem',
-      '/canvas',
-      '/discover',
-      '/visualize',
-      '/dashboard',
-      '/machine-learning',
-      '/custom-plugin',
-      '/dev-tools',
-      '/stack-monitoring',
-      '/stack-management',
-    ];
-
-    const pathMap = {
-      ...defaultPathMap,
-    };
-
-    for (const path of dynamicPaths) {
-      pathMap[`/my-app${path}`] = { page: '/my-app/[slug]' };
-    }
-
-    return pathMap;
-  },
 };
 
 /**

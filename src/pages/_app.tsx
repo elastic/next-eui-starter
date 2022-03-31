@@ -1,12 +1,11 @@
+import { FunctionComponent } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import React, { FunctionComponent } from 'react';
 import { EuiErrorBoundary } from '@elastic/eui';
-
-import './app.scss';
-
+import { Global } from '@emotion/react';
 import Chrome from '../components/chrome';
-import { Provider } from '../components/provider';
+import { Theme } from '../components/theme';
+import { globalStyes } from '../styles/global.styles';
 
 /**
  * Next.js uses the App component to initialize pages. You can override it
@@ -21,13 +20,14 @@ const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
       {/* You can override this in other pages - see page-2.tsx for an example */}
       <title>Next.js EUI Starter</title>
     </Head>
-    <Provider>
+    <Global styles={globalStyes} />
+    <Theme>
       <Chrome>
         <EuiErrorBoundary>
           <Component {...pageProps} />
         </EuiErrorBoundary>
       </Chrome>
-    </Provider>
+    </Theme>
   </>
 );
 
