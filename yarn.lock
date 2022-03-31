@@ -84,10 +84,10 @@
   dependencies:
     tslib "^1.9.3"
 
-"@elastic/eui@^48.1.1":
-  version "48.1.1"
-  resolved "https://registry.yarnpkg.com/@elastic/eui/-/eui-48.1.1.tgz#38e440f7bfb30dc22220cb09e4bb36d0c500e495"
-  integrity sha512-9bz8D47f1xZJ8WsLBGCyeMk6JoJuyEyq5C46t5zsY0fayoeEX9FvpkUEdQWLb9zKJ14oNS3SD+ceao4bdu/IKQ==
+"@elastic/eui@^53.0.1":
+  version "53.0.1"
+  resolved "https://registry.yarnpkg.com/@elastic/eui/-/eui-53.0.1.tgz#82359460ae4edab3a538846b6915518cb1214848"
+  integrity sha512-fPOuDyc7adjHBp+UHOtIJTHdZVKi8MGzyuYxTRN8ZYLHbzcNTaCsogdk+0eb6u4ISRqhk3tudG8Q0znksVHt1w==
   dependencies:
     "@types/chroma-js" "^2.0.0"
     "@types/lodash" "^4.14.160"
@@ -125,7 +125,7 @@
     text-diff "^1.0.1"
     unified "^9.2.0"
     unist-util-visit "^2.0.3"
-    url-parse "^1.5.6"
+    url-parse "^1.5.10"
     uuid "^8.3.0"
     vfile "^4.2.0"
 
@@ -4003,7 +4003,7 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-url-parse@^1.5.6:
+url-parse@^1.5.10:
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.10.tgz#9d3c2f736c1d75dd3bd2be507dcc111f1e2ea9c1"
   integrity sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==
