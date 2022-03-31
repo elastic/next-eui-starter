@@ -21,7 +21,7 @@ const HomeWhy: FunctionComponent = () => {
 
       <EuiText grow={false}>
         <p>
-          Sometimes you just need to prototype a new functionality or test a new
+          Sometimes you just need to prototype new functionality or test a new
           feature. This starter gives you an easy way to start experimenting
           with EUI.
         </p>
