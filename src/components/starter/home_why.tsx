@@ -69,7 +69,7 @@ const HomeWhy: FunctionComponent = () => {
             icon={<EuiIcon size="l" type="wrench" />}
             display="transparent"
             hasBorder
-            title="Test a functionality"
+            title="Test functionality"
             description="The perfect environment to test a new EUI component or any ReactJS react component. "
           />
         </EuiFlexItem>
