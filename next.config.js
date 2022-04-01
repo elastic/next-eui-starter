@@ -32,6 +32,10 @@ const nextConfig = {
    */
   basePath: pathPrefix,
 
+  images: {
+    loader: 'custom',
+  },
+
   /**
    * Set custom `process.env.SOMETHING` values to use in the application.
    * You can do this with Webpack's `DefinePlugin`, but this is more concise.

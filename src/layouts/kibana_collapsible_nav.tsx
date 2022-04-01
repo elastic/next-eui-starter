@@ -17,8 +17,9 @@ import {
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import { css } from '@emotion/react';
-
 import ThemeSwitcher from '../components/chrome/theme_switcher';
+
+const pathPrefix = process.env.PATH_PREFIX;
 
 const TopLinks: EuiPinnableListGroupItemProps[] = [
   {
@@ -217,7 +218,10 @@ const CollapsibleNav = () => {
         sections={[
           {
             items: [
-              <EuiHeaderLogo key="ops" iconType="logoElastic" href="/">
+              <EuiHeaderLogo
+                key="ops"
+                iconType="logoElastic"
+                href={`${pathPrefix}`}>
                 Elastic
               </EuiHeaderLogo>,
             ],

@@ -11,14 +11,18 @@ import {
 } from '@elastic/eui';
 import Image from 'next/image';
 import Link from 'next/link';
+import { imageLoader } from '../../lib/loader';
 import { useTheme } from '../theme';
 import { homeTemplates } from './home_templates.styles';
+import Pattern1 from '../../../public/images/patterns/pattern-1.svg';
+import Pattern2Light from '../../../public/images/patterns/pattern-2-light.svg';
+import Pattern2Dark from '../../../public/images/patterns/pattern-2-dark.svg';
 
 const HomeTemplates: FunctionComponent = () => {
   const { colorMode } = useTheme();
   const { euiTheme } = useEuiTheme();
 
-  const pattern2 = `/images/patterns/pattern-2-${colorMode}.svg`;
+  const Pattern2 = colorMode === 'dark' ? Pattern2Dark : Pattern2Light;
 
   const styles = homeTemplates(euiTheme);
 
@@ -28,12 +32,19 @@ const HomeTemplates: FunctionComponent = () => {
         <Image
           width={165 / 2}
           height={130 / 2}
-          src="/images/patterns/pattern-1.svg"
+          src={Pattern1}
           alt=""
+          loader={imageLoader}
         />
       </span>
       <span css={styles.circle2}>
-        <Image width={165 / 2} height={130 / 2} src={pattern2} alt="" />
+        <Image
+          width={165 / 2}
+          height={130 / 2}
+          src={Pattern2}
+          alt=""
+          loader={imageLoader}
+        />
       </span>
     </>
   );
