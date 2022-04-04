@@ -36,7 +36,7 @@ function themeLink(theme: Theme): ReactElement {
  * inject the available EUI theme files.  Only the `light` theme is
  * initially enabled.
  *
- * @see https://Next.js.org/docs/advanced-features/custom-document
+ * @see https://nextjs.org/docs/advanced-features/custom-document
  */
 export default class MyDocument extends Document {
   render(): ReactElement {
