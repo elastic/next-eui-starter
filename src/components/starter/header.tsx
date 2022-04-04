@@ -35,7 +35,7 @@ const Header = () => {
                   loader={imageLoader}
                 />
                 <EuiTitle size="xxs">
-                  <span>NextJS EUI Starter</span>
+                  <span>Next.js EUI Starter</span>
                 </EuiTitle>
               </a>
             </Link>,
