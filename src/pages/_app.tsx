@@ -17,7 +17,7 @@ import { globalStyes } from '../styles/global.styles';
 const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <>
     <Head>
-      {/* You can override this in other pages - see page-2.tsx for an example */}
+      {/* You can override this in other pages - see index.tsx for an example */}
       <title>Next.js EUI Starter</title>
     </Head>
     <Global styles={globalStyes} />

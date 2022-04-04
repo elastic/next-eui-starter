@@ -42,7 +42,7 @@ const HomeWhy: FunctionComponent = () => {
             display="transparent"
             hasBorder
             title="Prototype"
-            description="This starter comes with NextJS, EUI, and Emotion so these give an easy setup to prototype."
+            description="This starter comes with Next.js, EUI, and Emotion so these give an easy setup to prototype."
           />
         </EuiFlexItem>
         <EuiFlexItem>

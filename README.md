@@ -1,10 +1,9 @@
 <p align="center">
-  <img src="src/images/logo_elastic.png" width="60"  alt="Elastic Logo"/>
+  <img src="https://repository-images.githubusercontent.com/233832487/cddf0ff5-a35f-4380-8912-1c9f365366a8" alt="EUI Next.js Starter"/>
 </p>
 
-<h1 align="center">
-  Elastic's Next.js EUI Starter
-</h1>
+# Elastic's Next.js EUI Starter
+
 
 Jump right in to building prototypes with [EUI](https://github.com/elastic/eui).
 

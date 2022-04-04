@@ -20,17 +20,17 @@ const HomeHero: FunctionComponent = () => {
     <EuiFlexGroup alignItems="center" css={styles.container}>
       <EuiFlexItem>
         <EuiTitle size="l" css={styles.title}>
-          <h1>NextJS EUI Starter</h1>
+          <h1>Next.js EUI Starter</h1>
         </EuiTitle>
         <EuiTitle size="s" css={styles.subtitle}>
-          <h2>Welcome to NextJS EUI Starter</h2>
+          <h2>Welcome to Next.js EUI Starter</h2>
         </EuiTitle>
 
         <EuiText grow={false} css={styles.description}>
           <p>
-            The NextJS Starter uses{' '}
+            The Next.js Starter uses{' '}
             <EuiLink external={true} href="https://nextjs.org/">
-              NextJS
+              Next.js
             </EuiLink>
             ,{' '}
             <EuiLink href="https://elastic.github.io/eui/" external={true}>
@@ -43,7 +43,8 @@ const HomeHero: FunctionComponent = () => {
               Emotion
             </EuiLink>{' '}
             to help you make prototypes. You just need to know a few basic
-            NextJS concepts and how to use EUI and you&apos;re ready to ship it!
+            Next.js concepts and how to use EUI and you&apos;re ready to ship
+            it!
           </p>
 
           <Link href="/getting-started" passHref>
