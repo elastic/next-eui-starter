@@ -20,12 +20,12 @@ const DocsLayout = ({ pageHeader, children }) => {
         {
           name: 'Home',
           id: htmlIdGenerator('basicExample')(),
-          href: '/docs/',
+          href: `${pathPrefix}/docs/`,
         },
         {
           name: 'Page 2',
           id: htmlIdGenerator('basicExample')(),
-          href: '/docs/page-2',
+          href: `${pathPrefix}/docs/page-2`,
         },
       ],
     },
@@ -44,7 +44,7 @@ const DocsLayout = ({ pageHeader, children }) => {
               <EuiHeaderLogo
                 key="elastic-docs"
                 iconType="logoElastic"
-                href={`${pathPrefix}`}>
+                href={`${pathPrefix}/docs`}>
                 Elastic docs
               </EuiHeaderLogo>,
             ],

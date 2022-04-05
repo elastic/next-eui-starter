@@ -27,14 +27,14 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
     iconType: 'home',
     isActive: true,
     'aria-current': true,
-    href: '/kibana',
+    href: `${pathPrefix}/kibana`,
     pinnable: false,
   },
 ];
 
 const KibanaLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Discover', href: '/kibana/discover' },
-  { label: 'Dashboard', href: '/kibana/dashboards' },
+  { label: 'Discover', href: `${pathPrefix}/kibana/discover` },
+  { label: 'Dashboard', href: `${pathPrefix}/kibana/dashboards` },
 ];
 
 const CollapsibleNav = () => {
@@ -219,9 +219,9 @@ const CollapsibleNav = () => {
           {
             items: [
               <EuiHeaderLogo
-                key="ops"
+                key="elastic-logo"
                 iconType="logoElastic"
-                href={`${pathPrefix}`}>
+                href={`${pathPrefix}/kibana`}>
                 Elastic
               </EuiHeaderLogo>,
             ],
