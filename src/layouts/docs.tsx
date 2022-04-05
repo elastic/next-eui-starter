@@ -44,7 +44,7 @@ const DocsLayout = ({ pageHeader, children }) => {
               <EuiHeaderLogo
                 key="elastic-docs"
                 iconType="logoElastic"
-                href={`${pathPrefix}`}>
+                href={`${pathPrefix}/docs`}>
                 Elastic docs
               </EuiHeaderLogo>,
             ],

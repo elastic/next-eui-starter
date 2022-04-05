@@ -27,7 +27,7 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
     iconType: 'home',
     isActive: true,
     'aria-current': true,
-    href: 'kibana',
+    href: `${pathPrefix}/kibana`,
     pinnable: false,
   },
 ];
@@ -221,7 +221,7 @@ const CollapsibleNav = () => {
               <EuiHeaderLogo
                 key="elastic-logo"
                 iconType="logoElastic"
-                href={`${pathPrefix}`}>
+                href={`${pathPrefix}/kibana`}>
                 Elastic
               </EuiHeaderLogo>,
             ],
