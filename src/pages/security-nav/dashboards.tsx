@@ -8,7 +8,7 @@ const Discover: FunctionComponent = () => {
     <SecurityLayout>
       <EuiPageTemplate
         pageHeader={{
-          pageTitle: 'Alerts',
+          pageTitle: 'Dashboards',
         }}>
         <EuiText>
           <p>

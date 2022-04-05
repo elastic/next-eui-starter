@@ -1,13 +1,8 @@
 import { FunctionComponent } from 'react';
-import {
-  EuiPageTemplate,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiCard,
-  EuiIcon,
-} from '@elastic/eui';
+import { EuiPageTemplate } from '@elastic/eui';
 import SecurityLayout from '../../layouts/security';
 import SideNav from '../../components/security/side_nav';
+import TextSkeleton from '../../components/skeletons/text_skeleton';
 
 const Index: FunctionComponent = () => {
   return (
@@ -24,7 +19,9 @@ const Index: FunctionComponent = () => {
               label: 'Alerts',
             },
           ],
-        }}></EuiPageTemplate>
+        }}>
+        <TextSkeleton textLines={10} />
+      </EuiPageTemplate>
     </SecurityLayout>
   );
 };
