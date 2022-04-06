@@ -11,7 +11,7 @@ const SecurityLayout = ({ children, pageHeader }) => {
       <div css={styles.contentWrapper}>
         <EuiPageTemplate
           pageSideBar={<SideNav />}
-          pageSideBarProps={{ paddingSize: 'none' }}
+          pageSideBarProps={{ paddingSize: 'm' }}
           restrictWidth
           pageHeader={pageHeader}>
           {children}

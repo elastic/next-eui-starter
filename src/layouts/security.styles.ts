@@ -14,5 +14,20 @@ export const SecurityLayoutStyles = () => ({
     flex-grow: 1;
     z-index: 0;
     position: relative;
+
+    .euiPageSideBar {
+      background: linear-gradient(
+          160deg,
+          rgba(211, 218, 230, 0.3) 0,
+          rgba(211, 218, 230, 0.3) 32px,
+          rgba(255, 0, 0, 0) 0
+        ),
+        linear-gradient(
+          175deg,
+          rgba(211, 218, 230, 0.3) 0,
+          rgba(211, 218, 230, 0.3) 16px,
+          rgba(255, 0, 0, 0) 0
+        );
+    }
   `,
 });

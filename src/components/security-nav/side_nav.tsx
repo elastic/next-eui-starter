@@ -5,6 +5,9 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiNotificationBadge,
+  EuiAvatar,
+  EuiTitle,
+  useEuiTheme,
 } from '@elastic/eui';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -14,7 +17,8 @@ import AlertsSideNav from './alerts_side_nav';
 import { sideNavStyles } from './side_nav.styles';
 
 const SideNav: FunctionComponent = () => {
-  const styles = sideNavStyles();
+  const { euiTheme } = useEuiTheme();
+  const styles = sideNavStyles(euiTheme);
   const [isDashboardsSideNavVisible, setIsDashboardsSideNavVisible] =
     useState(false);
   const [isAlertsSideNavVisible, setIsAlertsSideNavVisible] = useState(false);
@@ -62,6 +66,16 @@ const SideNav: FunctionComponent = () => {
 
   return (
     <>
+      <EuiTitle size="xs" css={styles.title}>
+        <h2>
+          <EuiAvatar
+            name="security logo"
+            color="plain"
+            iconType="logoSecurity"></EuiAvatar>
+          <strong>Security</strong>
+        </h2>
+      </EuiTitle>
+
       <EuiListGroup>
         <Link href={hrefIndex} passHref>
           <EuiListGroupItem
