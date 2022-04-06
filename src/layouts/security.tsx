@@ -1,13 +1,22 @@
+import { EuiPageTemplate } from '@elastic/eui';
 import CollapsibleNav from './security_collapsible_nav';
 import { SecurityLayoutStyles } from './security.styles';
+import SideNav from '../components/security/side_nav';
 
-const SecurityLayout = ({ children }) => {
+const SecurityLayout = ({ children, pageHeader }) => {
   const styles = SecurityLayoutStyles();
   return (
     <div css={styles.mainWrapper}>
       <CollapsibleNav />
-
-      <div css={styles.contentWrapper}>{children}</div>
+      <div css={styles.contentWrapper}>
+        <EuiPageTemplate
+          pageSideBar={<SideNav />}
+          pageSideBarProps={{ paddingSize: 'none' }}
+          restrictWidth
+          pageHeader={pageHeader}>
+          {children}
+        </EuiPageTemplate>
+      </div>
     </div>
   );
 };
