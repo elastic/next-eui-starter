@@ -20,7 +20,7 @@ const DocsLayout = ({ pageHeader, children }) => {
         {
           name: 'Home',
           id: htmlIdGenerator('basicExample')(),
-          href: `${pathPrefix}/docs/`,
+          href: `${pathPrefix}/docs`,
         },
         {
           name: 'Page 2',
