@@ -83,7 +83,7 @@ const SideNav: FunctionComponent = () => {
               onClick: toggleDashboardsSideNav,
               iconType: 'grid',
               iconSize: 's',
-              'aria-label': 'Favorite link1',
+              'aria-label': 'Toggle dashboards side nav',
               alwaysShow: true,
             }}
           />
@@ -101,7 +101,7 @@ const SideNav: FunctionComponent = () => {
               onClick: toggleAlertsSideNavVisible,
               iconType: 'grid',
               iconSize: 's',
-              'aria-label': 'Favorite link1',
+              'aria-label': 'Toggle alerts side nav',
               alwaysShow: true,
             }}
           />
