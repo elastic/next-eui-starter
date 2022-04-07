@@ -1,68 +1,110 @@
-import { FunctionComponent, useState } from 'react';
+import {
+  FunctionComponent,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   EuiListGroup,
   EuiListGroupItem,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiNotificationBadge,
   EuiAvatar,
   EuiTitle,
   useEuiTheme,
+  EuiDescriptionList,
+  EuiDescriptionListDescription,
+  EuiDescriptionListTitle,
+  EuiListGroupItemProps,
 } from '@elastic/eui';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PortalSideNav from './portal_side_nav';
-import DashboardsSideNav from './dashboards_side_nav';
-import AlertsSideNav from './alerts_side_nav';
 import { sideNavStyles } from './side_nav.styles';
+import { NavItem } from './side_nav_items';
+import { css } from '@emotion/react';
 
-const SideNav: FunctionComponent = () => {
+interface SideNavProps {
+  items: NavItem[];
+}
+
+const SideNav: FunctionComponent<SideNavProps> = ({ items }) => {
   const { euiTheme } = useEuiTheme();
   const styles = sideNavStyles(euiTheme);
-  const [isDashboardsSideNavVisible, setIsDashboardsSideNavVisible] =
-    useState(false);
-  const [isAlertsSideNavVisible, setIsAlertsSideNavVisible] = useState(false);
 
   const router = useRouter();
 
-  const hrefIndex = '/security-nav';
-  const hrefDashboards = '/security-nav/dashboards';
-  const hrefAlerts = '/security-nav/alerts';
-
-  const toggleDashboardsSideNav = () => {
-    if (isAlertsSideNavVisible === true) {
-      setIsAlertsSideNavVisible(false);
-    }
-    setIsDashboardsSideNavVisible(!isDashboardsSideNavVisible);
+  const [currentSideNav, setCurrentSideNav] = useState<string | null>(null);
+  const currentSideNavRef = useRef<null | string>(null);
+  const openSideNav = (sideNavId: string) => {
+    currentSideNavRef.current = sideNavId;
+    setCurrentSideNav(sideNavId);
   };
-
-  const toggleAlertsSideNavVisible = () => {
-    if (isDashboardsSideNavVisible) {
-      setIsDashboardsSideNavVisible(false);
-    }
-    setIsAlertsSideNavVisible(!isAlertsSideNavVisible);
+  const closeSideNav = () => {
+    currentSideNavRef.current = null;
+    setCurrentSideNav(null);
   };
+  const onClose = useCallback(() => {
+    const currentSideNav = currentSideNavRef.current;
+    // This event is triggered on outside click
+    setTimeout(() => {
+      // closing the side nav at the end of event loop to make sure it
+      // is closed if the current sideNav open button was clicked,
+      // but not closing it if any other sideNav open button was clicked
+      if (currentSideNavRef.current === currentSideNav) {
+        closeSideNav();
+      }
+    });
+  }, []);
 
-  const dashboardsSideNav = isDashboardsSideNavVisible && (
-    <PortalSideNav>
-      <DashboardsSideNav />
-    </PortalSideNav>
+  const sideNavItems = useMemo(
+    () =>
+      items.reduce((acc, navItem) => {
+        if (navItem.items && navItem.items.length > 0) {
+          acc[navItem.id] = {
+            name: navItem.name,
+            items: navItem.items,
+          };
+        }
+        return acc;
+      }, {}),
+    [items]
   );
 
-  const alertsSideNavVisible = isAlertsSideNavVisible && (
-    <PortalSideNav>
-      <AlertsSideNav />
-    </PortalSideNav>
-  );
-
-  const alertsLabel = (
-    <EuiFlexGroup alignItems="center">
-      <EuiFlexItem>Alerts</EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiNotificationBadge>32</EuiNotificationBadge>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  );
+  const sideNav = useMemo(() => {
+    if (currentSideNav == null || !sideNavItems[currentSideNav]) {
+      return null;
+    }
+    return (
+      <PortalSideNav onClose={onClose}>
+        <EuiFlexGroup direction="column" gutterSize="l" alignItems="flexStart">
+          <EuiFlexItem>
+            <EuiTitle size="xs">
+              <strong>{sideNavItems[currentSideNav].name}</strong>
+            </EuiTitle>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiDescriptionList>
+              {sideNavItems[currentSideNav].items.map((item: NavItem) => (
+                <>
+                  <EuiDescriptionListTitle
+                    css={css`
+                      font-size: 1em;
+                    `}>
+                    <Link href={item.url}>{item.name}</Link>
+                  </EuiDescriptionListTitle>
+                  <EuiDescriptionListDescription>
+                    {item.description}
+                  </EuiDescriptionListDescription>
+                </>
+              ))}
+            </EuiDescriptionList>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </PortalSideNav>
+    );
+  }, [sideNavItems, currentSideNav, onClose]);
 
   return (
     <>
@@ -77,53 +119,43 @@ const SideNav: FunctionComponent = () => {
       </EuiTitle>
 
       <EuiListGroup>
-        <Link href={hrefIndex} passHref>
-          <EuiListGroupItem
-            color="text"
-            isActive={router.asPath === hrefIndex}
-            label="Inbox"
-            size="s"
-          />
-        </Link>
-
-        <Link href={hrefDashboards} passHref>
-          <EuiListGroupItem
-            color="text"
-            isActive={router.asPath === hrefDashboards}
-            label="Dashboards"
-            size="s"
-            extraAction={{
-              color: isDashboardsSideNavVisible ? 'primary' : 'text',
-              onClick: toggleDashboardsSideNav,
+        {items.map(({ id, url, name, items }) => {
+          const extraProps: Partial<EuiListGroupItemProps> = {};
+          if (items && items.length > 0) {
+            extraProps.extraAction = {
+              color: currentSideNav === id ? 'primary' : 'text',
+              onClick: () => {
+                openSideNav(id);
+              },
               iconType: 'grid',
               iconSize: 's',
               'aria-label': 'Toggle dashboards side nav',
               alwaysShow: true,
-            }}
-          />
-        </Link>
-        <Link href={hrefAlerts} passHref>
-          <EuiListGroupItem
-            css={styles.sideNavItem}
-            wrapText
-            color="text"
-            isActive={router.asPath === hrefAlerts}
-            label={alertsLabel}
-            size="s"
-            extraAction={{
-              color: isAlertsSideNavVisible ? 'primary' : 'text',
-              onClick: toggleAlertsSideNavVisible,
-              iconType: 'grid',
-              iconSize: 's',
-              'aria-label': 'Toggle alerts side nav',
-              alwaysShow: true,
-            }}
-          />
-        </Link>
+            };
+          } else {
+            extraProps.onClick = () => {
+              openSideNav(id);
+            };
+          }
+          const groupItem = (
+            <EuiListGroupItem
+              key={id}
+              color={router.asPath === url ? 'primary' : 'text'}
+              // isActive={router.asPath === hrefDashboards}
+              label={name}
+              size="s"
+              {...extraProps}
+            />
+          );
+          return (
+            <Link key={id} href={url} passHref>
+              {groupItem}
+            </Link>
+          );
+        })}
       </EuiListGroup>
 
-      {alertsSideNavVisible}
-      {dashboardsSideNav}
+      {sideNav}
     </>
   );
 };

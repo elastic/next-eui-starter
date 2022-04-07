@@ -1,16 +1,47 @@
 import { FunctionComponent } from 'react';
 import { portalSideNavStyles } from './portal_side_nav.styles';
-import { EuiPanel, EuiPortal } from '@elastic/eui';
+import {
+  EuiFocusTrap,
+  EuiOutsideClickDetector,
+  EuiPanel,
+  EuiPortal,
+  EuiWindowEvent,
+  keys,
+} from '@elastic/eui';
 
-const PortalSideNav: FunctionComponent = ({ children }) => {
+type PortalSideNavProps = {
+  onClose: () => void;
+};
+
+const PortalSideNav: FunctionComponent<PortalSideNavProps> = ({
+  onClose,
+  children,
+}) => {
   const styles = portalSideNavStyles();
 
+  /**
+   * ESC key closes SideNav
+   */
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === keys.ESCAPE) {
+      event.preventDefault();
+      onClose();
+    }
+  };
+
   return (
-    <EuiPortal>
-      <EuiPanel css={styles.panel} borderRadius="none">
-        {children}
-      </EuiPanel>
-    </EuiPortal>
+    <>
+      <EuiWindowEvent event="keydown" handler={onKeyDown} />
+      <EuiPortal>
+        <EuiFocusTrap autoFocus>
+          <EuiOutsideClickDetector onOutsideClick={() => onClose()}>
+            <EuiPanel css={styles.panel} borderRadius="none" paddingSize="l">
+              {children}
+            </EuiPanel>
+          </EuiOutsideClickDetector>
+        </EuiFocusTrap>
+      </EuiPortal>
+    </>
   );
 };
 
