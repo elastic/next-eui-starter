@@ -1,4 +1,5 @@
 import {
+  Fragment,
   FunctionComponent,
   useCallback,
   useMemo,
@@ -27,32 +28,37 @@ import { css } from '@emotion/react';
 
 interface SideNavProps {
   items: NavItem[];
+  footerItems?: NavItem[];
 }
+type ActiveSideNav = string | null;
 
-const SideNav: FunctionComponent<SideNavProps> = ({ items }) => {
+const SideNav: FunctionComponent<SideNavProps> = ({
+  items,
+  footerItems = [],
+}) => {
   const { euiTheme } = useEuiTheme();
   const styles = sideNavStyles(euiTheme);
 
   const router = useRouter();
 
-  const [currentSideNav, setCurrentSideNav] = useState<string | null>(null);
-  const currentSideNavRef = useRef<null | string>(null);
+  const [activeSideNav, setActiveSideNav] = useState<ActiveSideNav>(null);
+  const currentSideNavRef = useRef<ActiveSideNav>(null);
   const openSideNav = (sideNavId: string) => {
     currentSideNavRef.current = sideNavId;
-    setCurrentSideNav(sideNavId);
+    setActiveSideNav(sideNavId);
   };
   const closeSideNav = () => {
     currentSideNavRef.current = null;
-    setCurrentSideNav(null);
+    setActiveSideNav(null);
   };
   const onClose = useCallback(() => {
-    const currentSideNav = currentSideNavRef.current;
+    const activeSideNav = currentSideNavRef.current;
     // This event is triggered on outside click
     setTimeout(() => {
       // closing the side nav at the end of event loop to make sure it
       // is closed if the current sideNav open button was clicked,
-      // but not closing it if any other sideNav open button was clicked
-      if (currentSideNavRef.current === currentSideNav) {
+      // but not closed it if any other sideNav open button was clicked
+      if (currentSideNavRef.current === activeSideNav) {
         closeSideNav();
       }
     });
@@ -60,7 +66,7 @@ const SideNav: FunctionComponent<SideNavProps> = ({ items }) => {
 
   const sideNavItems = useMemo(
     () =>
-      items.reduce((acc, navItem) => {
+      [...items, ...footerItems].reduce((acc, navItem) => {
         if (navItem.items && navItem.items.length > 0) {
           acc[navItem.id] = {
             name: navItem.name,
@@ -69,11 +75,11 @@ const SideNav: FunctionComponent<SideNavProps> = ({ items }) => {
         }
         return acc;
       }, {}),
-    [items]
+    [items, footerItems]
   );
 
   const sideNav = useMemo(() => {
-    if (currentSideNav == null || !sideNavItems[currentSideNav]) {
+    if (activeSideNav == null || !sideNavItems[activeSideNav]) {
       return null;
     }
     return (
@@ -81,12 +87,12 @@ const SideNav: FunctionComponent<SideNavProps> = ({ items }) => {
         <EuiFlexGroup direction="column" gutterSize="l" alignItems="flexStart">
           <EuiFlexItem>
             <EuiTitle size="xs">
-              <strong>{sideNavItems[currentSideNav].name}</strong>
+              <strong>{sideNavItems[activeSideNav].name}</strong>
             </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem>
             <EuiDescriptionList>
-              {sideNavItems[currentSideNav].items.map((item: NavItem) => (
+              {sideNavItems[activeSideNav].items.map((item: NavItem) => (
                 <>
                   <EuiDescriptionListTitle
                     css={css`
@@ -104,57 +110,83 @@ const SideNav: FunctionComponent<SideNavProps> = ({ items }) => {
         </EuiFlexGroup>
       </PortalSideNav>
     );
-  }, [sideNavItems, currentSideNav, onClose]);
+  }, [sideNavItems, activeSideNav, onClose]);
+
+  const renderNavItem = useCallback(
+    ({ id, url, name, render, items }: NavItem) => {
+      if (render) {
+        return <Fragment key={id}>{render()}</Fragment>;
+      }
+      const extraProps: Partial<EuiListGroupItemProps> = {};
+      if (items && items.length > 0) {
+        // add extra action of the sideNav toggle button
+        extraProps.extraAction = {
+          color: activeSideNav === id ? 'primary' : 'text',
+          onClick: () => {
+            openSideNav(id);
+          },
+          iconType: 'grid',
+          iconSize: 's',
+          'aria-label': 'Toggle dashboards side nav',
+          alwaysShow: true,
+        };
+      }
+      const navItemColor = router.asPath === url ? 'primary' : 'text';
+      return url ? (
+        <Link key={id} href={url} passHref>
+          <EuiListGroupItem
+            color={navItemColor}
+            // isActive={router.asPath === hrefDashboards}
+            label={name}
+            size="s"
+            {...extraProps}
+          />
+        </Link>
+      ) : (
+        <EuiListGroupItem
+          key={id}
+          color={navItemColor}
+          label={name}
+          size="s"
+          {...extraProps}
+        />
+      );
+    },
+    [activeSideNav, router.asPath]
+  );
 
   return (
     <>
-      <EuiTitle size="xs" css={styles.title}>
-        <h2>
-          <EuiAvatar
-            name="security logo"
-            color="plain"
-            iconType="logoSecurity"></EuiAvatar>
-          <strong>Security</strong>
-        </h2>
-      </EuiTitle>
+      <EuiFlexGroup
+        direction="column"
+        css={css`
+          height: 100%;
+        `}>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xs" css={styles.title}>
+            <h2>
+              <EuiAvatar
+                name="security logo"
+                color="plain"
+                iconType="logoSecurity"></EuiAvatar>
+              <strong>Security</strong>
+            </h2>
+          </EuiTitle>
+        </EuiFlexItem>
 
-      <EuiListGroup>
-        {items.map(({ id, url, name, items }) => {
-          const extraProps: Partial<EuiListGroupItemProps> = {};
-          if (items && items.length > 0) {
-            extraProps.extraAction = {
-              color: currentSideNav === id ? 'primary' : 'text',
-              onClick: () => {
-                openSideNav(id);
-              },
-              iconType: 'grid',
-              iconSize: 's',
-              'aria-label': 'Toggle dashboards side nav',
-              alwaysShow: true,
-            };
-          } else {
-            extraProps.onClick = () => {
-              openSideNav(id);
-            };
-          }
-          const groupItem = (
-            <EuiListGroupItem
-              key={id}
-              color={router.asPath === url ? 'primary' : 'text'}
-              // isActive={router.asPath === hrefDashboards}
-              label={name}
-              size="s"
-              {...extraProps}
-            />
-          );
-          return (
-            <Link key={id} href={url} passHref>
-              {groupItem}
-            </Link>
-          );
-        })}
-      </EuiListGroup>
-
+        <EuiFlexItem>
+          <EuiFlexGroup direction="column">
+            <EuiFlexItem>
+              <EuiListGroup>{items.map(renderNavItem)}</EuiListGroup>
+            </EuiFlexItem>
+            {footerItems.length > 0 && (
+              <EuiFlexItem grow={false}>
+                <EuiListGroup>{footerItems.map(renderNavItem)}</EuiListGroup>
+              </EuiFlexItem>
+            )}
+          </EuiFlexGroup>
+        </EuiFlexItem>
+      </EuiFlexGroup>
       {sideNav}
     </>
   );

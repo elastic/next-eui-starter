@@ -1,8 +1,14 @@
+import React from 'react';
+import { EuiIcon, EuiListGroupItem } from '@elastic/eui';
+import Link from 'next/link';
+import { css } from '@emotion/react';
+
 export type NavItem = {
   id: string;
   name: string;
-  description?: string;
   url?: string;
+  description?: string;
+  render?: () => React.ReactNode;
   items?: NavItem[];
 };
 
@@ -48,9 +54,9 @@ export const navItems: NavItem[] = [
     url: '/security-nav/cases',
   },
   {
-    id: 'entities',
-    name: 'Entities',
-    url: '/security-nav/entities',
+    id: 'threat_hunting',
+    name: 'Threat Hunting',
+    url: '/security-nav/threat_hunting',
     items: [
       {
         id: 'hosts',
@@ -78,29 +84,42 @@ export const footerNavItems: NavItem[] = [
   {
     id: 'get_started',
     name: 'Get Started',
-    url: '/security-nav/getStarted',
+    render: () => (
+      <Link href="/security-nav/get_started" passHref>
+        <EuiListGroupItem
+          label=" GET STARTED"
+          size="xs"
+          color="text"
+          icon={
+            <span role="img" aria-label="get started">
+              🚀
+            </span>
+          }
+        />
+      </Link>
+    ),
   },
   {
     id: 'management',
-    name: 'Management',
+    name: 'Manage',
     items: [
       {
-        id: 'hosts',
-        name: 'Hosts',
+        id: 'endpoints',
+        name: 'Endpoint',
         description: 'The description goes here',
-        url: '/security-nav/hosts',
+        url: '#',
       },
       {
-        id: 'network',
-        name: 'Network',
+        id: 'trusted_apps',
+        name: 'Trusted applications',
         description: 'The description goes here',
-        url: '/security-nav/network',
+        url: '#',
       },
       {
-        id: 'users',
-        name: 'Users',
+        id: 'event_filters',
+        name: 'Event filters',
         description: 'The description goes here',
-        url: '/security-nav/users',
+        url: '#',
       },
     ],
   },

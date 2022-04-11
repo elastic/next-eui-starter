@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import { portalSideNavStyles } from './portal_side_nav.styles';
 import {
   EuiFocusTrap,
@@ -13,10 +12,7 @@ type PortalSideNavProps = {
   onClose: () => void;
 };
 
-const PortalSideNav: FunctionComponent<PortalSideNavProps> = ({
-  onClose,
-  children,
-}) => {
+const PortalSideNav: React.FC<PortalSideNavProps> = ({ onClose, children }) => {
   const styles = portalSideNavStyles();
 
   /**
