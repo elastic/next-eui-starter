@@ -1,38 +1,43 @@
 import React from 'react';
-import { EuiIcon, EuiListGroupItem } from '@elastic/eui';
+import { EuiListGroupItem } from '@elastic/eui';
 import Link from 'next/link';
-import { css } from '@emotion/react';
 
 export type NavItem = {
   id: string;
-  name: string;
+  label?: string;
   url?: string;
-  description?: string;
+  items?: SubNavItem[];
   render?: () => React.ReactNode;
-  items?: NavItem[];
+};
+
+export type SubNavItem = {
+  id: string;
+  label: string;
+  url: string;
+  description?: string;
 };
 
 export const navItems: NavItem[] = [
   {
     id: 'dashboards',
-    name: 'Dashboards',
+    label: 'Dashboards',
     url: '/security-nav/dashboards',
     items: [
       {
         id: 'overview',
-        name: 'Overview',
+        label: 'Overview',
         description: 'The description goes here',
         url: '/security-nav',
       },
       {
         id: 'detection_response',
-        name: 'Detection & Response',
+        label: 'Detection & Response',
         description: 'The description goes here',
         url: '/security-nav',
       },
       {
         id: 'cloud_posture_findings',
-        name: 'Cloud Posture Findings',
+        label: 'Cloud Posture Findings',
         description: 'The description goes here',
         url: '/security-nav',
       },
@@ -40,39 +45,39 @@ export const navItems: NavItem[] = [
   },
   {
     id: 'alerts',
-    name: 'Alerts',
+    label: 'Alerts',
     url: '/security-nav/alerts',
   },
   {
     id: 'investigations',
-    name: 'Investigations',
+    label: 'Investigations',
     url: '/security-nav/investigations',
   },
   {
     id: 'cases',
-    name: 'Cases',
+    label: 'Cases',
     url: '/security-nav/cases',
   },
   {
     id: 'threat_hunting',
-    name: 'Threat Hunting',
+    label: 'Threat Hunting',
     url: '/security-nav/threat_hunting',
     items: [
       {
         id: 'hosts',
-        name: 'Hosts',
+        label: 'Hosts',
         description: 'The description goes here',
         url: '/security-nav/hosts',
       },
       {
         id: 'network',
-        name: 'Network',
+        label: 'Network',
         description: 'The description goes here',
         url: '/security-nav/network',
       },
       {
         id: 'users',
-        name: 'Users',
+        label: 'Users',
         description: 'The description goes here',
         url: '/security-nav/users',
       },
@@ -83,7 +88,6 @@ export const navItems: NavItem[] = [
 export const footerNavItems: NavItem[] = [
   {
     id: 'get_started',
-    name: 'Get Started',
     render: () => (
       <Link href="/security-nav/get_started" passHref>
         <EuiListGroupItem
@@ -101,25 +105,25 @@ export const footerNavItems: NavItem[] = [
   },
   {
     id: 'management',
-    name: 'Manage',
+    label: 'Manage',
     items: [
       {
         id: 'endpoints',
-        name: 'Endpoint',
+        label: 'Endpoint',
         description: 'The description goes here',
-        url: '#',
+        url: '/security-nav',
       },
       {
         id: 'trusted_apps',
-        name: 'Trusted applications',
+        label: 'Trusted applications',
         description: 'The description goes here',
-        url: '#',
+        url: '/security-nav',
       },
       {
         id: 'event_filters',
-        name: 'Event filters',
+        label: 'Event filters',
         description: 'The description goes here',
-        url: '#',
+        url: '/security-nav',
       },
     ],
   },

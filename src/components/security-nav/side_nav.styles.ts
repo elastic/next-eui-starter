@@ -6,6 +6,9 @@ export const sideNavStyles = euiTheme => ({
       width: 100%;
     }
   `,
+  subNavItem: css`
+    font-size: 1em;
+  `,
   title: css`
     margin-bottom: ${euiTheme.size.m};
     padding: ${euiTheme.size.s};
@@ -16,4 +19,5 @@ export const sideNavStyles = euiTheme => ({
         0 4.5px 10px rgb(0 0 0 / 5%);
     }
   `,
+
 });
