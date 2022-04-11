@@ -6,11 +6,11 @@ const Index: FunctionComponent = () => {
   return (
     <SecurityLayout
       pageHeader={{
-        pageTitle: 'Inbox',
+        pageTitle: 'Landing',
         tabs: [
-          { label: 'Cases', isSelected: true },
+          { label: 'Alerts', isSelected: true },
           {
-            label: 'Alerts',
+            label: 'Cases',
           },
         ],
       }}>
