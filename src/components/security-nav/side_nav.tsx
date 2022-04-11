@@ -158,6 +158,7 @@ const SideNav: FunctionComponent<SideNavProps> = ({
   return (
     <>
       <EuiFlexGroup
+        gutterSize="none"
         direction="column"
         css={css`
           height: 100%;
