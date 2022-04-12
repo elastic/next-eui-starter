@@ -19,5 +19,4 @@ export const sideNavStyles = euiTheme => ({
         0 4.5px 10px rgb(0 0 0 / 5%);
     }
   `,
-
 });
