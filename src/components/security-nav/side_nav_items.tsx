@@ -6,11 +6,11 @@ export type NavItem = {
   id: string;
   label?: string;
   url?: string;
-  items?: SubNavItem[];
+  items?: PortalNavItem[];
   render?: () => React.ReactNode;
 };
 
-export type SubNavItem = {
+export type PortalNavItem = {
   id: string;
   label: string;
   url: string;
@@ -111,19 +111,13 @@ export const footerNavItems: NavItem[] = [
         id: 'endpoints',
         label: 'Endpoint',
         description: 'The description goes here',
-        url: '/security-nav/hosts',
+        url: '/security-nav/endpoints',
       },
       {
         id: 'trusted_apps',
         label: 'Trusted applications',
         description: 'The description goes here',
-        url: '/security-nav/network',
-      },
-      {
-        id: 'event_filters',
-        label: 'Event filters',
-        description: 'The description goes here',
-        url: '/security-nav/users',
+        url: '/security-nav/trusted_apps',
       },
     ],
   },

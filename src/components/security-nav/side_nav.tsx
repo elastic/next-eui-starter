@@ -1,7 +1,6 @@
 import {
   Fragment,
   FunctionComponent,
-  MouseEvent,
   useCallback,
   useMemo,
   useRef,
@@ -15,24 +14,20 @@ import {
   EuiAvatar,
   EuiTitle,
   useEuiTheme,
-  EuiDescriptionList,
-  EuiDescriptionListDescription,
-  EuiDescriptionListTitle,
   EuiListGroupItemProps,
-  EuiLink,
 } from '@elastic/eui';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PortalSideNav from './portal_side_nav';
 import { sideNavStyles } from './side_nav.styles';
-import { NavItem, SubNavItem } from './side_nav_items';
+import { NavItem, PortalNavItem } from './side_nav_items';
 import { css } from '@emotion/react';
 
 interface SideNavProps {
   items: NavItem[];
   footerItems?: NavItem[];
 }
-type ActiveSubNav = string | null;
+type ActivePortalNav = string | null;
 
 const SideNav: FunctionComponent<SideNavProps> = ({
   items,
@@ -43,37 +38,41 @@ const SideNav: FunctionComponent<SideNavProps> = ({
 
   const router = useRouter();
 
-  const [activeSubNav, setActiveSubNav] = useState<ActiveSubNav>(null);
-  const currentSubNavRef = useRef<ActiveSubNav>(null);
-  const openSubNav = (subNavId: string) => {
-    currentSubNavRef.current = subNavId;
-    setActiveSubNav(subNavId);
+  const [activePortalNavId, setActivePortalNavId] =
+    useState<ActivePortalNav>(null);
+  const activePortalNavIdRef = useRef<ActivePortalNav>(null);
+
+  const openPortalNav = (navId: string) => {
+    activePortalNavIdRef.current = navId;
+    setActivePortalNavId(navId);
   };
-  const closeSubNav = () => {
-    currentSubNavRef.current = null;
-    setActiveSubNav(null);
+
+  const closePortalNav = () => {
+    activePortalNavIdRef.current = null;
+    setActivePortalNavId(null);
   };
-  const onClose = useCallback(() => {
-    const activeSubNav = currentSubNavRef.current;
+
+  const onClosePortalNav = useCallback(() => {
+    const currentPortalNavId = activePortalNavIdRef.current;
     // This event is triggered on outside click
     setTimeout(() => {
       // closing the side nav at the end of event loop to make sure it
       // closes even if the active "sub nav" open button has been clicked (toggle),
       // but it does not close if any other "sub nav" open button has been clicked
-      if (currentSubNavRef.current === activeSubNav) {
-        closeSubNav();
+      if (activePortalNavIdRef.current === currentPortalNavId) {
+        closePortalNav();
       }
     });
   }, []);
 
-  const subNavItems = useMemo(
+  const portalNavById = useMemo(
     () =>
       [...items, ...footerItems].reduce<
-        Record<string, { label: string; items: SubNavItem[] }>
+        Record<string, { title: string; items: PortalNavItem[] }>
       >((acc, navItem) => {
         if (navItem.items && navItem.items.length > 0) {
           acc[navItem.id] = {
-            label: navItem.label,
+            title: navItem.label,
             items: navItem.items,
           };
         }
@@ -83,56 +82,44 @@ const SideNav: FunctionComponent<SideNavProps> = ({
   );
 
   const portalNav = useMemo(() => {
-    if (activeSubNav == null || !subNavItems[activeSubNav]) {
+    if (activePortalNavId == null || !portalNavById[activePortalNavId]) {
       return null;
     }
+    const { items, title } = portalNavById[activePortalNavId];
     return (
-      <PortalSideNav onClose={onClose}>
-        <EuiFlexGroup direction="column" gutterSize="l" alignItems="flexStart">
-          <EuiFlexItem>
-            <EuiTitle size="xs">
-              <strong>{subNavItems[activeSubNav].label}</strong>
-            </EuiTitle>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiDescriptionList>
-              {subNavItems[activeSubNav].items.map((item: SubNavItem) => (
-                <Fragment key={item.id}>
-                  <EuiDescriptionListTitle css={styles.subNavItem}>
-                    <EuiLink
-                      href={item.url}
-                      onClick={(ev: MouseEvent) => {
-                        ev.preventDefault();
-                        closeSubNav();
-                        router.push(item.url);
-                      }}>
-                      {item.label}
-                    </EuiLink>
-                  </EuiDescriptionListTitle>
-                  <EuiDescriptionListDescription>
-                    {item.description}
-                  </EuiDescriptionListDescription>
-                </Fragment>
-              ))}
-            </EuiDescriptionList>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </PortalSideNav>
+      <PortalSideNav onClose={onClosePortalNav} items={items} title={title} />
     );
-  }, [activeSubNav, subNavItems, onClose, styles.subNavItem, router]);
+  }, [activePortalNavId, portalNavById, onClosePortalNav]);
+
+  const isItemCurrentNav = useCallback(
+    (id: string, url: string): boolean => {
+      if (url === router.asPath) {
+        return true;
+      }
+      return (
+        portalNavById[id] != null &&
+        !!portalNavById[id].items.find(
+          portalNav => portalNav.url === router.asPath
+        )
+      );
+    },
+    [portalNavById, router.asPath]
+  );
 
   const renderNavItem = useCallback(
     ({ id, url, label, items, render }: NavItem) => {
       if (render) {
         return <Fragment key={id}>{render()}</Fragment>;
       }
+      const isActive = activePortalNavId === id;
+      const isCurrentNav = isItemCurrentNav(id, url);
       const props: Partial<EuiListGroupItemProps> = {};
       if (items && items.length > 0) {
         // add extra action of the portalNav toggle button
         props.extraAction = {
-          color: activeSubNav === id ? 'primary' : 'text',
+          color: isActive ? 'primary' : 'text',
           onClick: () => {
-            openSubNav(id);
+            openPortalNav(id);
           },
           iconType: 'grid',
           iconSize: 's',
@@ -143,7 +130,8 @@ const SideNav: FunctionComponent<SideNavProps> = ({
       const sideNavItem = (
         <EuiListGroupItem
           css={styles.sideNavItem}
-          color={router.asPath === url ? 'primary' : 'text'}
+          isActive={isActive}
+          color={isCurrentNav ? 'primary' : 'text'}
           label={label}
           size="s"
           {...props}
@@ -162,7 +150,7 @@ const SideNav: FunctionComponent<SideNavProps> = ({
         </Fragment>
       );
     },
-    [activeSubNav, router.asPath, styles.sideNavItem]
+    [activePortalNavId, isItemCurrentNav, styles.sideNavItem]
   );
 
   return (

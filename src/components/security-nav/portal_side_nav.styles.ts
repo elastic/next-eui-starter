@@ -9,4 +9,7 @@ export const portalSideNavStyles = () => ({
     max-width: 340px;
     width: 100%;
   `,
+  portalNavItem: css`
+    font-size: 1em;
+  `,
 });
