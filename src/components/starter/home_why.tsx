@@ -7,6 +7,7 @@ import {
   EuiFlexItem,
   EuiCard,
   EuiIcon,
+  EuiLink,
 } from '@elastic/eui';
 import Link from 'next/link';
 
@@ -27,9 +28,11 @@ const HomeWhy: FunctionComponent = () => {
         </p>
         <p>
           We always recommend using{' '}
-          <Link href="https://codesandbox.io/">CodeSandbox</Link> for testing
-          small patterns or functionalities. But when it comes to more complex
-          patterns, this starter can definitely help you out.
+          <EuiLink href="https://codesandbox.io/" target="_blank">
+            CodeSandbox
+          </EuiLink>{' '}
+          for testing small patterns or functionalities. But when it comes to
+          more complex patterns, this starter can definitely help you out.
         </p>
       </EuiText>
 

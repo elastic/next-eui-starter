@@ -29,17 +29,17 @@ const HomeHero: FunctionComponent = () => {
         <EuiText grow={false} css={styles.description}>
           <p>
             The Next.js Starter uses{' '}
-            <EuiLink external={true} href="https://nextjs.org/">
+            <EuiLink href="https://nextjs.org/" target="_blank">
               Next.js
             </EuiLink>
             ,{' '}
-            <EuiLink href="https://elastic.github.io/eui/" external={true}>
+            <EuiLink href="https://elastic.github.io/eui/" target="_blank">
               EUI library
             </EuiLink>
             , and{' '}
             <EuiLink
               href="https://emotion.sh/docs/introduction"
-              external={true}>
+              target="_blank">
               Emotion
             </EuiLink>{' '}
             to help you make prototypes. You just need to know a few basic
