@@ -4,19 +4,29 @@ const primaryBackground = 'rgba(0, 119, 204, 0.1)';
 
 export const sideNavStyles = euiTheme => ({
   sideNavItem: css`
+    font-weight: 400;
+    &.euiListGroupItem--primary {
+      font-weight: 700;
+    }
     .euiListGroupItem__label {
       width: 100%;
     }
-    &.euiListGroupItem-isClickable:hover {
-      background-color: ${primaryBackground};
-    }
+    &.euiListGroupItem-isClickable:focus,
+    &.euiListGroupItem-isClickable:focus-within,
+    &.euiListGroupItem-isClickable:hover,
     &.euiListGroupItem-isActive {
       background-color: ${primaryBackground};
     }
     &.euiListGroupItem-isActive.euiListGroupItem--primary {
       .euiListGroupItem__button {
         color: ${euiTheme.colors.primaryText};
+        font-weight: bold;
       }
+    }
+    .euiButtonIcon--text:not([class*='isDisabled']):focus,
+    .euiButtonIcon--text:not([class*='isDisabled']):focus-within,
+    .euiButtonIcon--text:not([class*='isDisabled']):hover {
+      background-color: ${primaryBackground};
     }
   `,
   title: css`

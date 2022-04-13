@@ -22,6 +22,7 @@ import PortalSideNav from './portal_side_nav';
 import { sideNavStyles } from './side_nav.styles';
 import { NavItem, PortalNavItem } from './side_nav_items';
 import { css } from '@emotion/react';
+import EuiIconModules from './icon/modules';
 
 interface SideNavProps {
   items: NavItem[];
@@ -121,8 +122,8 @@ const SideNav: FunctionComponent<SideNavProps> = ({
           onClick: () => {
             openPortalNav(id);
           },
-          iconType: 'grid',
-          iconSize: 's',
+          iconType: EuiIconModules,
+          iconSize: 'm',
           'aria-label': 'Toggle group nav',
           alwaysShow: true,
         };
