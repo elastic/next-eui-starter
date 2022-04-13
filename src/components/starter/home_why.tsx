@@ -9,7 +9,6 @@ import {
   EuiIcon,
   EuiLink,
 } from '@elastic/eui';
-import Link from 'next/link';
 
 const HomeWhy: FunctionComponent = () => {
   return (
