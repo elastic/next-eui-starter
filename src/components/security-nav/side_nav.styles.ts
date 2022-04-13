@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 const primaryBackground = 'rgba(0, 119, 204, 0.1)';
+
 export const sideNavStyles = euiTheme => ({
   sideNavItem: css`
     .euiListGroupItem__label {
@@ -14,7 +15,7 @@ export const sideNavStyles = euiTheme => ({
     }
     &.euiListGroupItem-isActive.euiListGroupItem--primary {
       .euiListGroupItem__button {
-        color: #0071c2;
+        color: ${euiTheme.colors.primaryText};
       }
     }
   `,
