@@ -32,7 +32,7 @@
     "url": "https://github.com/elastic/next-eui-starter/issues"
   },
   "dependencies": {
-    "@elastic/eui": "^53.0.1"
+    "@elastic/eui": "^55.1.0"
   },
   "devDependencies": {
     "@elastic/datemath": "^5.0.3",

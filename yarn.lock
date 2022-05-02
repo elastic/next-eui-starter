@@ -84,10 +84,10 @@
   dependencies:
     tslib "^1.9.3"
 
-"@elastic/eui@^53.0.1":
-  version "53.0.1"
-  resolved "https://registry.yarnpkg.com/@elastic/eui/-/eui-53.0.1.tgz#82359460ae4edab3a538846b6915518cb1214848"
-  integrity sha512-fPOuDyc7adjHBp+UHOtIJTHdZVKi8MGzyuYxTRN8ZYLHbzcNTaCsogdk+0eb6u4ISRqhk3tudG8Q0znksVHt1w==
+"@elastic/eui@^55.1.0":
+  version "55.1.0"
+  resolved "https://registry.yarnpkg.com/@elastic/eui/-/eui-55.1.0.tgz#75a983c39766a52b78e529fe4be3b7cbab441caf"
+  integrity sha512-sEXH7SjNLaxmth4D3ekWajQkggq7frreTa6laZgyACWsI7hTcMJQfN4S1t13QbzZeonj/f/L87SEmkrFkBpvFg==
   dependencies:
     "@types/chroma-js" "^2.0.0"
     "@types/lodash" "^4.14.160"
@@ -121,7 +121,7 @@
     remark-emoji "^2.1.0"
     remark-parse "^8.0.3"
     remark-rehype "^8.0.0"
-    tabbable "^3.0.0"
+    tabbable "^5.2.1"
     text-diff "^1.0.1"
     unified "^9.2.0"
     unist-util-visit "^2.0.3"
@@ -3750,10 +3750,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tabbable@^3.0.0:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-3.1.2.tgz#f2d16cccd01f400e38635c7181adfe0ad965a4a2"
-  integrity sha512-wjB6puVXTYO0BSFtCmWQubA/KIn7Xvajw0x0l6eJUudMG/EAiJvIUnyNX6xO4NpGrJ16lbD0eUseB9WxW0vlpQ==
+tabbable@^5.2.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-5.3.1.tgz#059f2a19b829efce2a0ec05785a47dd3bcd0a25b"
+  integrity sha512-NtO7I7eoAHR+JwwcNsi/PipamtAEebYDnur/k9wM6n238HHy/+1O4+7Zx7e/JaDAbKJPlIFYsfsV/6tPqTOQvg==
 
 table@^6.0.9:
   version "6.8.0"
