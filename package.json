@@ -49,7 +49,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "glob": "^7.2.0",
     "iniparser": "^1.0.5",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "next": "^12.1.0",
     "null-loader": "^4.0.1",
     "prettier": "^2.5.0",
