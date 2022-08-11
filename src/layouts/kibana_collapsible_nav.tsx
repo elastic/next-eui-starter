@@ -35,6 +35,7 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
 const KibanaLinks: EuiPinnableListGroupItemProps[] = [
   { label: 'Discover', href: `${pathPrefix}/kibana/discover` },
   { label: 'Dashboard', href: `${pathPrefix}/kibana/dashboards` },
+  { label: 'Maps', href: `${pathPrefix}/kibana/maps` },
 ];
 
 const CollapsibleNav = () => {

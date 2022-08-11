@@ -1,13 +1,23 @@
-import { FunctionComponent } from 'react';
 import Link from 'next/link';
-import { EuiLink, EuiText } from '@elastic/eui';
+import { EuiLink, EuiText, EuiButton } from '@elastic/eui';
 import KibanaLayout from '../../layouts/kibana';
 
-const Discover: FunctionComponent = () => {
+const Discover = () => {
   return (
     <KibanaLayout
       pageHeader={{
-        pageTitle: 'Discover',
+        pageTitle: 'Dashboards',
+        rightSideItems: [
+          <EuiButton
+            color="primary"
+            fill
+            onClick={() => {
+              console.log('Create dashboard');
+            }}
+            key="create-dashboard">
+            Create dashboard
+          </EuiButton>,
+        ],
       }}>
       <EuiText>
         <p>
