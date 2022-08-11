@@ -26,8 +26,8 @@ const Index = () => {
 
         <EuiFlexItem>
           <EuiCard
-            icon={<EuiIcon size="xxl" type="lensApp" />}
-            title="Lens"
+            icon={<EuiIcon size="xxl" type="gisApp" />}
+            title="Maps"
             description="Example of a card's description. Stick to one or two sentences."
           />
         </EuiFlexItem>
