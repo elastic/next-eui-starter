@@ -1,8 +1,7 @@
-import { FunctionComponent } from 'react';
 import { EuiFlexGroup, EuiFlexItem, EuiCard, EuiIcon } from '@elastic/eui';
 import KibanaLayout from '../../layouts/kibana';
 
-const Index: FunctionComponent = () => {
+const Index = () => {
   return (
     <KibanaLayout
       template="empty"
@@ -27,8 +26,8 @@ const Index: FunctionComponent = () => {
 
         <EuiFlexItem>
           <EuiCard
-            icon={<EuiIcon size="xxl" type="lensApp" />}
-            title="Lens"
+            icon={<EuiIcon size="xxl" type="gisApp" />}
+            title="Maps"
             description="Example of a card's description. Stick to one or two sentences."
           />
         </EuiFlexItem>
