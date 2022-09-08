@@ -1,3 +1,5 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import { FunctionComponent } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
