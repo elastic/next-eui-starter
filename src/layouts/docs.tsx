@@ -56,10 +56,12 @@ const DocsLayout = ({ pageHeader, children }) => {
           },
         ]}
       />
-      <EuiPageTemplate
-        pageHeader={pageHeader}
-        pageSideBar={<EuiSideNav mobileTitle="Nav Items" items={sideNav} />}>
-        {children}
+      <EuiPageTemplate>
+        <EuiPageTemplate.Header {...pageHeader} />
+        <EuiPageTemplate.Sidebar sticky={true}>
+          <EuiSideNav mobileTitle="Nav Items" items={sideNav} />
+        </EuiPageTemplate.Sidebar>
+        <EuiPageTemplate.Section>{children}</EuiPageTemplate.Section>
       </EuiPageTemplate>
     </div>
   );
