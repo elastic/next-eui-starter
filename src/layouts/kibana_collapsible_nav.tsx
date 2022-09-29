@@ -76,7 +76,7 @@ const CollapsibleNav = () => {
     EuiPinnableListGroupItemProps[]
   >([]);
 
-  const addPin = (item: any) => {
+  const addPin = (item: EuiPinnableListGroupItemProps) => {
     if (!item || find(pinnedItems, { label: item.label })) {
       return;
     }
@@ -86,7 +86,7 @@ const CollapsibleNav = () => {
     localStorage.setItem('pinnedItems', JSON.stringify(newPinnedItems));
   };
 
-  const removePin = (item: any) => {
+  const removePin = (item: EuiPinnableListGroupItemProps) => {
     const pinIndex = findIndex(pinnedItems, { label: item.label });
     if (pinIndex > -1) {
       item.pinned = false;
@@ -143,7 +143,7 @@ const CollapsibleNav = () => {
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
         <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
           <EuiListGroup
-            color="ghost"
+            color="subdued"
             maxWidth="none"
             gutterSize="none"
             size="s"
