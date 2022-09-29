@@ -18,6 +18,7 @@ export const homeHeroStyles = euiTheme => ({
     }
   `,
   subtitle: css`
+    margin-top: ${euiTheme.size.l};
     padding-bottom: ${euiTheme.size.m};
   `,
   description: css`

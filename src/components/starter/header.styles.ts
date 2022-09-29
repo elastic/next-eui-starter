@@ -6,4 +6,7 @@ export const headerStyles = euiTheme => ({
     flex-wrap: wrap;
     gap: ${euiTheme.size.m};
   `,
+  title: css`
+    line-height: 1.75; // Measured in the browser
+  `,
 });
