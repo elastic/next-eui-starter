@@ -26,6 +26,7 @@ const Chrome: FunctionComponent = ({ children }) => {
         ? document.querySelector('meta[name="eui-styles-global"]')
         : null,
   });
+  emotionCache.compat = true;
 
   return (
     <EuiProvider
