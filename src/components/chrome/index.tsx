@@ -19,19 +19,25 @@ const Chrome: FunctionComponent = ({ children }) => {
    * Only necessary until EUI has converted all components to CSS-in-JS:
    * https://github.com/elastic/eui/issues/3912
    */
-  const emotionCache = createCache({
-    key: 'eui-styles',
+  const defaultCache = createCache({
+    key: 'eui',
     container:
       typeof document !== 'undefined'
-        ? document.querySelector('meta[name="eui-styles-global"]')
+        ? document.querySelector('meta[name="eui-styles"]')
         : null,
   });
-  emotionCache.compat = true;
+  const utilityCache = createCache({
+    key: 'util',
+    container:
+      typeof document !== 'undefined'
+        ? document.querySelector('meta[name="eui-styles-utility"]')
+        : null,
+  });
 
   return (
     <EuiProvider
       colorMode={colorMode as EuiThemeColorMode}
-      cache={emotionCache}>
+      cache={{ default: defaultCache, utility: utilityCache }}>
       {children}
     </EuiProvider>
   );
