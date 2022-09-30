@@ -70,9 +70,11 @@ export default class MyDocument extends Document {
             content="https://elastic.github.io/next-eui-starter/"
           />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="eui-styles-global" />
+          <meta name="eui-styles" />
 
           {themeConfig.availableThemes.map(each => themeLink(each))}
+
+          <meta name="eui-styles-utility" />
 
           <link
             rel="icon"
