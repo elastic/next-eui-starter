@@ -34,7 +34,7 @@ const Header = () => {
                   alt=""
                   loader={imageLoader}
                 />
-                <EuiTitle size="xxs">
+                <EuiTitle size="xxs" css={styles.title}>
                   <span>Next.js EUI Starter</span>
                 </EuiTitle>
               </a>

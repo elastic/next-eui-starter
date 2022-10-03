@@ -13,6 +13,7 @@ import {
   EuiListGroup,
   useGeneratedHtmlId,
   EuiAvatar,
+  EuiThemeProvider,
 } from '@elastic/eui';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
@@ -76,7 +77,7 @@ const CollapsibleNav = () => {
     EuiPinnableListGroupItemProps[]
   >([]);
 
-  const addPin = (item: any) => {
+  const addPin = (item: EuiPinnableListGroupItemProps) => {
     if (!item || find(pinnedItems, { label: item.label })) {
       return;
     }
@@ -86,7 +87,7 @@ const CollapsibleNav = () => {
     localStorage.setItem('pinnedItems', JSON.stringify(newPinnedItems));
   };
 
-  const removePin = (item: any) => {
+  const removePin = (item: EuiPinnableListGroupItemProps) => {
     const pinIndex = findIndex(pinnedItems, { label: item.label });
     if (pinIndex > -1) {
       item.pinned = false;
@@ -142,22 +143,23 @@ const CollapsibleNav = () => {
       {/* Dark deployments section */}
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
         <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
-          <EuiListGroup
-            color="ghost"
-            maxWidth="none"
-            gutterSize="none"
-            size="s"
-            listItems={[
-              {
-                label: 'Manage deployment',
-                href: '#',
-                iconType: 'logoCloud',
-                iconProps: {
-                  color: 'ghost',
+          <EuiThemeProvider colorMode="dark">
+            <EuiListGroup
+              maxWidth="none"
+              gutterSize="none"
+              size="s"
+              listItems={[
+                {
+                  label: 'Manage deployment',
+                  href: '#',
+                  iconType: 'logoCloud',
+                  iconProps: {
+                    color: 'ghost',
+                  },
                 },
-              },
-            ]}
-          />
+              ]}
+            />
+          </EuiThemeProvider>
         </EuiCollapsibleNavGroup>
       </EuiFlexItem>
       {/* Shaded pinned section always with a home item */}

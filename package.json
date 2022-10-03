@@ -32,16 +32,16 @@
     "url": "https://github.com/elastic/next-eui-starter/issues"
   },
   "dependencies": {
-    "@elastic/eui": "^55.1.0",
+    "@elastic/eui": "^68.0.0",
+    "@emotion/cache": "^11.10.3",
+    "@emotion/react": "^11.10.4",
     "core-js": "^3.25.1",
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
     "@elastic/datemath": "^5.0.3",
-    "@emotion/babel-plugin": "^11.7.2",
-    "@emotion/cache": "^11.7.1",
-    "@emotion/react": "^11.7.1",
-    "@next/bundle-analyzer": "^12.0.4",
+    "@emotion/babel-plugin": "^11.10.2",
+    "@next/bundle-analyzer": "^12.3.1",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "copy-webpack-plugin": "^10.0.0",
@@ -52,7 +52,7 @@
     "glob": "^7.2.0",
     "iniparser": "^1.0.5",
     "moment": "^2.29.4",
-    "next": "^12.1.0",
+    "next": "^12.3.1",
     "null-loader": "^4.0.1",
     "prettier": "^2.5.0",
     "react": "^17.0.2",
