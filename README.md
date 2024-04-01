@@ -3,11 +3,10 @@
 </p>
 
 # Elastic's Next.js EUI Starter
-
+> [!IMPORTANT]  
+> This starter is not constantly maintained and is out of sync with the latest EUI release. The lack of SSR support also currently makes Next.js a challenge with EUI. We plan to enhance our support for Next.js and re-evaulate this project at that time. You can follow along with that initiative with [this issue](https://github.com/elastic/eui/issues/7630) in the EUI repository.
 
 Jump right in to building prototypes with [EUI](https://github.com/elastic/eui).
-
-_🚩 This starter is not constantly maintained and may get out of sync with the latest EUI release._
 
 ## 🚀 Super-quick start using CodeSandbox
 
